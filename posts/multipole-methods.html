@@ -91,14 +91,17 @@
     <title>Multipole Methods for the Masses</title>
 
     <!-- Tracking pageviews is really useful to me to see what kind of stuff
-        I've written has traction. But I'm keen to not to track any more than
-        that, and this is the minimal solution. It's a self-hosted matomo
-        tracking pixel. It gives me no more information than the server logs
-        would, if I could actually access github-pages' server logs. Your data
-        will not be shared with anyone, and I will be the only person to ever
-        look at the stats.-->
-    <img src="https://live.andyljones.com/mat/mat.php?idsite=1&amp;rec=1" style="border:0" alt=""/>
-
+    I've done is useful to everyone else. But I'm keen to not to track any more 
+    than that, and so this is a minimal solution. All it captures is the referrer 
+    and stuff that'd be in the server logs anyway. -->
+    <script>
+      url = "https://live.andyljones.com/mat/mat.php?idsite=1&rec=1";
+      url += "&urlref=" + encodeURIComponent(document.referrer);
+      req = new XMLHttpRequest(); req.open('GET', url, true); req.send(null);
+    </script>
+    <noscript>
+      <img src="https://live.andyljones.com/mat/mat.php?idsite=1&amp;rec=1" style="border:0" alt=""/>
+    </noscript>
 
   </head>
   <body>
