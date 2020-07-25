@@ -90,14 +90,19 @@
 
     <title>Coronavirus Contrarianism</title>
 
-    <!-- Tracking pageviews is really useful to me to see what kind of stuff
-    I've done is useful to everyone else. But I'm keen to not to track any more 
-    than that, and so this is a minimal solution. All it captures is the referrer 
-    and stuff that'd be in the server logs anyway. -->
+    <!-- Tracking pageviews is really useful to me to see what kind of stuff I've done is useful to everyone else.
+    But I'm keen to not to track any more than that, and so this is a minimal, self-hosted solution.-->
     <script>
-      url = "https://live.andyljones.com/mat/mat.php?idsite=1&rec=1";
-      url += "&urlref=" + encodeURIComponent(document.referrer);
-      req = new XMLHttpRequest(); req.open('GET', url, true); req.send(null);
+      url = "https://live.andyljones.com/mat/mat.php";
+      xhr = new XMLHttpRequest();
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+      params = 'idsite=1&rec=1'
+      params += '&urlref=' + encodeURIComponent(document.referrer);
+      params += '&url=' + encodeURIComponent(window.location.href);
+      params += '&rand=' + Math.floor(16384*Math.random())
+      xhr.send(params)
     </script>
     <noscript>
       <img src="https://live.andyljones.com/mat/mat.php?idsite=1&amp;rec=1" style="border:0" alt=""/>
