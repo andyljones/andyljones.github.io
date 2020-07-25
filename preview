@@ -1,0 +1,10 @@
+#!/bin/sh
+cd "$(dirname "$0")"
+
+conda activate ./.env 
+python generate.py 
+
+sleep 2 && open "http://localhost:9001" &
+python -m http.server 9001
+
+echo "Done"

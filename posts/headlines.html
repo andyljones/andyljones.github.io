@@ -1,0 +1,167 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Andy Jones">
+    <meta name="format-detection" content="telephone=no">
+
+    <link href="/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="/favicon.ico">
+
+    <style>
+    .hll { background-color: #ffffcc }
+.c { color: #408080; font-style: italic } /* Comment */
+.err { border: 1px solid #FF0000 } /* Error */
+.k { color: #008000; font-weight: bold } /* Keyword */
+.o { color: #666666 } /* Operator */
+.ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.cp { color: #BC7A00 } /* Comment.Preproc */
+.cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.c1 { color: #408080; font-style: italic } /* Comment.Single */
+.cs { color: #408080; font-style: italic } /* Comment.Special */
+.gd { color: #A00000 } /* Generic.Deleted */
+.ge { font-style: italic } /* Generic.Emph */
+.gr { color: #FF0000 } /* Generic.Error */
+.gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.gi { color: #00A000 } /* Generic.Inserted */
+.go { color: #888888 } /* Generic.Output */
+.gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.gt { color: #0044DD } /* Generic.Traceback */
+.kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.kp { color: #008000 } /* Keyword.Pseudo */
+.kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.kt { color: #B00040 } /* Keyword.Type */
+.m { color: #666666 } /* Literal.Number */
+.s { color: #BA2121 } /* Literal.String */
+.na { color: #7D9029 } /* Name.Attribute */
+.nb { color: #008000 } /* Name.Builtin */
+.nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.no { color: #880000 } /* Name.Constant */
+.nd { color: #AA22FF } /* Name.Decorator */
+.ni { color: #999999; font-weight: bold } /* Name.Entity */
+.ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.nf { color: #0000FF } /* Name.Function */
+.nl { color: #A0A000 } /* Name.Label */
+.nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.nt { color: #008000; font-weight: bold } /* Name.Tag */
+.nv { color: #19177C } /* Name.Variable */
+.ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.w { color: #bbbbbb } /* Text.Whitespace */
+.mb { color: #666666 } /* Literal.Number.Bin */
+.mf { color: #666666 } /* Literal.Number.Float */
+.mh { color: #666666 } /* Literal.Number.Hex */
+.mi { color: #666666 } /* Literal.Number.Integer */
+.mo { color: #666666 } /* Literal.Number.Oct */
+.sa { color: #BA2121 } /* Literal.String.Affix */
+.sb { color: #BA2121 } /* Literal.String.Backtick */
+.sc { color: #BA2121 } /* Literal.String.Char */
+.dl { color: #BA2121 } /* Literal.String.Delimiter */
+.sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.s2 { color: #BA2121 } /* Literal.String.Double */
+.se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.sh { color: #BA2121 } /* Literal.String.Heredoc */
+.si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.sx { color: #008000 } /* Literal.String.Other */
+.sr { color: #BB6688 } /* Literal.String.Regex */
+.s1 { color: #BA2121 } /* Literal.String.Single */
+.ss { color: #19177C } /* Literal.String.Symbol */
+.bp { color: #008000 } /* Name.Builtin.Pseudo */
+.fm { color: #0000FF } /* Name.Function.Magic */
+.vc { color: #19177C } /* Name.Variable.Class */
+.vg { color: #19177C } /* Name.Variable.Global */
+.vi { color: #19177C } /* Name.Variable.Instance */
+.vm { color: #19177C } /* Name.Variable.Magic */
+.il { color: #666666 } /* Literal.Number.Integer.Long */
+    </style>
+
+    <meta property="og:title" content="Headlines about coronavirus case counts are worthless">
+    <meta property="og:description" content="Modelling assumptions are what's important.">
+    <meta property="og:image" content="https://andyljones.com/source/headlines/dashboard.png">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:width" content="512">
+    
+    <meta name="twitter:card" content="summary">
+
+    <title>Headlines about coronavirus case counts are worthless</title>
+
+    <!-- Tracking pageviews is really useful to me to see what kind of stuff
+        I've written has traction. But I'm keen to not to track any more than
+        that, and this is the minimal solution. It's a self-hosted matomo
+        tracking pixel. It gives me no more information than the server logs
+        would, if I could actually access github-pages' server logs. Your data
+        will not be shared with anyone, and I will be the only person to ever
+        look at the stats.-->
+    <img src="https://live.andyljones.com/mat/mat.php?idsite=1&amp;rec=1" style="border:0" alt=""/>
+
+
+  </head>
+  <body>
+    <div>
+      <div id="banner" class="column">
+        <div id="title"><a href="/">andy jones</a></div>
+        <div id="social">
+          <a href="/rss.xml"><img src='/icons/rss-solid.svg' alt='RSS'></a>
+          <span class='sep'></span>
+          <a href="mailto:me@andyljones.com"><img src='/icons/at-solid.svg' alt='Email'></a>
+          <span class='sep'></span>
+          <a href="https://github.com/andyljones"><img src='/icons/github-brands.svg' alt='Github'></a>
+          <a href="https://www.linkedin.com/in/andyjonescs"><img src='/icons/linkedin-in-brands.svg' alt='LinkedIn'></a>
+          <span class='sep'></span>
+          <a href="https://twitter.com/andy_l_jones"><img src='/icons/twitter-brands.svg' alt='Twitter'></a>
+          <a href="https://www.reddit.com/u/bluecoffee"><img src='/icons/reddit-brands.svg' alt='Reddit'></a>
+          <a href="https://stackoverflow.com/users/2565457/andy-jones"><img src='/icons/stack-overflow-brands.svg' alt='StackOverflow'></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tinted">
+      <div id="content" class="column">
+        <p><strong>EDIT: Months later, I'm still reasonably happy with this, but I've also come to think it's a lot of words and anger for a simple idea: talk about your models.</strong></p>
+<h2>Headlines about coronavirus case counts are worthless</h2>
+<p>I have a crystal ball.</p>
+<p>I can tell you what tomorrow's case number is going to be almost perfectly: it's today's case number, times whatever the average growth rate has been the past week. Applied over all the countries in the world with lots of cases, this scheme manages a 99.91% correlation<sup class="footnote-ref" id="fnref-ridiculous"><a href="#fn-ridiculous">1</a></sup>.</p>
+<p>That is to say: whatever the case number you see in the newspaper is, you could predict it almost perfectly with information you had already. <em>Daily case count headlines add nothing</em>. After you've read the first few, reading any more tells you nothing new.</p>
+<p>So if there's no point in you reading about case counts, what should you read about instead?</p>
+<h2>Predictions</h2>
+<p>Taking my dumb average-over-the-past week model and applying it to the US today, then by the 13th of May there should be more cases than there are people in the US.</p>
+<p><em>That</em> should be the lede: that this guy's predictions say that in forty days time, there will be more cases than people in the US. That's ridiculous! What's wrong with this guy's approach? What's wrong with this guy, he's clearly never done any epidemiology in his life!<sup class="footnote-ref" id="fnref-epidemiologists"><a href="#fn-epidemiologists">2</a></sup> We should really be paying attention to these other predictions: A, B, C.</p>
+<p>I would be ecstatic with that lede. I badly want a loud, angry row about models and modelling assumptions, because that's the only way to peer into the future and get ahead of this thing. But I have not seen anything like that, anywhere<sup class="footnote-ref" id="fnref-journalism"><a href="#fn-journalism">3</a></sup>.</p>
+<p>Until the day we get such a big public discussion, I would strongly suggest following the <a href="https://goodjudgment.io/covid/dashboard/">the Good Judgement Project's dashboard</a> as the product of a <em>private</em> discussion about models and modelling assumptions<sup class="footnote-ref" id="fnref-quality"><a href="#fn-quality">4</a></sup>:</p>
+<p><img src="/source/headlines/dashboard.png" alt="GJP&#39;s world dashboard"></p>
+<p>Their models suggest there'll be somewhere going on 250 million cases of coronavirus by this time next year.</p>
+<p>250 million cases.</p>
+<p><strong>EDIT</strong>: Originally I picked a billion as the average of the above distribution. Two days afterwards I actually went and took a geometric average and decided 250 million is more reasonable. The mathematician in me says '250m vs 1bn is much of a muchness on a distribution like that', but the pragmatist says I really should've done the maths first <em>then</em> wrote this post.</p>
+<p>Now if you've been looking at the news, that might shake you to your bone. But if you came back tomorrow it'd no longer be informative, it'd be no longer worth reading. What's informative, what's the thing you should read daily, is the trend, which you can see via the 'Show More' button on the dashboard:</p>
+<p><img src="/source/headlines/trend.png" alt="GJP&#39;s world trend"></p>
+<p>The trend has been <em>stable and increasing since mid-March</em>. The best forecasters in the world were <em>fairly</em> confident there'd be hundreds of millions of cases three weeks ago, and they're getting ever more confident.</p>
+<p>Left to headlines, you'd find that out yourself sometime next year.</p>
+<div class="footnotes">
+<hr>
+<ol><li id="fn-ridiculous"><p>Case numbers are strongly correlated and heteroskedastic and most people only care about their own country's counts, so quoting a straight correlation here is <em>technically</em> okay but <em>really</em> disingenuous. Heck, using the previous day's figure directly gets you 99.6% corr! If I were to predict change-in-log-cases - which has a far nicer distribution - with the same formula gets me 66% corr, 75% if I chuck outliers. <a href="https://colab.research.google.com/drive/1J0TnyfgCLueN_ee-1A_h8rN8XM7U-S2a">Code's here</a>.<a href="#fnref-ridiculous" class="footnote">&#8617;</a></p></li>
+<li id="fn-epidemiologists"><p>There is a substantial backlash against non-epidemiologists doing epidemiology at the moment. I think it's deserved, but also that <em>non-epidemiologists should carry on doing epidemiology</em>. There are not many epidemiologists in the world, but there is an awful lot of epidemiology to be done. This means there is a balance to be struck between the downsides of work being done badly, and the downsides to work not being done at all. Ideally volunteers would be rolled into <a href="https://royalsociety.org/news/2020/03/Urgent-call-epidemic-modelling/">an experienced-epidemiologist-lead program</a>, but if one of those hasn't shown up in your country yet then I think the balance is best struck by doing the work but doing it humbly.<a href="#fnref-epidemiologists" class="footnote">&#8617;</a></p></li>
+<li id="fn-journalism"><p>There is a debate to be had about whether journalism is capable of supporting this kind of analysis, and there is a debate to be had about whether society is capable of supporting journalism that is capable of supporting this kind of analysis. I have many opinions on this and none I'm confident of.<a href="#fnref-journalism" class="footnote">&#8617;</a></p></li>
+<li id="fn-quality"><p>I think highly of the Good Judgement Project because it's tried harder to validate it's methodology than anyone else. <a href="https://aiimpacts.org/evidence-on-good-forecasting-practices-from-the-good-judgment-project-an-accompanying-blog-post/">AI Impacts has an excellent summary of their work here</a>.<a href="#fnref-quality" class="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+      </div>
+      <div class="column">
+        <small>2020/04/02</small>
+      </div>
+    </div>
+
+
+    <div>
+      <div id="footer" class="column">
+        <a href="https://fontawesome.com/license">icons by dave gandy</a>, theme by <a title="i have never been funny" href="https://color-hex.org/color/6d2e98">#6d2e98</a>
+      </div>
+    </div>
+  </body>
+
+</html>

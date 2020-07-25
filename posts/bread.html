@@ -1,0 +1,275 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Andy Jones">
+    <meta name="format-detection" content="telephone=no">
+
+    <link href="/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="/favicon.ico">
+
+    <style>
+    .hll { background-color: #ffffcc }
+.c { color: #408080; font-style: italic } /* Comment */
+.err { border: 1px solid #FF0000 } /* Error */
+.k { color: #008000; font-weight: bold } /* Keyword */
+.o { color: #666666 } /* Operator */
+.ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.cp { color: #BC7A00 } /* Comment.Preproc */
+.cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.c1 { color: #408080; font-style: italic } /* Comment.Single */
+.cs { color: #408080; font-style: italic } /* Comment.Special */
+.gd { color: #A00000 } /* Generic.Deleted */
+.ge { font-style: italic } /* Generic.Emph */
+.gr { color: #FF0000 } /* Generic.Error */
+.gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.gi { color: #00A000 } /* Generic.Inserted */
+.go { color: #888888 } /* Generic.Output */
+.gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.gt { color: #0044DD } /* Generic.Traceback */
+.kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.kp { color: #008000 } /* Keyword.Pseudo */
+.kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.kt { color: #B00040 } /* Keyword.Type */
+.m { color: #666666 } /* Literal.Number */
+.s { color: #BA2121 } /* Literal.String */
+.na { color: #7D9029 } /* Name.Attribute */
+.nb { color: #008000 } /* Name.Builtin */
+.nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.no { color: #880000 } /* Name.Constant */
+.nd { color: #AA22FF } /* Name.Decorator */
+.ni { color: #999999; font-weight: bold } /* Name.Entity */
+.ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.nf { color: #0000FF } /* Name.Function */
+.nl { color: #A0A000 } /* Name.Label */
+.nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.nt { color: #008000; font-weight: bold } /* Name.Tag */
+.nv { color: #19177C } /* Name.Variable */
+.ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.w { color: #bbbbbb } /* Text.Whitespace */
+.mb { color: #666666 } /* Literal.Number.Bin */
+.mf { color: #666666 } /* Literal.Number.Float */
+.mh { color: #666666 } /* Literal.Number.Hex */
+.mi { color: #666666 } /* Literal.Number.Integer */
+.mo { color: #666666 } /* Literal.Number.Oct */
+.sa { color: #BA2121 } /* Literal.String.Affix */
+.sb { color: #BA2121 } /* Literal.String.Backtick */
+.sc { color: #BA2121 } /* Literal.String.Char */
+.dl { color: #BA2121 } /* Literal.String.Delimiter */
+.sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.s2 { color: #BA2121 } /* Literal.String.Double */
+.se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.sh { color: #BA2121 } /* Literal.String.Heredoc */
+.si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.sx { color: #008000 } /* Literal.String.Other */
+.sr { color: #BB6688 } /* Literal.String.Regex */
+.s1 { color: #BA2121 } /* Literal.String.Single */
+.ss { color: #19177C } /* Literal.String.Symbol */
+.bp { color: #008000 } /* Name.Builtin.Pseudo */
+.fm { color: #0000FF } /* Name.Function.Magic */
+.vc { color: #19177C } /* Name.Variable.Class */
+.vg { color: #19177C } /* Name.Variable.Global */
+.vi { color: #19177C } /* Name.Variable.Instance */
+.vm { color: #19177C } /* Name.Variable.Magic */
+.il { color: #666666 } /* Literal.Number.Integer.Long */
+    </style>
+
+    <meta property="og:title" content="Quarantine Bread">
+    <meta property="og:description" content="Bread that's hard to mess up.">
+    <meta property="og:image" content="https://andyljones.com/source/bread/mine.jpg">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:width" content="512">
+    
+    <meta name="twitter:card" content="summary">
+
+    <title>Quarantine Bread</title>
+
+    <!-- Tracking pageviews is really useful to me to see what kind of stuff
+        I've written has traction. But I'm keen to not to track any more than
+        that, and this is the minimal solution. It's a self-hosted matomo
+        tracking pixel. It gives me no more information than the server logs
+        would, if I could actually access github-pages' server logs. Your data
+        will not be shared with anyone, and I will be the only person to ever
+        look at the stats.-->
+    <img src="https://live.andyljones.com/mat/mat.php?idsite=1&amp;rec=1" style="border:0" alt=""/>
+
+
+  </head>
+  <body>
+    <div>
+      <div id="banner" class="column">
+        <div id="title"><a href="/">andy jones</a></div>
+        <div id="social">
+          <a href="/rss.xml"><img src='/icons/rss-solid.svg' alt='RSS'></a>
+          <span class='sep'></span>
+          <a href="mailto:me@andyljones.com"><img src='/icons/at-solid.svg' alt='Email'></a>
+          <span class='sep'></span>
+          <a href="https://github.com/andyljones"><img src='/icons/github-brands.svg' alt='Github'></a>
+          <a href="https://www.linkedin.com/in/andyjonescs"><img src='/icons/linkedin-in-brands.svg' alt='LinkedIn'></a>
+          <span class='sep'></span>
+          <a href="https://twitter.com/andy_l_jones"><img src='/icons/twitter-brands.svg' alt='Twitter'></a>
+          <a href="https://www.reddit.com/u/bluecoffee"><img src='/icons/reddit-brands.svg' alt='Reddit'></a>
+          <a href="https://stackoverflow.com/users/2565457/andy-jones"><img src='/icons/stack-overflow-brands.svg' alt='StackOverflow'></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tinted">
+      <div id="content" class="column">
+        <style>
+#content img {
+    max-width: 80%;
+    border: 10px solid;
+}
+</style><p><strong>EDIT: A few weeks later, I realise I'm one more amateur who caught a wave of quarantine-sourdough-making here. I'm still baking this recipe daily, but there are <a href="https://cooking.nytimes.com/recipes/1018028-sourdough-no-knead-bread">much simpler recipes</a> for anyone who wants something really easy and <a href="https://www.youtube.com/watch?v=85o0tVqaP1E">much more complex recipes</a> for anyone who wants something really spectacular.</strong></p>
+<h1>Quarantine Bread</h1>
+<p>Bread is a good quarantine recipe. The ingredients are cheaper<sup class="footnote-ref" id="fnref-calories"><a href="#fn-calories">1</a></sup>, denser and have a longer shelf-life than the final product, and the process of turning one into the other requires much more time than effort.</p>
+<p>This recipe will take 16 hours of waiting, and about 15 mins of activity<sup class="footnote-ref" id="fnref-first"><a href="#fn-first">2</a></sup>. It has four ingredients, requires nothing fancier than a dutch oven, and is surprisingly hard to mess up. Below are the first<sup class="footnote-ref" id="fnref-baked"><a href="#fn-baked">3</a></sup> and tenth loaves I've ever baked, both with this recipe:</p>
+<p><img src="/source/bread/mine-combo.jpg" alt="my bread"></p>
+<p>The first was good; the tenth was great. Don't ask me what changed other than 'practice'; I didn't keep good enough notes.</p>
+<h2>Ingredients</h2>
+<ul>
+<li>Plain flour, 330g</li>
+<li>Salt, 6g</li>
+<li>Instant yeast, 1/12th teaspoon<sup class="footnote-ref" id="fnref-twelfth"><a href="#fn-twelfth">4</a></sup></li>
+<li>260g of lukewarm<sup class="footnote-ref" id="fnref-lukewarm"><a href="#fn-lukewarm">5</a></sup> water</li>
+</ul>
+<h2>Equipment</h2>
+<ul>
+<li>Dutch oven<sup class="footnote-ref" id="fnref-dutch"><a href="#fn-dutch">6</a></sup></li>
+<li>Oven gloves</li>
+<li>Mixing bowl</li>
+<li>Kitchen bowl<sup class="footnote-ref" id="fnref-bowl"><a href="#fn-bowl">7</a></sup></li>
+<li>Plastic bag</li>
+<li>Kitchen scales</li>
+<li>Thermometer (optional)</li>
+</ul>
+<h2>Schedule</h2>
+<p>There are many steps, but they are all very short. If you mess something up, don't worry, just carry on with the recipe. It'll probably be fine.</p>
+<h3>The Night Before</h3>
+<ul>
+<li><strong>7:00pm</strong>:<ul>
+<li>Put the flour and water in the mixing bowl. </li>
+<li><a href="https://youtu.be/C4tgEQw4ibs?t=184">Mix with your hand</a>.</li>
+<li>Put the bowl in the bag to keep the dough moist.</li>
+</ul>
+</li>
+<li><strong>7:30pm</strong>:<ul>
+<li>Sprinkle the salt and yeast on top. </li>
+<li><a href="https://youtu.be/HoY7CPw0E1s?t=96">Pincer and fold it in with your hand</a>. </li>
+<li>Put the bowl back in the bag.</li>
+</ul>
+</li>
+<li><strong>8:00pm</strong>: <ul>
+<li><a href="https://youtu.be/CQHuWDEo3SA?t=76">Fold the dough</a>. </li>
+<li>Put the bowl back in the bag.</li>
+</ul>
+</li>
+<li><strong>8:30pm</strong>: <ul>
+<li><a href="https://youtu.be/CQHuWDEo3SA?t=76">Fold the dough</a>. </li>
+<li>Put the bowl back in the bag and leave overnight.</li>
+</ul>
+</li>
+</ul>
+<h3>The Morning Of</h3>
+<ul>
+<li><strong>8:00am</strong>: <ul>
+<li>Dampen the inside of the kitchen bowl, then cover the bowl in a layer of flour.<ul>
+<li>The water's to help the flour stick to the vertical bits of the bowl; the flour's to stop the dough from sticking to the bowl.  </li>
+</ul>
+</li>
+<li><a href="https://youtu.be/MPdedk9gJLQ?t=119">Shape the loaf</a>. </li>
+<li>Put the shaped loaf in the floured kitchen bowl. </li>
+<li>Flour the top of the shaped loaf.<ul>
+<li>The top of the dough now will be the bottom of the loaf. Lots of flour will stop it sticking to the dutch oven.</li>
+</ul>
+</li>
+<li>Put the bowl in the bag.</li>
+</ul>
+</li>
+<li><strong>8:30am</strong>:<ul>
+<li>Set the oven to 250C/Gas Mark 9ish, or as close as you can get. </li>
+<li>Put the dutch oven in the oven to preheat.</li>
+</ul>
+</li>
+<li><strong>9:15am</strong>: <ul>
+<li>With <em>OVEN GLOVES</em> take the dutch oven out and take the lid off. </li>
+<li>Rest the <em>OVEN GLOVES</em> on the dutch oven and lid so you don't try to pick them up with bare hands. </li>
+<li><a href="https://youtu.be/rtoMhY0vS9E?t=132">Turn out the dough onto a floured surface</a>.<ul>
+<li>If it sticks, just get your hand in there and scrape it out while breaking as few 'strands' as possible. Don't panic if you do, it'll turn out fine.</li>
+</ul>
+</li>
+<li><em>CAREFULLY</em> put the dough in the dutch oven. </li>
+<li>With <em>OVEN GLOVES</em>, put the lid back on, then put the dutch oven in the oven.</li>
+</ul>
+</li>
+<li><strong>9:45am</strong>: <ul>
+<li>With <em>OVEN GLOVES</em>, take the lid off the dutch oven. This is to let the crust brown.</li>
+<li>Rest the <em>OVEN GLOVES</em> on the removed lid so you don't try to pick it up. </li>
+</ul>
+</li>
+<li><strong>10:00am</strong>: <ul>
+<li>Check the colour of crust; if it's dark enough for you, use <em>OVEN GLOVES</em> to take the loaf out now. </li>
+</ul>
+</li>
+<li><strong>10:15am</strong>: <ul>
+<li>Check the colour of the crust; if it's dark enough for you, use <em>OVEN GLOVES</em> take the loaf out now. </li>
+<li>Upend the dutch oven onto the worksurface and hope the loaf falls out.<ul>
+<li>If it doesn't, leave the loaf to steam itself upside-down for a while, then try and lever it out with a spatula or something.</li>
+<li>Use more flour on the bottom in future.</li>
+</ul>
+</li>
+<li>Rest the loaf at a 45' angle against something so it can cool from all directions.</li>
+</ul>
+</li>
+<li><strong>10:45am</strong>: <ul>
+<li>The loaf is now cool. <ul>
+<li>Cut it sooner than this and some of the moisture will escape as steam.</li>
+</ul>
+</li>
+<li>Cut a slice.</li>
+<li>Cover it in butter.</li>
+<li>Eat. </li>
+</ul>
+</li>
+</ul>
+<p>The <em>OVEN GLOVES</em> are emphasised because you <em>will</em> accidentally reach for something screaming hot, and even glancing contact with 250C metal makes for a bad burn.</p>
+<h2>Notes</h2>
+<p>The recipe is a 500g version of Ken Forkish's Overnight White Loaf. <a href="https://smile.amazon.co.uk/Flour-Water-Salt-Yeast-Fundamentals/dp/160774273X">His book has details, explanations, and a load more recipes</a>.</p>
+<p>There are many bread recipes on the internet, and many variations of this particular recipe<sup class="footnote-ref" id="fnref-hn"><a href="#fn-hn">8</a></sup>. If you've not baked bread before, try not to get paralysed choosing between recipes or choosing between equipment. Use what you have, pick a recipe - any recipe - and just try it out. The uplift in quality you'll get from a trial run is much greater than the uplift from having picked the exact right recipe.</p>
+<p>If you are the kind of person who really likes to do their research first though, the places to start are Forkish's book and <a href="https://www.reddit.com/r/Breadit">/r/breadit</a>.</p>
+<p>I wrote this recipe out <em>despite</em> there being a thousand other equivalent recipes out there because I was annoyed by the the amount of cruft folded into most recipe descriptions. A bullet-pointed schedule, on a minimalist website, with links to technique videos, well, I felt it'd appeal to people who wouldn't usually bake.</p>
+<div class="footnotes">
+<hr>
+<ol><li id="fn-calories"><p>If you fancy living 13th-century style, 2000kcal of home-made bread is 35p of flour, salt and yeast.<a href="#fnref-calories" class="footnote">&#8617;</a></p></li>
+<li id="fn-first"><p>Maybe not 15 mins your first time round.<a href="#fnref-first" class="footnote">&#8617;</a></p></li>
+<li id="fn-baked"><p>And that was a few weeks ago.<a href="#fnref-baked" class="footnote">&#8617;</a></p></li>
+<li id="fn-twelfth"><p>A third of a quarter-teaspoon. It's too small to measure with a normal gram-accurate scale.<a href="#fnref-twelfth" class="footnote">&#8617;</a></p></li>
+<li id="fn-lukewarm"><p>34C if you've got a a thermometer, but a few degrees of drift won't change much. Main limit is 40C, beyond which the yeast will die.<a href="#fnref-lukewarm" class="footnote">&#8617;</a></p></li>
+<li id="fn-dutch"><p>Honestly any oven-safe metal or ceramic dish with a lid will do.<a href="#fnref-dutch" class="footnote">&#8617;</a></p></li>
+<li id="fn-bowl"><p>Ideally 15cm-ish across. It doesn't matter much.<a href="#fnref-bowl" class="footnote">&#8617;</a></p></li>
+<li id="fn-hn"><p><a href="https://news.ycombinator.com/item?id=22625590">HackerNews</a> has some suggestions.<a href="#fnref-hn" class="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+      </div>
+      <div class="column">
+        <small>2020/03/18</small>
+      </div>
+    </div>
+
+
+    <div>
+      <div id="footer" class="column">
+        <a href="https://fontawesome.com/license">icons by dave gandy</a>, theme by <a title="i have never been funny" href="https://color-hex.org/color/6d2e98">#6d2e98</a>
+      </div>
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,7 @@
+#!/bin/sh
+cd "$(dirname "$0")"
+
+. activate ./.env 
+python generate.py 
+
+echo "Generated"

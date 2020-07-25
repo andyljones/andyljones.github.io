@@ -1,0 +1,73 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Andy Jones">
+    <meta name="format-detection" content="telephone=no">
+
+    <link href="/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="/favicon.ico">
+
+    <style>
+    {{style}}
+    </style>
+
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:image" content="{{image|default('https://andyljones.com/icons/robot-solid.png')}}">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:width" content="512">
+    {# <meta property="og:url" content="https://andyljones.com/"> #}
+    <meta name="twitter:card" content="summary">
+
+    <title>{{title}}</title>
+
+    <!-- Tracking pageviews is really useful to me to see what kind of stuff
+    I've done is useful to people. But I'm keen to not to track any more than
+    that, and so this is a minimal solution. It's a self-hosted matomo tracking
+    pixel with IP anonymization and no-tracking-preference compliance. It gives
+    me no more information than the server logs would, if I could actually
+    access github-pages' server logs. Your data will not be shared with anyone,
+    and I will be the only person to ever look at the stats. -->
+	<img src="https://live.andyljones.com/mat/mat.php?idsite=1&amp;rec=1" style="border:0" alt=""/>
+
+
+  </head>
+  <body>
+    <div>
+      <div id="banner" class="column">
+        <div id="title"><a href="/">andy jones</a></div>
+        <div id="social">
+          <a href="/rss.xml"><img src='/icons/rss-solid.svg' alt='RSS'></a>
+          <span class='sep'></span>
+          <a href="mailto:me@andyljones.com"><img src='/icons/at-solid.svg' alt='Email'></a>
+          <span class='sep'></span>
+          <a href="https://github.com/andyljones"><img src='/icons/github-brands.svg' alt='Github'></a>
+          <a href="https://www.linkedin.com/in/andyjonescs"><img src='/icons/linkedin-in-brands.svg' alt='LinkedIn'></a>
+          <span class='sep'></span>
+          <a href="https://twitter.com/andy_l_jones"><img src='/icons/twitter-brands.svg' alt='Twitter'></a>
+          <a href="https://www.reddit.com/u/bluecoffee"><img src='/icons/reddit-brands.svg' alt='Reddit'></a>
+          <a href="https://stackoverflow.com/users/2565457/andy-jones"><img src='/icons/stack-overflow-brands.svg' alt='StackOverflow'></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tinted">
+      <div id="content" class="column">
+        {{content}}
+      </div>
+      <div class="column">
+        <small>{{date}}</small>
+      </div>
+    </div>
+
+
+    <div>
+      <div id="footer" class="column">
+        <a href="https://fontawesome.com/license">icons by dave gandy</a>, theme by <a title="i have never been funny" href="https://color-hex.org/color/6d2e98">#6d2e98</a>
+      </div>
+    </div>
+  </body>
+
+</html>

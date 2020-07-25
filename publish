@@ -1,0 +1,11 @@
+#!/bin/sh
+cd "$(dirname "$0")"
+
+conda activate ./.env 
+python generate.py 
+
+git add * 
+git commit -am "Auto-generate" 
+git push
+
+echo "Done"

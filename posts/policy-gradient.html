@@ -1,0 +1,242 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Andy Jones">
+    <meta name="format-detection" content="telephone=no">
+
+    <link href="/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="/favicon.ico">
+
+    <style>
+    .hll { background-color: #ffffcc }
+.c { color: #408080; font-style: italic } /* Comment */
+.err { border: 1px solid #FF0000 } /* Error */
+.k { color: #008000; font-weight: bold } /* Keyword */
+.o { color: #666666 } /* Operator */
+.ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.cp { color: #BC7A00 } /* Comment.Preproc */
+.cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.c1 { color: #408080; font-style: italic } /* Comment.Single */
+.cs { color: #408080; font-style: italic } /* Comment.Special */
+.gd { color: #A00000 } /* Generic.Deleted */
+.ge { font-style: italic } /* Generic.Emph */
+.gr { color: #FF0000 } /* Generic.Error */
+.gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.gi { color: #00A000 } /* Generic.Inserted */
+.go { color: #888888 } /* Generic.Output */
+.gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.gt { color: #0044DD } /* Generic.Traceback */
+.kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.kp { color: #008000 } /* Keyword.Pseudo */
+.kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.kt { color: #B00040 } /* Keyword.Type */
+.m { color: #666666 } /* Literal.Number */
+.s { color: #BA2121 } /* Literal.String */
+.na { color: #7D9029 } /* Name.Attribute */
+.nb { color: #008000 } /* Name.Builtin */
+.nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.no { color: #880000 } /* Name.Constant */
+.nd { color: #AA22FF } /* Name.Decorator */
+.ni { color: #999999; font-weight: bold } /* Name.Entity */
+.ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.nf { color: #0000FF } /* Name.Function */
+.nl { color: #A0A000 } /* Name.Label */
+.nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.nt { color: #008000; font-weight: bold } /* Name.Tag */
+.nv { color: #19177C } /* Name.Variable */
+.ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.w { color: #bbbbbb } /* Text.Whitespace */
+.mb { color: #666666 } /* Literal.Number.Bin */
+.mf { color: #666666 } /* Literal.Number.Float */
+.mh { color: #666666 } /* Literal.Number.Hex */
+.mi { color: #666666 } /* Literal.Number.Integer */
+.mo { color: #666666 } /* Literal.Number.Oct */
+.sa { color: #BA2121 } /* Literal.String.Affix */
+.sb { color: #BA2121 } /* Literal.String.Backtick */
+.sc { color: #BA2121 } /* Literal.String.Char */
+.dl { color: #BA2121 } /* Literal.String.Delimiter */
+.sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.s2 { color: #BA2121 } /* Literal.String.Double */
+.se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.sh { color: #BA2121 } /* Literal.String.Heredoc */
+.si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.sx { color: #008000 } /* Literal.String.Other */
+.sr { color: #BB6688 } /* Literal.String.Regex */
+.s1 { color: #BA2121 } /* Literal.String.Single */
+.ss { color: #19177C } /* Literal.String.Symbol */
+.bp { color: #008000 } /* Name.Builtin.Pseudo */
+.fm { color: #0000FF } /* Name.Function.Magic */
+.vc { color: #19177C } /* Name.Variable.Class */
+.vg { color: #19177C } /* Name.Variable.Global */
+.vi { color: #19177C } /* Name.Variable.Instance */
+.vm { color: #19177C } /* Name.Variable.Magic */
+.il { color: #666666 } /* Literal.Number.Integer.Long */
+    </style>
+
+    <meta property="og:title" content="A Clearer Proof of the Policy Gradient Theorem">
+    <meta property="og:description" content="A policy-gradient proof with less algebraic manipulation">
+    <meta property="og:image" content="https://andyljones.com/source/policy-gradient/p.png">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:width" content="512">
+    
+    <meta name="twitter:card" content="summary">
+
+    <title>A Clearer Proof of the Policy Gradient Theorem</title>
+
+    <!-- Tracking pageviews is really useful to me to see what kind of stuff
+        I've written has traction. But I'm keen to not to track any more than
+        that, and this is the minimal solution. It's a self-hosted matomo
+        tracking pixel. It gives me no more information than the server logs
+        would, if I could actually access github-pages' server logs. Your data
+        will not be shared with anyone, and I will be the only person to ever
+        look at the stats.-->
+    <img src="https://live.andyljones.com/mat/mat.php?idsite=1&amp;rec=1" style="border:0" alt=""/>
+
+
+  </head>
+  <body>
+    <div>
+      <div id="banner" class="column">
+        <div id="title"><a href="/">andy jones</a></div>
+        <div id="social">
+          <a href="/rss.xml"><img src='/icons/rss-solid.svg' alt='RSS'></a>
+          <span class='sep'></span>
+          <a href="mailto:me@andyljones.com"><img src='/icons/at-solid.svg' alt='Email'></a>
+          <span class='sep'></span>
+          <a href="https://github.com/andyljones"><img src='/icons/github-brands.svg' alt='Github'></a>
+          <a href="https://www.linkedin.com/in/andyjonescs"><img src='/icons/linkedin-in-brands.svg' alt='LinkedIn'></a>
+          <span class='sep'></span>
+          <a href="https://twitter.com/andy_l_jones"><img src='/icons/twitter-brands.svg' alt='Twitter'></a>
+          <a href="https://www.reddit.com/u/bluecoffee"><img src='/icons/reddit-brands.svg' alt='Reddit'></a>
+          <a href="https://stackoverflow.com/users/2565457/andy-jones"><img src='/icons/stack-overflow-brands.svg' alt='StackOverflow'></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tinted">
+      <div id="content" class="column">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};</script><h1>A Clearer Proof of the Policy Gradient Theorem</h1>
+<p>The policy gradient theorem is a foundational result in reinforcement learning. It turns the derivative of the total reward (hard!) into the derivative of the policy (easy!). Unfortunately, the usual proof uses more algebraic manipulation than you'd like in a foundational result.</p>
+<p>Instead, this proof starts with an unusual view of reinforcement learning problems, a view from which you only need a small amount of maths to get to the theorem.</p>
+<h2>The View</h2>
+<p>A common way to think about reinforcement learning is that each timestep you find yourself sitting in a state, visualized as a node in a graph. You choose an action - an edge - out of the current state, and the environment takes you from that edge into a new node for the next timestep.</p>
+<p><img src="/source/policy-gradient/sa.svg" alt="state-to-action-to-state diagram"></p>
+<p>This two-stage transition - node to edge and edge to node - is tricky to work with. It'd be much better if there were only one stage, but you can't ignore the edges entirely because there's valuable information - like rewards - that are defined by which action you take.</p>
+<p>What you can do instead is replace each edge with it's own node, representing a <em>state-action pair</em>:</p>
+<p><img src="/source/policy-gradient/p.svg" alt="state-action to state-action diagram"></p>
+<p>Now each timestep has one stage: you're in a node, corresponding to a state-action, and between you and the environment you - somehow - choose a new node for the next timestep. This muddies the boundary between agent's behaviour and environment's behaviour, but for our purposes of proving the policy gradient theorem that's not a problem.</p>
+<h2>The Notation</h2>
+<p>In this way of thinking, you can stack the probability of finding yourself in each state-action to get a <em>position vector</em> $p$. This means that $p_i$ is the probability of being in state-action $i$.</p>
+<p>Then to go from one position vector to the next, you simply multiply your current position vector by the transition matrix:
+$$
+p^\prime = p \Pi
+$$</p>
+<p>In this matrix, element $\Pi_{ij}$ gives the probability of going from state-action $i$ to state-action $j$. $\Pi$ merges the behaviour of the environment with the behaviour of the agent, but again that's fine because the policy gradient theorem doesn't distinguish one from the other.</p>
+<p>Since transitioning is now simple as multiplication, if you start in a position distribution $p_0$ then your position after $k$ steps has a nice form:
+$$
+p^{(k)} = p_0 \Pi^k
+$$</p>
+<p>More, if $r$ is a column vector of rewards for each state-action then the reward earned in the $k$th step has a similarly nice form:
+$$
+r^{(k)} = p^{(k)} \cdot r
+$$</p>
+<p>With this notation in hand, the total reward earned by a policy can be written as 
+$$
+J = \sum r^{(k)} = \sum p_0 \Pi^k r
+$$</p>
+<p>This formula for the total reward can be parsed two ways. The first way is in terms of the <em>state-action frequency</em> $d$:
+$$
+d = \sum p_0 \Pi^k  \quad\implies\quad J = d \cdot r
+$$</p>
+<p>This says the total reward is how often you end up in each state-action, multiplied by the reward you get from being there.</p>
+<p>The second way to parse the total reward is in terms of the <em>state-action value</em> $q$:
+$$
+q = \sum \Pi^k r \quad\implies\quad J = p_0 \cdot q
+$$</p>
+<p>This says the total reward is simply the value of the initial state.</p>
+<p>To recap,</p>
+<ul>
+<li>$p_0$ is a row vector giving the initial state-action distribution.</li>
+<li>$r$ is a column vector of the rewards for each state-action.</li>
+<li>$\Pi$ is the transition matrix, which gives the probability of going from one state-action to another under the policy.</li>
+<li>$d$ is a row vector of the frequencies of visiting each state-action under the policy.</li>
+<li>$q$ is a column vector giving the values - the total future reward - of each state-action under the policy.</li>
+<li>$J$ is the total reward earned by the policy.</li>
+</ul>
+<h2>The Simple Proof</h2>
+<p>The simple way to finish the proof is to act like all the matrices are actually real numbers. Then you can use <a href="https://en.wikipedia.org/wiki/Geometric_series#Formula">the geometric formula</a> to write $\sum \Pi^k = \frac{I}{I-\Pi}$ , so that
+$$
+d = \frac{p_0}{I - \Pi} \qquad J = p_0 \frac{I}{I - \Pi} r \qquad q = \frac{r}{I - \Pi}
+$$</p>
+<p>This matrix $\frac{I}{I - \Pi}$ has a simple interpretation: element $ij$ is the number of times you'll visit state-action $j$ if you start in state-action $i$.</p>
+<p>Once you've got these three definitions, you can use high-school calculus to work out that the gradient of the total reward is
+$$
+J^\prime = p_0 \left( \frac{I}{I - \Pi} \right)^\prime r = p_0 \frac{\Pi^\prime}{(I - \Pi)^2}r = d \Pi^\prime q
+$$</p>
+<p>That's the policy gradient theorem: $J^\prime = d \Pi^\prime q$. The left-hand side is hard, the right-hand side is easy. QED.</p>
+<p>Kinda.</p>
+<p>This approach 'works' in that it gives the right answer using rules you're familiar with, but it involves more than one illegal operation. For one, $I - \Pi$ can't be inverted. To do things properly requires a bit more indirection.</p>
+<h2>The Correct Proof</h2>
+<p>Although $q$ and $d$ are easiest to intuit as sums, multiplying their definitions through by $\Pi$ gives a neat defining identity for each one:
+$$
+\begin{aligned}
+d = d \Pi + p_0 \qquad q = \Pi q + r
+\end{aligned}
+$$</p>
+<p>or - gathering the terms - 
+$$
+\begin{aligned}
+p_0 = d(I - \Pi) \qquad r = (I - \Pi)q
+\end{aligned}
+$$</p>
+<p>They can also be turned into neat identities for the gradient:
+$$
+d^\prime (I - \Pi) = d \Pi^\prime \qquad (I - \Pi) q^\prime = \Pi^\prime q
+$$</p>
+<p>Given these identities, the policy gradient theorem falls out in two symmetric ways. The gradient of the total reward is 
+$$
+J^\prime = d^\prime \cdot r = d^\prime (I - \Pi) q = d \Pi^\prime q \quad\quad J^\prime = p_0 \cdot q^\prime = d (I - \Pi) q^\prime = d \Pi^\prime q
+$$</p>
+<p>Once more, $J^\prime = d \Pi^\prime q$. QED.</p>
+<h2>Notes</h2>
+<p>An especially nice thing about this notation is that $J^\prime = d \Pi^\prime q$ has an obvious interpretation. $J^\prime$ will be positive when $\Pi^\prime$ increases the likelihood of transitions that go from oft-visited state-actions to high-value state-actions. Just the behaviour you want!</p>
+<p>You can find the usual proof of the policy-gradient theorem on §13.2/p269 of <a href="http://incompleteideas.net/book/bookdraft2017nov5.pdf">Sutton &amp; Barto</a>. The usual proof is more compact, but requires an infinite telescope of the gradient that confuses things. You can find a version with more commentary <a href="https://lilianweng.github.io/lil-log/2018/04/08/policy-gradient-algorithms.html#proof-of-policy-gradient-theorem">here</a>, or an alternative approach based on expectations <a href="https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html#deriving-the-simplest-policy-gradient">here</a>.</p>
+<p>Thanks to <a href="https://gleave.me/">Adam Gleave</a> and <a href="https://www.jacobh.co.uk/">Jacob Hilton</a> for comments and suggestions, and to <a href="https://github.com/jerry73204">Jerry Lin</a> for corrections.</p>
+<h2>Citation</h2>
+
+<pre><code>@article{jones2020CPPGT,
+  title   = "A Clearer Proof of the Policy Gradient Theorem",
+  author  = "Andy L. Jones",
+  journal = "andyljones.com",
+  year    = "2020",
+  url     = "https://andyljones.com/posts/policy-gradient.html"
+}</code></pre>
+
+      </div>
+      <div class="column">
+        <small>2020/05/25</small>
+      </div>
+    </div>
+
+
+    <div>
+      <div id="footer" class="column">
+        <a href="https://fontawesome.com/license">icons by dave gandy</a>, theme by <a title="i have never been funny" href="https://color-hex.org/color/6d2e98">#6d2e98</a>
+      </div>
+    </div>
+  </body>
+
+</html>

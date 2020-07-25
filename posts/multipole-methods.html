@@ -1,0 +1,273 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Andy Jones">
+    <meta name="format-detection" content="telephone=no">
+
+    <link href="/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="/favicon.ico">
+
+    <style>
+    .hll { background-color: #ffffcc }
+.c { color: #408080; font-style: italic } /* Comment */
+.err { border: 1px solid #FF0000 } /* Error */
+.k { color: #008000; font-weight: bold } /* Keyword */
+.o { color: #666666 } /* Operator */
+.ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.cp { color: #BC7A00 } /* Comment.Preproc */
+.cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.c1 { color: #408080; font-style: italic } /* Comment.Single */
+.cs { color: #408080; font-style: italic } /* Comment.Special */
+.gd { color: #A00000 } /* Generic.Deleted */
+.ge { font-style: italic } /* Generic.Emph */
+.gr { color: #FF0000 } /* Generic.Error */
+.gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.gi { color: #00A000 } /* Generic.Inserted */
+.go { color: #888888 } /* Generic.Output */
+.gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.gt { color: #0044DD } /* Generic.Traceback */
+.kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.kp { color: #008000 } /* Keyword.Pseudo */
+.kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.kt { color: #B00040 } /* Keyword.Type */
+.m { color: #666666 } /* Literal.Number */
+.s { color: #BA2121 } /* Literal.String */
+.na { color: #7D9029 } /* Name.Attribute */
+.nb { color: #008000 } /* Name.Builtin */
+.nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.no { color: #880000 } /* Name.Constant */
+.nd { color: #AA22FF } /* Name.Decorator */
+.ni { color: #999999; font-weight: bold } /* Name.Entity */
+.ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.nf { color: #0000FF } /* Name.Function */
+.nl { color: #A0A000 } /* Name.Label */
+.nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.nt { color: #008000; font-weight: bold } /* Name.Tag */
+.nv { color: #19177C } /* Name.Variable */
+.ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.w { color: #bbbbbb } /* Text.Whitespace */
+.mb { color: #666666 } /* Literal.Number.Bin */
+.mf { color: #666666 } /* Literal.Number.Float */
+.mh { color: #666666 } /* Literal.Number.Hex */
+.mi { color: #666666 } /* Literal.Number.Integer */
+.mo { color: #666666 } /* Literal.Number.Oct */
+.sa { color: #BA2121 } /* Literal.String.Affix */
+.sb { color: #BA2121 } /* Literal.String.Backtick */
+.sc { color: #BA2121 } /* Literal.String.Char */
+.dl { color: #BA2121 } /* Literal.String.Delimiter */
+.sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.s2 { color: #BA2121 } /* Literal.String.Double */
+.se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.sh { color: #BA2121 } /* Literal.String.Heredoc */
+.si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.sx { color: #008000 } /* Literal.String.Other */
+.sr { color: #BB6688 } /* Literal.String.Regex */
+.s1 { color: #BA2121 } /* Literal.String.Single */
+.ss { color: #19177C } /* Literal.String.Symbol */
+.bp { color: #008000 } /* Name.Builtin.Pseudo */
+.fm { color: #0000FF } /* Name.Function.Magic */
+.vc { color: #19177C } /* Name.Variable.Class */
+.vg { color: #19177C } /* Name.Variable.Global */
+.vi { color: #19177C } /* Name.Variable.Instance */
+.vm { color: #19177C } /* Name.Variable.Magic */
+.il { color: #666666 } /* Literal.Number.Integer.Long */
+    </style>
+
+    <meta property="og:title" content="Multipole Methods for the Masses">
+    <meta property="og:description" content="Solving n-body problems in linear time, without any maths.">
+    <meta property="og:image" content="https://andyljones.com/source/multipole-methods/demo.jpg">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:width" content="512">
+    
+    <meta name="twitter:card" content="summary">
+
+    <title>Multipole Methods for the Masses</title>
+
+    <!-- Tracking pageviews is really useful to me to see what kind of stuff
+        I've written has traction. But I'm keen to not to track any more than
+        that, and this is the minimal solution. It's a self-hosted matomo
+        tracking pixel. It gives me no more information than the server logs
+        would, if I could actually access github-pages' server logs. Your data
+        will not be shared with anyone, and I will be the only person to ever
+        look at the stats.-->
+    <img src="https://live.andyljones.com/mat/mat.php?idsite=1&amp;rec=1" style="border:0" alt=""/>
+
+
+  </head>
+  <body>
+    <div>
+      <div id="banner" class="column">
+        <div id="title"><a href="/">andy jones</a></div>
+        <div id="social">
+          <a href="/rss.xml"><img src='/icons/rss-solid.svg' alt='RSS'></a>
+          <span class='sep'></span>
+          <a href="mailto:me@andyljones.com"><img src='/icons/at-solid.svg' alt='Email'></a>
+          <span class='sep'></span>
+          <a href="https://github.com/andyljones"><img src='/icons/github-brands.svg' alt='Github'></a>
+          <a href="https://www.linkedin.com/in/andyjonescs"><img src='/icons/linkedin-in-brands.svg' alt='LinkedIn'></a>
+          <span class='sep'></span>
+          <a href="https://twitter.com/andy_l_jones"><img src='/icons/twitter-brands.svg' alt='Twitter'></a>
+          <a href="https://www.reddit.com/u/bluecoffee"><img src='/icons/reddit-brands.svg' alt='Reddit'></a>
+          <a href="https://stackoverflow.com/users/2565457/andy-jones"><img src='/icons/stack-overflow-brands.svg' alt='StackOverflow'></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tinted">
+      <div id="content" class="column">
+        <h1>Multipole Methods for the Masses</h1>
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime/dist/runtime.js";
+import notebook from "https://api.observablehq.com/d/dd1d583b63fccafd.js?v=3";
+
+new Runtime().module(notebook, name => {
+    var selection = document.getElementById(name);
+    if (selection) {
+        return new Inspector(selection);
+    }
+});
+</script><video autoplay loop muted
+    poster="/source/multipole-methods/demo.jpg"
+    style="display:block; margin:auto; max-height:640px; width:100%">
+      <source src="/source/multipole-methods/demo.mp4" type="video/mp4"/>
+</video><p><strong>This is not an epidemiological model</strong>. It's a <a href="https://github.com/andyljones/pybbfmm">tech demo for part of an epidemiological model</a>. What you're looking at is ten million simulated people in the United Kingdom. Each person has a small chance of infecting each other person in the country, and that chance drops with distance.</p>
+<p>With ten million people, you'd think that each frame of the above animation would involve calculating a hundred trillion (ten million squared) interactions. Even for modern silicon, that's a lot! But there is a lesser-known algorithm from physics that can do it in a few seconds per frame.</p>
+<p>That algorithm - the <em>fast multipole method</em> - is pretty involved in its entirety. But it has a key idea in it that's widely applicable, and for its sake I'm going to explain the algorithm without using any algebra at all.</p>
+<blockquote><p><strong>Technical Summary</strong>
+Fast multipole methods turn quadratic-time interaction problems into linear-time problems, and a recent version called the black-box multipole method can do it for any interaction you choose. The key idea is <em>a hierarchy of approximations</em>, and that's what most of this post is aimed towards explaining.</p>
+</blockquote>
+<h2>Setup</h2>
+<p>Here's a <em>source</em> and its <em>field</em>:</p>
+<div id='source_field' class='animation'></div><p>Maybe the source is a planet and the field is its gravity. Maybe the source is a particle and the field is the electric field. Maybe the source is an infected person and the field is the transmission risk.</p>
+<p>What the field represents isn't so important for our purposes, because whatever it represents the way to calculate it is the same. To calculate the field, we look at each of a 100 equally-spaced points in turn and calculate the strength of the source's field at each one:</p>
+<div id='source_points' class='animation'></div><p>There are 100 points, so that took 100 calculations.</p>
+<p>If there's more than one source, then their fields add together. To calculate the combined field at a point, the field emitted by each source needs to be taken into account. With 100 sources and 100 points, there are 100 × 100 = 10,000 calculations to do:</p>
+<div id='sources_points' class='animation'></div><h2>Groups</h2>
+<p>That's pretty wasteful though. If we've got a bunch of sources close to eachother like we do below, then they all make about the same contribution to the point. We could save a lot of work by using an approximation: move all the sources to the same spot, do <em>one</em> calculation from that spot, and then multiply the calculated field strength by the number of sources in the group:</p>
+<div id='source_group_far' class='animation'></div><p>If we look closely, we can see that the point doesn't <em>quite</em> lie on the field line. This is because we can only get away with this kind of approximation when the point is far from the sources. When the point is far from the sources, the sources can be shifted left or right a bit without it mattering much. If the point is close to the sources though, then the exact location of each source is important, and the approximation doesn't work so well:</p>
+<div id='source_group_near' class='animation'></div><p>This time the approximation misses by a lot!</p>
+<p>Fortunately though most points are far way from most sources, so <em>most</em> of the time the approximation works fine.</p>
+<p>So here's a plan:</p>
+<ul>
+<li>Divide the sources into groups.</li>
+<li>For all the points <em>far</em> from a group do one calculation for the whole group.</li>
+<li>For all the points <em>near</em> to a group do one calculation for each source in the group.</li>
+</ul>
+<p>What's 'near' and 'far' mean here? Well, the worst case scenario is if the approximation is used on a point that's <em>right next to the sources being approximated</em>. As a simple way to avoid this worst-case, we'll say a point is 'far' from a group if it doesn't sit under that group or the group's neighbours. That guarantees the point won't be right next door to the approximation.</p>
+<p>This plan is pretty simple, but it's already much faster:</p>
+<div id='source_small_groups' class='animation'></div><p>Rather than the original 10,000 calculations we're now doing</p>
+<ul>
+<li>1,000 calculations with nearby sources, and</li>
+<li>2,500 calculations with far groups</li>
+</ul>
+<p>for 3,500 calculations total - a 65% improvement! That's no small thing - but can we do better?</p>
+<h2>Groups of Groups</h2>
+<p>Well, the group sizes above were totally arbitrary. There's no reason they can't be twice as big:</p>
+<div id='source_big_groups' class='animation'></div><p>Now we're doing</p>
+<ul>
+<li>2,000 calculations with nearby sources, and</li>
+<li>1,200 calculations with far groups</li>
+</ul>
+<p>for 3,200 calculations in total. That's a bit better overall, but what about if we could get <em>both</em> the small number of near calculations from the previous example and the small number of far calculations from this one?</p>
+<p>How about using both the the big scale and small scale at the same time? Now the plan looks like:</p>
+<ul>
+<li>Divide the sources into both big groups and small groups.</li>
+<li>Use the big group approximation on any points far away <em>in the big group scale</em>.</li>
+<li>Use the small group approximation on any leftover points far away <em>in the small group scale</em>.</li>
+<li>Use direct calculation for the leftover points that are near in the small scale.</li>
+</ul>
+<p>We're basically changing the idea of 'near' and 'far' depending on whether we're looking at big groups or small groups. The logic is that the approximate calculation with the big group might move the sources a long way, and so the approximation is only going to be accurate at a big distance. Smaller groups move the sources less, and so the approximation is going to be accurate at a smaller distance.</p>
+<p>Trying it out:</p>
+<div id='source_group_both' class='animation'></div><p>does get us down to 2,500 calculations, but there's no reason we can't repeat this bigger-groups trick a few more times:</p>
+<div id='source_group_hierarchy' class='animation'></div><p>Now it's only 2,000 calculations!</p>
+<p><strong>This is the key idea in the fast multipole method</strong>: rather than using one approximation that can only be used at one scale, we should build a <em>hierarchy</em> of approximations. Small approximations can be used to replace the short-range calculations that require high accuracy, while big approximations can be used to replace the more numerous low-accuracy long-range calculations.</p>
+<p>For example: at the top level of the previous animation, the approximation might involve moving a source fully one-eighth of the way across the screen! We get away with it because that approximation is only ever used with points more than quarter a screen away from the source. The lowest level of approximations meanwhile only ever get used to replace a small number of calculations, but they're accurate from 1/16th of a screen on out.</p>
+<p>80% fewer calculations is great, but can we do better?</p>
+<h2>Even More Groups</h2>
+<p>So the grouping idea relies on the fact that the greater the distance between a source and point, the less accurate we have to be about exactly where the <em>source</em> is. But we can rephrase that and also say: the greater the distance between a source and point, the less accurate we have to be about exactly where the <em>point</em> is!</p>
+<p>That is, we can group the points just like we did the sources!</p>
+<div id='source_point_group' class='animation'></div><p>We can see where this is going. Returning to one layer of groups, grouping both sources and points looks like this:</p>
+<div id='groups' class='animation'></div><p>And just like before, we can stack groups of different sizes to make things even faster:</p>
+<div id='hierarchy' class='animation'></div><p>This is the <em>fast multipole method</em> at its core: recursively approximate the sources, recursively approximate the points, and get 10,000 calculations down to 1,000.</p>
+<p>That's the end of the expository part of this post. What follows is decidedly more technical, and discusses the details of the method in the real world.</p>
+<h2>Real-world problems</h2>
+<p>The problem explained above is simplified a <em>lot</em> from the kind you'd see in the wild.</p>
+<p>The first - obvious - simplification is that the problems given here are all 1D, when the typical problem of interest is 2D or 3D. The same ideas work just as well in higher dimensions however, and it's possible to design code that handles problems of any dimension.</p>
+<p>Next, the sources here all make the same strength contribution. In the wild, each source usually has a differing mass or charge or infectiousness. This is easy enough to handle: rather than counting the sources when you gather the sources to the middle of a group, you sum them instead.</p>
+<p>Finally, the sources and points in the problem above are evenly distributed. Each group at the bottom has roughly the same number of sources and points in. In the real world this isn't usually the case. The fix is to replace the 'full' binary tree shown above with an 'adaptive' binary tree that splits further in regions of higher density. This introduces a fairly substantial amount of complexity.</p>
+<p>In its full generality, the fast multipole method will accelerate any problem that involves measuring the summed influence of many sources at many points. The only restrictions are that each source's field needs to be the same 'shape', differing only in scale, and the field shape needs to be 'nice' in some reasonable ways.</p>
+<h2>Real-world approximations</h2>
+<p>In the algorithm described above, the approximation used is the simplest possible: it's a constant across the group, and the constant is the field strength at the center of the group. This has the advantage of being easy to explain, and frankly for many purposes it'll do just fine. Some toy experiments using a constant approximation gave me an MSE of about .1%. But if you want higher accuracy than that, either you need to widen the neighbourhood you consider 'near' so more source-point pairs get their contributions calculated exactly, or you need a better approximation.</p>
+<p>When the algorithm was first developed for physics simulations in the 1980s, the approximation of choice was a <a href="https://en.wikipedia.org/wiki/Laurent_series">Laurent series</a>. It makes for a really good approximation, but requires a fair bit of hand-rolled maths catered to exactly the field you're looking at. This is where the name 'multipole method' comes from, as Laurent series are defined around 'poles' where the approximation becomes infinite. Each group has it's own 'pole', and hence, multipole!</p>
+<p>The name is a bit of a shame, since the key idea has nothing to do with Laurent series or poles. I suspect if this algorithm had been called the 'recursive approximation method', it'd be a lot more widely known.</p>
+<p>In the more recent 'black-box' version from the late 2000s, a <a href="https://en.wikipedia.org/wiki/Chebyshev_polynomials">Chebyshev approximation</a> is used instead. The advantage of the Chebyshev approximation is that it requries no domain-specific tuning at all: you can pass an arbitrary field to the code and it'll figure things out by evaluating it at a handful of points. The downside to the Chebyshev approximation is that it requires more variables and more computation for a given level of accuracy than the Laurent approach, though there are ways to fix this.</p>
+<p>In both cases, the number of coefficients used by the approximation can be adjusted. More coefficients means exponentially better accuracy, but a polynomially slower computation.</p>
+<h2>Real-world subtleties</h2>
+<p>Using the fast multipole method usually only speeds things up for large problems. Depending on how well-optimized your code is, the 'crossover point' where the fast multipole method is actually faster than the direct method can be anywhere between a few thousand points and tens of millions. Since the fast multipole method is asymptotically faster it <em>will</em> eventually win out, but in the real world you might discover that you run out of memory first.</p>
+<p>Eagle-eyed readers will have noticed that while I've claimed the fast multipole method is linear-time, the method involves constructing a tree of groups. Constructing a tree takes more than linear time, so what gives? Well, typical problems aren't usually stand-alone, but are solved again and again with very similar configurations of sources and points. The epidemiology demo from the top of the page is a case in point: the 'people' in the demo are in the same place at each step, so the tree of groups is the same at each step. With the tree fixed in place, <em>then</em> the method is linear.</p>
+<p>In problems where the sources or points move from step-to-step though, the tree needs to be updated. Fortunately in most of the problems where sources or points move, they don't move <em>much</em> each time, and you can dynamically re-compute just the bit of the tree that's relevant rather than starting over from scratch.</p>
+<p>Something else that's ignored in the animations above is that in practice, repeatedly updating each point would slow things down to worse than linear time. The solution is to instead make two passes through the whole tree. The first pass is from the bottom up, using the source density of each child group to infer the source density of the parent. Then the second pass is from the top down, calculating the field strength at the center of each group using the field strength at the parent and the source density at the group's siblings. This way the field strength at each group and point is only updated once.</p>
+<p>Finally, there is the issue that these are all approximation methods. Approximation methods give approximate answers, and without the <em>true</em> solution to hand you can't tell how accurate the approximation is. Instead, we have to fall back on an analytical bound on the error. There are explicit bounds available for the classical Laurent-series based version, but frustratingly the black-box multipole method paper only offers empirical evidence that the error improves as the number of coefficients increases. I have some scrawled workings showing that like the classical version, the error improves exponentially with the number of coefficients, but my theory is rusty enough that I'm not keen to publish them.</p>
+<h2>Implementing it Yourself</h2>
+<p>As with all intricate numerical algorithms, the most important thing is to test it against a slower, simpler version. This is particularly true of the fast multipole method, where the direct approach can be written in one line of Python. It's especially useful to design your test problems so they isolate parts of the maths, like</p>
+<ul>
+<li>check it matches the direct method when you've one source and one point and they're in the <em>same</em> group</li>
+<li>check it matches the direct method when you've one source and one point and they're in <em>neighbouring</em> groups</li>
+<li>check it matches the direct method when you've one source and one point and they're <em>not</em> in neighbouring groups</li>
+<li>etc etc etc</li>
+</ul>
+<p>One of the nice things about the fast multipole method in particular is that the intermediate values computed by the method have physical, interpretable values. That's a strong contrast to many other numerical schemes, where the intermediate values are really hard to sanity-check.</p>
+<p>The <em>other</em> nice thing about it comes back to the tree-reuse mentioned above. Most of the complexity comes from building the tree and building lists of which groups interact with which. That can all be implemented and verified independently of the actual numeric code, meaning you can write it in two modules of tolerable complexity rather than one module of horrifying complexity.</p>
+<p>The basics of unit testing aside, I would strongly advise you to implement a version using <em>static trees</em> and a <em>constant approximation</em> first. Swapping either of those out - to adaptive trees or a better approximation - will likely introduce a lot of new flaws that hide any older flaws in your core implementation.</p>
+<h2>References</h2>
+<ul>
+<li><p>The genesis of all these words was <a href="https://github.com/andyljones/pybbfmm">my own GPU-accelerated, general-dimensional, dynamic-tree black-box fast multipole method</a> implementation. Fair warning, the code could use some comments.</p>
+</li>
+<li><p>This key idea of 'recursive approximation' turns up in a few places. I've previously run into it</p>
+<ul>
+<li>with <a href="https://en.wikipedia.org/wiki/Pyramid_%28image_processing%29">pyramids</a> while doing medical image analysis</li>
+<li>with <a href="https://en.wikipedia.org/wiki/Multigrid_method">multigrid methods</a> when writing a simple weather model </li>
+<li>with <a href="https://en.wikipedia.org/wiki/Wavelet_transform">wavelets</a> in signals analysis</li>
+</ul>
+</li>
+<li><p>Most of the educational resources on fast multipole methods take a much more mathematical bent than I have here. They're also focused on the classic, Laurent-series-based version. Of those resources, my favourites are</p>
+<ul>
+<li><a href="https://pdfs.semanticscholar.org/97f0/d2a31d818ede922c9a59dc17f710642332ca.pdf">Carrier, Greengard &amp; Rokhlin's original paper</a>, which is both wonderfully detailed <em>and</em> one of the few resources to describe dynamic trees.</li>
+<li><a href="https://people.eecs.berkeley.edu/~demmel/cs267_Spr16/Lectures/lecture25_NBody_jwd16_4pp.pdf">Demmel's lecture</a> and <a href="https://github.com/lbluque/fmm/blob/master/fmm.py">the code from one of his students</a>.</li>
+<li><a href="https://www.ics.uci.edu/~ihler/papers/ihler_area.pdf">The Low-Rank Matrix Perspective</a>, which also points to links to the fast Gauss transform.</li>
+</ul>
+</li>
+<li><p>While all the attention is on the classical version, the black-box fast multipole method is a great deal more flexible and conceptually simpler to boot.</p>
+<ul>
+<li><a href="https://mc.stanford.edu/cgi-bin/images/f/fa/Darve_bbfmm_2009.pdf">William &amp; Fong's original paper</a> is the best place to start. </li>
+<li>They also have <a href="https://github.com/sivaramambikasaran/BBFMM2D">reference MATLAB code</a> and <a href="https://github.com/DrFahdSiddiqui/bbFMM2D-Python">a port of it to Python</a>.</li>
+</ul>
+</li>
+<li><p>The stylistic inspiration for this post was <a href="https://ciechanow.ski/gears/">Bartosz Ciechanowski's excellent post on gears</a> and <a href="http://www.jezzamon.com/fourier/index.html">Jez Swanson's equally excellent post on the fourier transform</a>.</p>
+</li>
+<li><p>All of this was assembled in the fantastic <a href="https://observablehq.com">ObservableHQ</a>. This was my first experience with the platform, and while animation is <em>still</em> excruciatingly slow to put together, ObservableHQ made it much less so than I feared it would be. <a href="https://observablehq.com/d/dd1d583b63fccafd">You can find the code underlying this post here</a>.</p>
+</li>
+</ul>
+
+      </div>
+      <div class="column">
+        <small>2020/04/30</small>
+      </div>
+    </div>
+
+
+    <div>
+      <div id="footer" class="column">
+        <a href="https://fontawesome.com/license">icons by dave gandy</a>, theme by <a title="i have never been funny" href="https://color-hex.org/color/6d2e98">#6d2e98</a>
+      </div>
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,260 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Andy Jones">
+    <meta name="format-detection" content="telephone=no">
+
+    <link href="/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="/favicon.ico">
+
+    <style>
+    .hll { background-color: #ffffcc }
+.c { color: #408080; font-style: italic } /* Comment */
+.err { border: 1px solid #FF0000 } /* Error */
+.k { color: #008000; font-weight: bold } /* Keyword */
+.o { color: #666666 } /* Operator */
+.ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.cp { color: #BC7A00 } /* Comment.Preproc */
+.cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.c1 { color: #408080; font-style: italic } /* Comment.Single */
+.cs { color: #408080; font-style: italic } /* Comment.Special */
+.gd { color: #A00000 } /* Generic.Deleted */
+.ge { font-style: italic } /* Generic.Emph */
+.gr { color: #FF0000 } /* Generic.Error */
+.gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.gi { color: #00A000 } /* Generic.Inserted */
+.go { color: #888888 } /* Generic.Output */
+.gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.gt { color: #0044DD } /* Generic.Traceback */
+.kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.kp { color: #008000 } /* Keyword.Pseudo */
+.kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.kt { color: #B00040 } /* Keyword.Type */
+.m { color: #666666 } /* Literal.Number */
+.s { color: #BA2121 } /* Literal.String */
+.na { color: #7D9029 } /* Name.Attribute */
+.nb { color: #008000 } /* Name.Builtin */
+.nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.no { color: #880000 } /* Name.Constant */
+.nd { color: #AA22FF } /* Name.Decorator */
+.ni { color: #999999; font-weight: bold } /* Name.Entity */
+.ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.nf { color: #0000FF } /* Name.Function */
+.nl { color: #A0A000 } /* Name.Label */
+.nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.nt { color: #008000; font-weight: bold } /* Name.Tag */
+.nv { color: #19177C } /* Name.Variable */
+.ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.w { color: #bbbbbb } /* Text.Whitespace */
+.mb { color: #666666 } /* Literal.Number.Bin */
+.mf { color: #666666 } /* Literal.Number.Float */
+.mh { color: #666666 } /* Literal.Number.Hex */
+.mi { color: #666666 } /* Literal.Number.Integer */
+.mo { color: #666666 } /* Literal.Number.Oct */
+.sa { color: #BA2121 } /* Literal.String.Affix */
+.sb { color: #BA2121 } /* Literal.String.Backtick */
+.sc { color: #BA2121 } /* Literal.String.Char */
+.dl { color: #BA2121 } /* Literal.String.Delimiter */
+.sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.s2 { color: #BA2121 } /* Literal.String.Double */
+.se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.sh { color: #BA2121 } /* Literal.String.Heredoc */
+.si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.sx { color: #008000 } /* Literal.String.Other */
+.sr { color: #BB6688 } /* Literal.String.Regex */
+.s1 { color: #BA2121 } /* Literal.String.Single */
+.ss { color: #19177C } /* Literal.String.Symbol */
+.bp { color: #008000 } /* Name.Builtin.Pseudo */
+.fm { color: #0000FF } /* Name.Function.Magic */
+.vc { color: #19177C } /* Name.Variable.Class */
+.vg { color: #19177C } /* Name.Variable.Global */
+.vi { color: #19177C } /* Name.Variable.Instance */
+.vm { color: #19177C } /* Name.Variable.Magic */
+.il { color: #666666 } /* Literal.Number.Integer.Long */
+    </style>
+
+    <meta property="og:title" content="Post-Mortem Python Plotting">
+    <meta property="og:description" content="Fixing numerical bugs *after* they've caused a crash.">
+    <meta property="og:image" content="https://andyljones.com/icons/robot-solid.png">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:width" content="512">
+    
+    <meta name="twitter:card" content="summary">
+
+    <title>Post-Mortem Python Plotting</title>
+
+    <!-- Tracking pageviews is really useful to me to see what kind of stuff
+        I've written has traction. But I'm keen to not to track any more than
+        that, and this is the minimal solution. It's a self-hosted matomo
+        tracking pixel. It gives me no more information than the server logs
+        would, if I could actually access github-pages' server logs. Your data
+        will not be shared with anyone, and I will be the only person to ever
+        look at the stats.-->
+    <img src="https://live.andyljones.com/mat/mat.php?idsite=1&amp;rec=1" style="border:0" alt=""/>
+
+
+  </head>
+  <body>
+    <div>
+      <div id="banner" class="column">
+        <div id="title"><a href="/">andy jones</a></div>
+        <div id="social">
+          <a href="/rss.xml"><img src='/icons/rss-solid.svg' alt='RSS'></a>
+          <span class='sep'></span>
+          <a href="mailto:me@andyljones.com"><img src='/icons/at-solid.svg' alt='Email'></a>
+          <span class='sep'></span>
+          <a href="https://github.com/andyljones"><img src='/icons/github-brands.svg' alt='Github'></a>
+          <a href="https://www.linkedin.com/in/andyjonescs"><img src='/icons/linkedin-in-brands.svg' alt='LinkedIn'></a>
+          <span class='sep'></span>
+          <a href="https://twitter.com/andy_l_jones"><img src='/icons/twitter-brands.svg' alt='Twitter'></a>
+          <a href="https://www.reddit.com/u/bluecoffee"><img src='/icons/reddit-brands.svg' alt='Reddit'></a>
+          <a href="https://stackoverflow.com/users/2565457/andy-jones"><img src='/icons/stack-overflow-brands.svg' alt='StackOverflow'></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tinted">
+      <div id="content" class="column">
+        <h1>Post-Mortem Python Plotting</h1>
+<p>Next time you're in your Jupyter notebook and you get an error somewhere deep in your stack, run <code>%debug</code>. It's a <em>post-mortem debugger</em>, and it'll <a href="https://docs.python.org/3/library/pdb.html">drop you in an interpreter right where the error happened</a>. You can inspect all the variables, go up and down the stack, and figure out what happened.</p>
+<p>That should be enough to rock the world of some readers, but there's more! The problem with pdb is it's a very limited interpreter, lacking such luxuries as tab completion. What about if the bug requires something more powerful? Well my friend, do I have a snippet for you:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Copies the caller&#39;s environment up to your Jupyter session&quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">inspect</span>
+    <span class="kn">import</span> <span class="nn">ctypes</span>
+
+    <span class="n">frames</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+    <span class="n">caller</span> <span class="o">=</span> <span class="n">frames</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">frame</span>
+    <span class="n">name</span><span class="p">,</span> <span class="n">ls</span><span class="p">,</span> <span class="n">gs</span> <span class="o">=</span> <span class="n">caller</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_name</span><span class="p">,</span> <span class="n">caller</span><span class="o">.</span><span class="n">f_locals</span><span class="p">,</span> <span class="n">caller</span><span class="o">.</span><span class="n">f_globals</span>
+
+    <span class="n">ipython</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;&lt;ipython-input&#39;</span><span class="p">)][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">frame</span>
+
+    <span class="n">ipython</span><span class="o">.</span><span class="n">f_locals</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">gs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;__&#39;</span><span class="p">})</span>
+    <span class="n">ipython</span><span class="o">.</span><span class="n">f_locals</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ls</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;__&#39;</span><span class="p">})</span>
+
+    <span class="n">ctypes</span><span class="o">.</span><span class="n">pythonapi</span><span class="o">.</span><span class="n">PyFrame_LocalsToFast</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">py_object</span><span class="p">(</span><span class="n">ipython</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+<p><code>extract</code> is the single most useful function I've written in five years of working in Python. It grabs the caller's environment, finds your interpreter session in the stack, and <a href="http://pydev.blogspot.co.uk/2014/02/changing-locals-of-frame-frameflocals.html">stuffs the caller's env into that session</a>. Here it is working in isolation:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span>
+    <span class="n">extract</span><span class="p">()</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="p">()</span> <span class="c1"># copies f&#39;s internals into the session</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># prints &#39;hello world&#39;</span>
+</pre></div>
+<p>See? It's magic enough just by itself. But in combination with <code>%debug</code>, it's <a href="http://catb.org/jargon/html/magic-story.html">more magic</a>.</p>
+<h2>A Daft Example</h2>
+<p>The killer feature is when you've got some piece of numerical analysis that fails <em>occasionally</em>. Debugging things that fail occassionally is misery since if you knew what circumstances caused the bug, you'd probably already have fixed it. Post-mortem debugging is a lifesaver in this case, since it lets you wait for the circumstances that cause the bug to turn up naturally.</p>
+<p>Consider this snippet,</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">random_walk</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">first_positives</span><span class="p">():</span>
+    <span class="n">idxs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">random_walk</span><span class="p">()</span>
+        <span class="n">idxs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">xs</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span>
+</pre></div>
+<p>which generates the distribution of times at which a random walk becomes positive. Most of the time it runs fine, but occasionally it throws an <code>IndexError</code>!</p>
+<p>What on earth? I call <code>%debug</code> and get the usual prompt</p>
+
+<pre><code>&gt; &lt;ipython-input-36-cd128c0c6b16&gt;(12)first_positives()
+     10     for _ in range(10):
+     11         xs = random_walk()
+---&gt; 12         idxs.append((xs &gt; 0).nonzero()[0][0])
+     13     return np.array(idxs)
+     14 
+
+ipdb&gt;</code></pre>
+<p>and type <code>p xs</code> to see if there's something obviously wrong. <a href="https://thumbs.gfycat.com/DenseGleefulDutchshepherddog.webp">It doesn't look like anything to me</a>:</p>
+
+<pre><code>ipdb&gt; p xs
+array([ -0.44560791,  -1.79932944,  -2.56393172,  -3.10994348,
+        -2.54914905,  -5.29201201,  -5.96402224,  -7.65870068,
+        -8.34737223,  -7.12503207,  -6.90961605,  -6.87986835,
+        -6.97889256,  -7.88125706,  -8.45506909,  -7.23593778,</code></pre>
+<p>Just a bunch of numbers. Hrm. Ok, in I type <code>extract()</code>, and quit the debugger. Back in my Jupyter session, <code>xs</code> has - magically! - appeared in my workspace, and a quick <code>plt.plot(xs)</code></p>
+<p><img src="/source/post-mortem-plotting/negative-walk.png" alt="An entirely negative random walk"></p>
+<p><em>...shows that sometimes the random walk never becomes positive.</em> D'oh. Never becomes positive means an empty array of positive indices, meaning <code>[0]</code> is out of bounds.</p>
+<p>That's an artificial, facile, ridiculous example which - on purportedly less random data - happens to me three times a week. Once upon a time I'd have to commit actual thought to figuring out what scenario was leading to an out of bounds. With the help of <code>pdb</code> and <code>extract</code>, I can instead program thought-free!</p>
+<h3>Other tricks</h3>
+<ul>
+<li><p>You can also invoke the post mortem debugger with <code>pdb.pm()</code> rather than going through the <code>%debug</code> magic.</p>
+</li>
+<li><p>You don't have to invoke <code>extract</code> from the base of the stack. You can go up a few levels first, if you think the error's cause is in a different place from where it's discovered. <a href="https://docs.python.org/3/library/pdb.html#debugger-commands">Learning the debugger commands is absolutely worth it</a>.</p>
+</li>
+<li><p>You don't have to wait for an error either. You can drop <code>breakpoint()</code> - an alias for <code>import pdb; pdb.set_trace()</code> - in your code anywhere to get to the debugger, or you can simply call <code>extract</code> directly.</p>
+</li>
+<li><p>If I'm chasing some numerical issue, I'll often set up <code>if</code> statements that trigger <code>extract</code> when values get particularly large or small.</p>
+</li>
+<li><p>I have <code>extract</code> and some other utilities bundled up in a personal tools package that I call <a href="https://github.com/andyljones/aljpy"><code>aljpy</code></a>. When I find myself somewhere new, I install it using <code>pip install git+https://github.com/andyljones/aljpy.git</code> and then call extract with <code>import aljpy; aljpy.extract()</code>. I wouldn't recommend using my tools package since I'll change it on a whim, but I do recommend building your own.</p>
+</li>
+<li><p>Incidentally, the code above is not version I use. I've also nailed on support for grabbing the locals of arbitrary functions and modules. It also throws an error on exit, which drops me directly back to my session where my new locals are waiting.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Copies the variables of the caller up to iPython. Useful for debugging.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        def f():</span>
+<span class="sd">            x = &#39;hello world&#39;</span>
+<span class="sd">            extract()</span>
+
+<span class="sd">        f() # raises an error</span>
+
+<span class="sd">        print(x) # prints &#39;hello world&#39;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">inspect</span>
+    <span class="kn">import</span> <span class="nn">ctypes</span> 
+
+    <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">frames</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+        <span class="n">caller</span> <span class="o">=</span> <span class="n">frames</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">frame</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">ls</span><span class="p">,</span> <span class="n">gs</span> <span class="o">=</span> <span class="n">caller</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_name</span><span class="p">,</span> <span class="n">caller</span><span class="o">.</span><span class="n">f_locals</span><span class="p">,</span> <span class="n">caller</span><span class="o">.</span><span class="n">f_globals</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s1">&#39;__func__&#39;</span><span class="p">):</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="vm">__func__</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">ls</span><span class="p">,</span> <span class="n">gs</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span> <span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__closure__</span> <span class="ow">or</span> <span class="p">{}),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__globals__</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">):</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__func__</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">ls</span><span class="p">,</span> <span class="n">gs</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span> <span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__closure__</span> <span class="ow">or</span> <span class="p">{}),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__globals__</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Don</span><span class="se">\&#39;</span><span class="s1">t support source </span><span class="si">{source}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="n">ipython</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;&lt;ipython-input&#39;</span><span class="p">)][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">frame</span>
+
+    <span class="n">ipython</span><span class="o">.</span><span class="n">f_locals</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">gs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;__&#39;</span><span class="p">})</span>
+    <span class="n">ipython</span><span class="o">.</span><span class="n">f_locals</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ls</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;__&#39;</span><span class="p">})</span>
+
+    <span class="c1"># Magic call to make the updates to f_locals &#39;stick&#39;.</span>
+    <span class="c1"># More info: http://pydev.blogspot.co.uk/2014/02/changing-locals-of-frame-frameflocals.html</span>
+    <span class="n">ctypes</span><span class="o">.</span><span class="n">pythonapi</span><span class="o">.</span><span class="n">PyFrame_LocalsToFast</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">py_object</span><span class="p">(</span><span class="n">ipython</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Copied </span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1">s variables to </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">ipython</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_name</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+
+      </div>
+      <div class="column">
+        <small>2020/03/06</small>
+      </div>
+    </div>
+
+
+    <div>
+      <div id="footer" class="column">
+        <a href="https://fontawesome.com/license">icons by dave gandy</a>, theme by <a title="i have never been funny" href="https://color-hex.org/color/6d2e98">#6d2e98</a>
+      </div>
+    </div>
+  </body>
+
+</html>
