@@ -33,4 +33,4 @@ These are my portfolio pieces from my first ~year as a researcher. While they do
 
 **Website**
 
-This website is rendered [from Markdown](https://github.com/andyljones/andyljones.github.io/blob/master/source/post-mortem-plotting/index.md) into [a minimal template](https://github.com/andyljones/andyljones.github.io/blob/master/template.j2) by [a short Python script](https://github.com/andyljones/andyljones.github.io/blob/master/generate.py). 
+This website is rendered [from Markdown](https://github.com/andyljones/andyljones.github.io/blob/master/source/post-mortem-plotting/index.md) into [a minimal template](https://github.com/andyljones/andyljones.github.io/blob/master/template.j2) by [a short Python script](https://github.com/andyljones/andyljones.github.io/blob/master/generate.py). It uses a self-hosted [Matomo instance](https://matomo.org/) for analytics, stripped down to only the details I'd see in the server logs (basically URL, referrer, IP and user-agent).
