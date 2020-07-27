@@ -31,4 +31,6 @@ These are my portfolio pieces from my first ~year as a researcher. While they do
 * [A Global Shallow Fluid Model](http://andyljones.com/shallow-fluid-model): An interactive model of the atmosphere on a rotating planet.
 * [Segmenting Microarrays with Deep Neural Networks](https://github.com/andyljones/NeuralNetworkMicroarraySegmentation): Automation of a labour intensive part of DNA microarrays.
 
+**Website**
+
 This website is rendered [from Markdown](https://github.com/andyljones/andyljones.github.io/blob/master/source/post-mortem-plotting/index.md) into [a minimal template](https://github.com/andyljones/andyljones.github.io/blob/master/template.j2) by [a short Python script](https://github.com/andyljones/andyljones.github.io/blob/master/generate.py). 
