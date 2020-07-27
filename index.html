@@ -23,8 +23,9 @@
 
     <title>andy jones</title>
 
-    <!-- Tracking pageviews is really useful to me to see what kind of stuff I've done is useful to everyone else.
-    But I'm keen to not to track any more than that, and so this is a minimal, self-hosted solution.-->
+    <!-- Monitoring pageviews is really useful to me to see what kind of stuff I've done is useful to everyone else.
+    But I'm keen to not to track any more than that, and so this is a minimal, self-hosted solution. It records
+    nothing more than'd be in the server logs anyway. -->
     <script>
       url = "https://live.andyljones.com/mat/mat.php";
       xhr = new XMLHttpRequest();
@@ -32,8 +33,8 @@
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
       params = 'idsite=1&rec=1'
-      params += '&urlref=' + encodeURIComponent(document.referrer);
       params += '&url=' + encodeURIComponent(window.location.href);
+      params += '&urlref=' + encodeURIComponent(document.referrer);
       params += '&rand=' + Math.floor(16384*Math.random())
       xhr.send(params)
     </script>
@@ -87,7 +88,7 @@
 <li><a href="https://github.com/andyljones/zonotable">zonotable</a>: Nails Zotero's paper ingestion onto the side of <a href="https://github.com/notable/notable">Notable</a>.</li>
 </ul>
 <p><strong>Old</strong></p>
-<p>These aren't representative of my current interests, but I'm still proud of them.</p>
+<p>These are my portfolio pieces from my first ~year as a programmer. They don't reflect my current interests or abilities, but I'm still proud of them.</p>
 <ul>
 <li><a href="http://andyljones.com/commutes-and-rent-frontend">Commutes &amp; Rent</a>: An interactive visualization of commutes and rent in London. </li>
 <li><a href="http://andyljones.com/shallow-fluid-model">A Global Shallow Fluid Model</a>: An interactive model of the atmosphere on a rotating planet.</li>

@@ -26,7 +26,7 @@ Most of my recent major work is NDA'd.
 
 **Old**
 
-These aren't representative of my current interests, but I'm still proud of them.
+These are my portfolio pieces from my first ~year as a researcher. While they don't reflect my current interests or abilities, I'm still proud of them.
 * [Commutes & Rent](http://andyljones.com/commutes-and-rent-frontend): An interactive visualization of commutes and rent in London. 
 * [A Global Shallow Fluid Model](http://andyljones.com/shallow-fluid-model): An interactive model of the atmosphere on a rotating planet.
 * [Segmenting Microarrays with Deep Neural Networks](https://github.com/andyljones/NeuralNetworkMicroarraySegmentation): Automation of a labour intensive part of DNA microarrays.
