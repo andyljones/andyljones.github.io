@@ -1,6 +1,6 @@
 ---
 title: A Clearer Proof of the Policy Gradient Theorem
-description: A policy-gradient proof with less algebraic manipulation
+description: A policy-gradient proof with less algebraic manipulation.
 date: 2020/05/25
 image: p.png
 category: Technical

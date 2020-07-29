@@ -24,10 +24,14 @@ Most of my recent major work is NDA'd.
 * [kvbtests](https://github.com/andyljones/kvbtests): Heteroskedasticity-and-autocorrelation-robust statistical tests.
 * [modulepickle](https://github.com/andyljones/modulepickle): Makes distributed dev feels local by auto-shipping your working dir to workers.
 * [zonotable](https://github.com/andyljones/zonotable): Nails Zotero's paper ingestion onto the side of [Notable](https://github.com/notable/notable).
+* [tablatex](https://github.com/andyljones/tablatex): adds LaTeX symbol autocomplete to vscode.
+* [nosearch](https://github.com/andyljones/nosearch): adds reverse search to Jupyter notebooks.
+* [noterminal](https://github.com/andyljones/noterminal): adds disposable notebooks to Jupyter.
+* [stripcommon](https://github.com/andyljones/stripcommon): strips the common whitespace when copying into Jupyter.
 
 **Old**
 
-These are my portfolio pieces from my first ~year as a programmer, c. 2013. While they don't reflect my current interests or abilities, I'm still proud of them.
+These are my portfolio pieces from my first year as a programmer, c. 2013. While they don't reflect my current interests or abilities, I'm still proud of them.
 * [Commutes & Rent](http://andyljones.com/commutes-and-rent-frontend): An interactive visualization of commutes and rent in London. 
 * [A Global Shallow Fluid Model](http://andyljones.com/shallow-fluid-model): An interactive model of the atmosphere on a rotating planet.
 * [Segmenting Microarrays with Deep Neural Networks](https://github.com/andyljones/NeuralNetworkMicroarraySegmentation): Automation of a labour intensive part of DNA microarrays.
