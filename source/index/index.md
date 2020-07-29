@@ -24,10 +24,10 @@ Most of my recent major work is NDA'd.
 * [kvbtests](https://github.com/andyljones/kvbtests): Heteroskedasticity-and-autocorrelation-robust statistical tests.
 * [modulepickle](https://github.com/andyljones/modulepickle): Makes distributed dev feels local by auto-shipping your working dir to workers.
 * [zonotable](https://github.com/andyljones/zonotable): Nails Zotero's paper ingestion onto the side of [Notable](https://github.com/notable/notable).
-* [tablatex](https://github.com/andyljones/tablatex): adds LaTeX symbol autocomplete to vscode.
-* [nosearch](https://github.com/andyljones/nosearch): adds reverse search to Jupyter notebooks.
-* [noterminal](https://github.com/andyljones/noterminal): adds disposable notebooks to Jupyter.
-* [stripcommon](https://github.com/andyljones/stripcommon): strips the common whitespace when copying into Jupyter.
+* [tablatex](https://github.com/andyljones/tablatex): Adds LaTeX symbol autocomplete to vscode.
+* [nosearch](https://github.com/andyljones/nosearch): Adds reverse search to Jupyter notebooks.
+* [noterminal](https://github.com/andyljones/noterminal): Adds disposable notebooks to Jupyter.
+* [stripcommon](https://github.com/andyljones/stripcommon): Strips the common whitespace when copying into Jupyter.
 
 **Old**
 
