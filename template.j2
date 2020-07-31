@@ -6,10 +6,128 @@
     <meta name="author" content="Andy Jones">
     <meta name="format-detection" content="telephone=no">
 
-    <link href="/base.css" rel="stylesheet" type="text/css"/>
     <link rel="icon" href="/favicon.ico">
 
     <style>
+      :root {
+        --tone: #6d2e98;
+        --grey: #444;
+        --white: #f8f8f8;
+      }
+
+      html {
+          height: 100%;
+          width: 100%;
+      }
+
+      body {
+          display: flex;
+          flex-direction: column;
+          background: var(--tone);
+          color: #F8F8F8;
+          width: 100%;
+          font-family: sans-serif;
+          margin: 0px;
+          text-align: justify;
+      }
+
+      a:visited {
+          color: var(--tone);
+      }
+
+      .tinted {
+          color: #444;
+          background: #f8f8f8;
+          text-decoration: none;
+      }
+
+      #banner a {
+          color: #F8F8F8;
+          text-decoration: none;
+      }
+
+      #footer a {
+          color: #F8F8F8;
+          text-decoration: none;
+      }
+
+      .column {
+          max-width: min(100%, 960px);
+          margin: auto;
+          padding: 5px;
+      }
+
+      #banner {
+          padding: 10px;
+          font-size: large;
+          display: flex;
+          vertical-align: middle;
+          justify-content: space-between;
+      }
+
+      #title {
+          font-weight: 700;
+      }
+
+      #social img {
+          filter: invert();
+          height: 20px;
+          width: 20px;
+          padding-left: 2px;
+          padding-right: 2px;
+      }
+
+      .sep {
+          margin-left: 10px;
+          margin-right: 10px;
+      }
+
+
+      #content {
+          margin-bottom: 5px;
+          margin: auto;
+      }
+
+      #date {
+          margin: auto;
+      }
+
+      code {
+          font-family: "Lucida Console", monospace;
+          word-wrap: break-word;
+      }
+
+      pre {
+          font-family: "Lucida Console", monospace;
+          background-color: #EEE;
+          padding: 10px;
+
+          white-space: pre-wrap;
+          word-wrap: break-word;
+      }
+
+      sup {
+          font-size: x-small;
+      }
+
+      hr {
+          border-color: var(--tone);
+      }
+
+      #content img {
+          display: block;
+          margin: auto;
+          max-width: 100%;
+      }
+
+      #footer {
+          padding: 5px;
+          font-size: x-small;
+          vertical-align: middle;
+          margin: auto;
+          text-align: center;
+      }
+
     {{style}}
     </style>
 
