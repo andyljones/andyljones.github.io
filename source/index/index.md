@@ -31,7 +31,7 @@ Most of my recent major work is NDA'd.
 
 **Old**
 
-These are my portfolio pieces from my first year as a programmer, c. 2013. While they don't reflect my current interests or abilities, I'm still proud of them.
+These are my portfolio pieces from my first year learning to program, c. 2013.
 * [Commutes & Rent](http://andyljones.com/commutes-and-rent-frontend): An interactive visualization of commutes and rent in London. 
 * [A Global Shallow Fluid Model](http://andyljones.com/shallow-fluid-model): An interactive model of the atmosphere on a rotating planet.
 * [Segmenting Microarrays with Deep Neural Networks](https://github.com/andyljones/NeuralNetworkMicroarraySegmentation): Automation of a labour intensive part of DNA microarrays.
