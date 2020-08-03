@@ -5,6 +5,8 @@ date: 2020/04/30
 image: demo.jpg
 category: Technical
 ---
+<span style="color: red">Some people have reported trouble with this page on iOS. If you can give me any details that'd help me debug it, please <a href="mailto:andyjones.ed@gmail.com">email me</a>.</span>
+
 # The Recursive Approximation Algorithm, Animated
 
 <script type="module">
