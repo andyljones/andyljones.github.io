@@ -264,7 +264,7 @@ new Runtime().module(notebook, name => {
     poster="/source/multipole-methods/demo.jpg"
     style="display:block; margin:auto; max-height:640px; width:100%">
       <source src="/source/multipole-methods/demo.mp4" type="video/mp4"/>
-</video><p><strong>This is not an epidemiological model</strong>. It's a <a href="https://github.com/andyljones/pybbfmm">tech demo for part of an epidemiological model</a>. What you're looking at is ten million simulated people in the United Kingdom. Each person has a small chance of infecting each other person in the country, and that chance drops with distance.</p>
+</video><p><strong>This is not an epidemiological model</strong>. It's a <a href="https://andyljones.com/pybbfmm/">tech demo for part of an epidemiological model</a>. What you're looking at is ten million simulated people in the United Kingdom. Each person has a small chance of infecting each other person in the country, and that chance drops with distance.</p>
 <p>With ten million people, you'd think that each frame of the above animation would involve calculating a hundred trillion (ten million squared) interactions. Even for modern silicon, that's a lot! But there is a lesser-known algorithm from physics that can do it in a few seconds per frame.</p>
 <p>That algorithm is the <em>fast multipole method</em>, but the 'multipole' bit scares lots of people off from an elegant, widely applicable idea. For that idea's sake I'm going to refer to it as the <em>recursive approximation algorithm</em>, and I'm going to explain it without using any algebra at all.</p>
 <blockquote><p><strong>Technical Summary</strong>

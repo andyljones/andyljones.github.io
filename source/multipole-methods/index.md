@@ -25,7 +25,7 @@ new Runtime().module(notebook, name => {
       <source src="/source/multipole-methods/demo.mp4" type="video/mp4"/>
 </video>
 
-**This is not an epidemiological model**. It's a [tech demo for part of an epidemiological model](https://github.com/andyljones/pybbfmm). What you're looking at is ten million simulated people in the United Kingdom. Each person has a small chance of infecting each other person in the country, and that chance drops with distance.
+**This is not an epidemiological model**. It's a [tech demo for part of an epidemiological model](https://andyljones.com/pybbfmm/). What you're looking at is ten million simulated people in the United Kingdom. Each person has a small chance of infecting each other person in the country, and that chance drops with distance.
 
 With ten million people, you'd think that each frame of the above animation would involve calculating a hundred trillion (ten million squared) interactions. Even for modern silicon, that's a lot! But there is a lesser-known algorithm from physics that can do it in a few seconds per frame.
 
