@@ -1,11 +1,11 @@
 ---
-title: Multipole Methods for the Masses
-description: Solving n-body problems in linear time, without any maths.
+title: The Recursive Approximation Algorithm, Animated
+description: How n-body problems are solved in linear time, without any maths.
 date: 2020/04/30
 image: demo.jpg
 category: Technical
 ---
-# Multipole Methods for the Masses
+# The Recursive Approximation Algorithm, Animated
 
 <script type="module">
 import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime/dist/runtime.js";
@@ -29,7 +29,7 @@ new Runtime().module(notebook, name => {
 
 With ten million people, you'd think that each frame of the above animation would involve calculating a hundred trillion (ten million squared) interactions. Even for modern silicon, that's a lot! But there is a lesser-known algorithm from physics that can do it in a few seconds per frame.
 
-That algorithm - the _fast multipole method_ - is pretty involved in its entirety. But it has a key idea in it that's widely applicable, and for its sake I'm going to explain the algorithm without using any algebra at all.
+That algorithm is the _fast multipole method_, but the 'multipole' bit scares lots of people off from an elegant, widely applicable idea. For that idea's sake I'm going to refer to it as the *recursive approximation algorithm*, and I'm going to explain it without using any algebra at all.
 
 >  **Technical Summary**
 > Fast multipole methods turn quadratic-time interaction problems into linear-time problems, and a recent version called the black-box multipole method can do it for any interaction you choose. The key idea is _a hierarchy of approximations_, and that's what most of this post is aimed towards explaining.
@@ -114,7 +114,7 @@ does get us down to 2,500 calculations, but there's no reason we can't repeat th
 
 Now it's only 2,000 calculations!
 
-**This is the key idea in the fast multipole method**: rather than using one approximation that can only be used at one scale, we should build a _hierarchy_ of approximations. Small approximations can be used to replace the short-range calculations that require high accuracy, while big approximations can be used to replace the more numerous low-accuracy long-range calculations.
+**This is the key idea in the recursive approximation algorithm**: rather than using one approximation that can only be used at one scale, we should build a _hierarchy_ of approximations. Small approximations can be used to replace the short-range calculations that require high accuracy, while big approximations can be used to replace the more numerous low-accuracy long-range calculations.
 
 For example: at the top level of the previous animation, the approximation might involve moving a source fully one-eighth of the way across the screen! We get away with it because that approximation is only ever used with points more than quarter a screen away from the source. The lowest level of approximations meanwhile only ever get used to replace a small number of calculations, but they're accurate from 1/16th of a screen on out.
 
@@ -135,7 +135,7 @@ And just like before, we can stack groups of different sizes to make things even
 
 <div id='hierarchy' class='animation'></div>
 
-This is the _fast multipole method_ at its core: recursively approximate the sources, recursively approximate the points, and get 10,000 calculations down to 1,000.
+This is the _recursive approximation algorithm_ at its core: recursively approximate the sources, recursively approximate the points, and get 10,000 calculations down to 1,000.
 
 That's the end of the expository part of this post. What follows is decidedly more technical, and discusses the details of the method in the real world.
 
@@ -148,7 +148,7 @@ Next, the sources here all make the same strength contribution. In the wild, eac
 
 Finally, the sources and points in the problem above are evenly distributed. Each group at the bottom has roughly the same number of sources and points in. In the real world this isn't usually the case. The fix is to replace the 'full' binary tree shown above with an 'adaptive' binary tree that splits further in regions of higher density. This introduces a fairly substantial amount of complexity.
 
-In its full generality, the fast multipole method will accelerate any problem that involves measuring the summed influence of many sources at many points. The only restrictions are that each source's field needs to be the same 'shape', differing only in scale, and the field shape needs to be 'nice' in some reasonable ways.
+In its full generality, the recursive approximation algorithm will accelerate any problem that involves measuring the summed influence of many sources at many points. The only restrictions are that each source's field needs to be the same 'shape', differing only in scale, and the field shape needs to be 'nice' in some reasonable ways.
 
 ## Real-world approximations
 In the algorithm described above, the approximation used is the simplest possible: it's a constant across the group, and the constant is the field strength at the center of the group. This has the advantage of being easy to explain, and frankly for many purposes it'll do just fine. Some toy experiments using a constant approximation gave me an MSE of about .1%. But if you want higher accuracy than that, either you need to widen the neighbourhood you consider 'near' so more source-point pairs get their contributions calculated exactly, or you need a better approximation. 
@@ -162,25 +162,25 @@ In the more recent 'black-box' version from the late 2000s, a [Chebyshev approxi
 In both cases, the number of coefficients used by the approximation can be adjusted. More coefficients means exponentially better accuracy, but a polynomially slower computation.
 
 ## Real-world subtleties
-Using the fast multipole method usually only speeds things up for large problems. Depending on how well-optimized your code is, the 'crossover point' where the fast multipole method is actually faster than the direct method can be anywhere between a few thousand points and tens of millions. Since the fast multipole method is asymptotically faster it _will_ eventually win out, but in the real world you might discover that you run out of memory first.
+Using the recursive approximation algorithm usually only speeds things up for large problems. Depending on how well-optimized your code is, the 'crossover point' where the algorithm is actually faster than the direct method can be anywhere between a few thousand points and tens of millions. Since the recursive approximation algorithm is asymptotically faster it _will_ eventually win out, but in the real world you might discover that you run out of memory first.
 
-Eagle-eyed readers will have noticed that while I've claimed the fast multipole method is linear-time, the method involves constructing a tree of groups. Constructing a tree takes more than linear time, so what gives? Well, typical problems aren't usually stand-alone, but are solved again and again with very similar configurations of sources and points. The epidemiology demo from the top of the page is a case in point: the 'people' in the demo are in the same place at each step, so the tree of groups is the same at each step. With the tree fixed in place, _then_ the method is linear. 
+Eagle-eyed readers will have noticed that while I've claimed the recursive approximation algorithm is linear-time, the method involves constructing a tree of groups. Constructing a tree takes more than linear time, so what gives? Well, typical problems aren't usually stand-alone, but are solved again and again with very similar configurations of sources and points. The epidemiology demo from the top of the page is a case in point: the 'people' in the demo are in the same place at each step, so the tree of groups is the same at each step. With the tree fixed in place, _then_ the method is linear. 
 
 In problems where the sources or points move from step-to-step though, the tree needs to be updated. Fortunately in most of the problems where sources or points move, they don't move _much_ each time, and you can dynamically re-compute just the bit of the tree that's relevant rather than starting over from scratch.
 
 Something else that's ignored in the animations above is that in practice, repeatedly updating each point would slow things down to worse than linear time. The solution is to instead make two passes through the whole tree. The first pass is from the bottom up, using the source density of each child group to infer the source density of the parent. Then the second pass is from the top down, calculating the field strength at the center of each group using the field strength at the parent and the source density at the group's siblings. This way the field strength at each group and point is only updated once.
 
-Finally, there is the issue that these are all approximation methods. Approximation methods give approximate answers, and without the _true_ solution to hand you can't tell how accurate the approximation is. Instead, we have to fall back on an analytical bound on the error. There are explicit bounds available for the classical Laurent-series based version, but frustratingly the black-box multipole method paper only offers empirical evidence that the error improves as the number of coefficients increases. I have some scrawled workings showing that like the classical version, the error improves exponentially with the number of coefficients, but my theory is rusty enough that I'm not keen to publish them.
+Finally, there is the issue that these are all approximation methods. Approximation methods give approximate answers, and without the _true_ solution to hand you can't tell how accurate the approximation is. Instead, we have to fall back on an analytical bound on the error. There are explicit bounds available for the classical Laurent-series based version, but frustratingly the paper for the black-box version only offers empirical evidence that the error improves as the number of coefficients increases. I have some scrawled workings showing that like the classical version, the error improves exponentially with the number of coefficients, but my theory is rusty enough that I'm not keen to publish them.
 
 ## Implementing it Yourself
-As with all intricate numerical algorithms, the most important thing is to test it against a slower, simpler version. This is particularly true of the fast multipole method, where the direct approach can be written in one line of Python. It's especially useful to design your test problems so they isolate parts of the maths, like
+As with all intricate numerical algorithms, the most important thing is to test it against a slower, simpler version. This is particularly true of the recursive approximation algorithm, where the direct approach can be written in one line of Python. It's especially useful to design your test problems so they isolate parts of the maths, like
 
   * check it matches the direct method when you've one source and one point and they're in the _same_ group
   * check it matches the direct method when you've one source and one point and they're in _neighbouring_ groups
   * check it matches the direct method when you've one source and one point and they're _not_ in neighbouring groups
   * etc etc etc
 
-One of the nice things about the fast multipole method in particular is that the intermediate values computed by the method have physical, interpretable values. That's a strong contrast to many other numerical schemes, where the intermediate values are really hard to sanity-check.
+One of the nice things about the recursive approximation algorithm in particular is that the intermediate values computed by the method have physical, interpretable values. That's a strong contrast to many other numerical schemes, where the intermediate values are really hard to sanity-check.
 
 The _other_ nice thing about it comes back to the tree-reuse mentioned above. Most of the complexity comes from building the tree and building lists of which groups interact with which. That can all be implemented and verified independently of the actual numeric code, meaning you can write it in two modules of tolerable complexity rather than one module of horrifying complexity.
 
