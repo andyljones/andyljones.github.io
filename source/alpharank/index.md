@@ -4,6 +4,14 @@ description: n/a
 date: 2020/09/27
 publish: False
 ---
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};</script>
+
 I was reading through the alpharank paper and noticed that in the derivation of the transition matrix, there's this series:
 
 $$
