@@ -21,7 +21,7 @@ new Runtime().module(notebook, name => {
 });
 </script>
 
-<video autoplay loop muted
+<video autoplay loop muted playsinline
     poster="/source/multipole-methods/demo.jpg"
     style="display:block; margin:auto; max-height:640px; width:100%">
       <source src="/source/multipole-methods/demo.mp4" type="video/mp4"/>
