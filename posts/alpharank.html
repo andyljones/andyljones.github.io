@@ -249,7 +249,13 @@
 
     <div class="tinted">
       <div id="content" class="column">
-        <p>I was reading through the alpharank paper and noticed that in the derivation of the transition matrix, there's this series:</p>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};</script><p>I was reading through the alpharank paper and noticed that in the derivation of the transition matrix, there's this series:</p>
 <p>$$
 \rho<em>{\sigma, \tau} = \left(1 + \sum</em>{l=1}^{m-1} e^{-l\alpha(f<em>\tau - f</em>\sigma)} \right)^{-1}
 $$</p>
