@@ -30,7 +30,7 @@ Most of my recent major work is NDA'd.
 * [nosearch](https://github.com/andyljones/nosearch): Adds reverse search to Jupyter notebooks.
 * [noterminal](https://github.com/andyljones/noterminal): Adds disposable notebooks to Jupyter.
 * [stripcommon](https://github.com/andyljones/stripcommon): Strips the common whitespace when copying into Jupyter.
-* [RL Discord](https://discord.gg/xhfNqQv): One reinforcement learning Discord to rule them all.
+* [RL Discord](https://www.reddit.com/r/reinforcementlearning/comments/jawm37/official_reinforcement_learning_discord/): One reinforcement learning Discord to rule them all.
 
 **Old**
 
