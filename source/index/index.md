@@ -22,7 +22,7 @@ Most of my recent major work is NDA'd.
 **Minor**
 * [coolgpus](https://github.com/andyljones/coolgpus): Custom GPU fan control for headless Linux.
 * [kvbtests](https://github.com/andyljones/kvbtests): Heteroskedasticity-and-autocorrelation-robust statistical tests.
-* [modulepickle](https://github.com/andyljones/modulepickle): Makes distributed dev feels local by auto-shipping your working dir to workers.
+* [modulepickle](https://github.com/andyljones/modulepickle): Makes distributed dev feel local by auto-shipping your working dir to workers.
 * [zonotable](https://github.com/andyljones/zonotable): Nails Zotero's paper ingestion onto the side of [Notable](https://github.com/notable/notable).
 
 **Trivial**
