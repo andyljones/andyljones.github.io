@@ -18,7 +18,7 @@ Most of my recent major work is NDA'd.
 **Major**
 * [megastep](https://andyljones.com/megastep/): A 1m FPS RL environment.
 * [pybbfmm](https://andyljones.com/pybbfmm/): A GPU-accelerated black-box fast multipole method.
-* [RL Discord](https://www.reddit.com/r/reinforcementlearning/comments/jawm37/official_reinforcement_learning_discord): One reinforcement learning Discord to rule them all.
+* [RL Discord](https://github.com/andyljones/reinforcement-learning-discord-wiki/wiki): One reinforcement learning Discord to rule them all.
 
 **Minor**
 * [coolgpus](https://github.com/andyljones/coolgpus): Custom GPU fan control for headless Linux.
