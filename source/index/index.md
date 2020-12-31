@@ -4,7 +4,7 @@ description: andy jones personal site
 ---
 
 ## Me
-I'm a London-based machine learning researcher. After stints in biotech and quant finance, I now spend my days working on whatever AI project takes my fancy.
+I'm a London-based machine learning researcher. After stints in biotech and quant finance, I now spend my days working on whatever project takes my fancy. Right now I'm working on AI safety.
 
 You can get in touch with me by [Twitter](https://twitter.com/andy_l_jones) or [email](mailto:andyjones.ed@gmail.com). 
 
@@ -18,7 +18,7 @@ Most of my recent major work is NDA'd.
 **Major**
 * [megastep](https://andyljones.com/megastep/): A 1m FPS RL environment.
 * [pybbfmm](https://andyljones.com/pybbfmm/): A GPU-accelerated black-box fast multipole method.
-* [RL Discord](https://www.reddit.com/r/reinforcementlearning/comments/jawm37/official_reinforcement_learning_discord/): One reinforcement learning Discord to rule them all.
+* [RL Discord](https://www.reddit.com/r/reinforcementlearning/comments/jawm37/official_reinforcement_learning_discord): One reinforcement learning Discord to rule them all.
 
 **Minor**
 * [coolgpus](https://github.com/andyljones/coolgpus): Custom GPU fan control for headless Linux.

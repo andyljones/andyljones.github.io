@@ -1,0 +1,371 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Andy Jones">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="icon" href="/favicon.ico">
+
+    <style>
+      :root {
+        --tone: #6d2e98;
+        --grey: #444;
+        --white: #f8f8f8;
+      }
+
+      html {
+          height: 100%;
+          width: 100%;
+      }
+
+      body {
+          display: flex;
+          flex-direction: column;
+          background: var(--tone);
+          color: #F8F8F8;
+          width: 100%;
+          font-family: sans-serif;
+          margin: 0px;
+          text-align: justify;
+      }
+
+      a:visited {
+          color: var(--tone);
+      }
+
+      .tinted {
+          color: #444;
+          background: #f8f8f8;
+          text-decoration: none;
+      }
+
+      #banner a {
+          color: #F8F8F8;
+          text-decoration: none;
+      }
+
+      #footer a {
+          color: #F8F8F8;
+          text-decoration: none;
+      }
+
+      .column {
+          max-width: min(100%, 960px);
+          margin: auto;
+          padding: 5px;
+      }
+
+      #banner {
+          padding: 10px;
+          font-size: large;
+          display: flex;
+          vertical-align: middle;
+          justify-content: space-between;
+      }
+
+      #title {
+          font-weight: 700;
+      }
+
+      #social img {
+          filter: invert();
+          height: 20px;
+          width: 20px;
+          padding-left: 2px;
+          padding-right: 2px;
+      }
+
+      .sep {
+          margin-left: 10px;
+          margin-right: 10px;
+      }
+
+
+      #content {
+          margin-bottom: 5px;
+          margin: auto;
+      }
+
+      #date {
+          margin: auto;
+      }
+
+      code {
+          font-family: "Lucida Console", monospace;
+          word-wrap: break-word;
+      }
+
+      pre {
+          font-family: "Lucida Console", monospace;
+          background-color: #EEE;
+          padding: 10px;
+
+          white-space: pre-wrap;
+          word-wrap: break-word;
+      }
+
+      sup {
+          font-size: x-small;
+      }
+
+      hr {
+          border-color: var(--tone);
+      }
+
+      #content img {
+          display: block;
+          margin: auto;
+          max-width: 100%;
+      }
+
+      #footer {
+          padding: 5px;
+          font-size: x-small;
+          vertical-align: middle;
+          margin: auto;
+          text-align: center;
+      }
+
+    .hll { background-color: #ffffcc }
+.c { color: #408080; font-style: italic } /* Comment */
+.err { border: 1px solid #FF0000 } /* Error */
+.k { color: #008000; font-weight: bold } /* Keyword */
+.o { color: #666666 } /* Operator */
+.ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.cp { color: #BC7A00 } /* Comment.Preproc */
+.cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.c1 { color: #408080; font-style: italic } /* Comment.Single */
+.cs { color: #408080; font-style: italic } /* Comment.Special */
+.gd { color: #A00000 } /* Generic.Deleted */
+.ge { font-style: italic } /* Generic.Emph */
+.gr { color: #FF0000 } /* Generic.Error */
+.gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.gi { color: #00A000 } /* Generic.Inserted */
+.go { color: #888888 } /* Generic.Output */
+.gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.gt { color: #0044DD } /* Generic.Traceback */
+.kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.kp { color: #008000 } /* Keyword.Pseudo */
+.kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.kt { color: #B00040 } /* Keyword.Type */
+.m { color: #666666 } /* Literal.Number */
+.s { color: #BA2121 } /* Literal.String */
+.na { color: #7D9029 } /* Name.Attribute */
+.nb { color: #008000 } /* Name.Builtin */
+.nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.no { color: #880000 } /* Name.Constant */
+.nd { color: #AA22FF } /* Name.Decorator */
+.ni { color: #999999; font-weight: bold } /* Name.Entity */
+.ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.nf { color: #0000FF } /* Name.Function */
+.nl { color: #A0A000 } /* Name.Label */
+.nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.nt { color: #008000; font-weight: bold } /* Name.Tag */
+.nv { color: #19177C } /* Name.Variable */
+.ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.w { color: #bbbbbb } /* Text.Whitespace */
+.mb { color: #666666 } /* Literal.Number.Bin */
+.mf { color: #666666 } /* Literal.Number.Float */
+.mh { color: #666666 } /* Literal.Number.Hex */
+.mi { color: #666666 } /* Literal.Number.Integer */
+.mo { color: #666666 } /* Literal.Number.Oct */
+.sa { color: #BA2121 } /* Literal.String.Affix */
+.sb { color: #BA2121 } /* Literal.String.Backtick */
+.sc { color: #BA2121 } /* Literal.String.Char */
+.dl { color: #BA2121 } /* Literal.String.Delimiter */
+.sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.s2 { color: #BA2121 } /* Literal.String.Double */
+.se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.sh { color: #BA2121 } /* Literal.String.Heredoc */
+.si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.sx { color: #008000 } /* Literal.String.Other */
+.sr { color: #BB6688 } /* Literal.String.Regex */
+.s1 { color: #BA2121 } /* Literal.String.Single */
+.ss { color: #19177C } /* Literal.String.Symbol */
+.bp { color: #008000 } /* Name.Builtin.Pseudo */
+.fm { color: #0000FF } /* Name.Function.Magic */
+.vc { color: #19177C } /* Name.Variable.Class */
+.vg { color: #19177C } /* Name.Variable.Global */
+.vi { color: #19177C } /* Name.Variable.Instance */
+.vm { color: #19177C } /* Name.Variable.Magic */
+.il { color: #666666 } /* Literal.Number.Integer.Long */
+    </style>
+
+    <meta property="og:title" content="Simplifying alpha-Rank">
+    <meta property="og:description" content="Attempted proof that you can simplify alpha-rank without harming yourself">
+    <meta property="og:image" content="https://andyljones.com/icons/robot-solid.png">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:width" content="512">
+    
+    <meta name="twitter:card" content="summary">
+
+    <title>Simplifying alpha-Rank</title>
+
+    <!-- Monitoring pageviews is really useful to me to see what kind of stuff I've done is useful to everyone else.
+    But I'm keen to not to track any more than that, and so this is a minimal, self-hosted solution. It records
+    nothing more than'd be in the server logs anyway. -->
+    <script>
+      url = "https://live.andyljones.com/mat/mat.php";
+      xhr = new XMLHttpRequest();
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+      params = 'idsite=1&rec=1'
+      params += '&url=' + encodeURIComponent(window.location.href);
+      params += '&urlref=' + encodeURIComponent(document.referrer);
+      params += '&rand=' + Math.floor(16384*Math.random())
+      xhr.send(params)
+    </script>
+    <noscript>
+      <img src="https://live.andyljones.com/mat/mat.php?idsite=1&amp;rec=1" style="border:0" alt=""/>
+    </noscript>
+
+  </head>
+  <body>
+    <div>
+      <div id="banner" class="column">
+        <div id="title"><a href="/">andy jones</a></div>
+        <div id="social">
+          <a href="/rss.xml"><img src='/icons/rss-solid.svg' alt='RSS'></a>
+          <span class='sep'></span>
+          <a href="mailto:me@andyljones.com"><img src='/icons/at-solid.svg' alt='Email'></a>
+          <span class='sep'></span>
+          <a href="https://github.com/andyljones"><img src='/icons/github-brands.svg' alt='Github'></a>
+          <a href="https://www.linkedin.com/in/andyjonescs"><img src='/icons/linkedin-in-brands.svg' alt='LinkedIn'></a>
+          <span class='sep'></span>
+          <a href="https://twitter.com/andy_l_jones"><img src='/icons/twitter-brands.svg' alt='Twitter'></a>
+          <a href="https://www.reddit.com/u/bluecoffee"><img src='/icons/reddit-brands.svg' alt='Reddit'></a>
+          <a href="https://stackoverflow.com/users/2565457/andy-jones"><img src='/icons/stack-overflow-brands.svg' alt='StackOverflow'></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tinted">
+      <div id="content" class="column">
+        <h2>Summary</h2>
+<p>We're going to approximate the rather complex fixation probs $\rho_{\sigma, \tau}$ with some much simpler values, and we're going to show that this doesn't change the stationary distribution - the $\alpha$-rank - very much.</p>
+<p>Here's the plan:</p>
+<ul>
+<li>First we're going to show that for large $\alpha, m$, the probabilities $\rho_{\sigma, \tau}$ are all very close to $0$ or $1$.</li>
+<li>This'll mean that every element $C<em>{ij}$ of the transition matrix is very close to a simple approximation $\hat C</em>{ij}$.</li>
+<li>With that done, then we'll bound the <em>ergodicity coefficient</em> $\tau(\hat C)$ of the simple transition matrix. </li>
+<li>Using this bound ergodicity coefficent and the fact that the approximation $\hat C<em>{ij}$ is very close to $C</em>{ij}$, we're going to show that the stationary distribution $\hat \pi$ of $\hat C$ is very close to the stationary distribution $\pi$ of $C$.</li>
+</ul>
+<h2>Approximating the fixation probabilities</h2>
+<p>As per <a href="https://arxiv.org/pdf/1903.01373.pdf">Eqn 8 of the original paper</a>, the fixation probabilities are defined as
+$$
+\rho<em>{\sigma, \tau} = \left( 1 + \sum</em>{l=1}^{m-1} e^{-l\alpha (f<em>\tau - f</em>\sigma)} \right)^{-1}
+$$
+Thing is, in practice we drive $\alpha$ higher and higher until the ranking 'stabilizes', while $m$ is typically very large too. Under these conditions, $\rho_{\tau, \sigma}$ ends up very close to $1$ or $0$, as we'll now show.</p>
+<p>Let's take the case $f<em>\tau &gt; f</em>\sigma$ first. Then the summation is exponentially decreasing in $\alpha$, and we can use the infinite geometric summation to bound the fixation probability as
+$$
+\rho<em>{\sigma, \tau} &gt; \frac{1}{1 - e^{-\alpha (f</em>\tau - f_\sigma)}}
+$$
+and as $\alpha$ gets larger, this gets closer and closer to $1$.</p>
+<p>Now let's look at $f<em>\tau &lt; f</em>\sigma$. This time the summation is exponentially growing in $\alpha$, and we can use its first term to bound the fixation probability as 
+$$
+\rho<em>{\sigma, \tau} \le \frac{1}{1 + e^{-\alpha (f</em>\tau - f_\sigma)}}
+$$</p>
+<p>and as $\alpha$ gets larger, this gets closer and closer to $0$.</p>
+<p>Finally, there's $f<em>\tau = f</em>\sigma$. This time it comes out exactly:
+$$
+\rho_{\sigma, \tau} = \frac{1}{m}
+$$
+and as $m$ gets larger, this gets closer to $0$.</p>
+<p>Bounds time! By rearranging the first two cases above, we can see that if we pick 
+$$
+\alpha^<em> &gt; \left. \ln \left( 1 + \frac{1}{\epsilon} \right) \right/ \min<em>{f</em>\tau &gt; f<em>\sigma} (f</em>\tau - f<em>\sigma)
+$$
+then all the fixation probabilities where $f</em>\tau \neq f_\sigma$ will be $\epsilon$-close to $0$ or $1$. And if we pick $m^</em> &gt; \frac{1}{\epsilon}$ too, then <em>all</em> the fixation probabilities will be $\epsilon$-close to $0$ or $1$.</p>
+<p>Let's use $\hat \rho<em>{ij}$ for these $0$s and $1$ fixation probabilities:
+$$
+\begin{equation}
+  \hat \rho</em>{ij} = \begin{cases}
+    1, &amp; \text{if}\ f<em>\tau &gt; f</em>\sigma \
+    0, &amp; \text{if}\ f<em>\tau \le f</em>\sigma \
+  \end{cases}
+\end{equation}
+$$</p>
+<h2>How's that affect the transition matrix?</h2>
+<p>Going back to the paper, Eqn 10. gives the transition matrix $C$ as 
+$$
+\begin{equation}
+  C<em>{ij} = \begin{cases}
+    \eta \rho</em>{ij} &amp; \text{if}\ i \neq j \
+    1 - \sum<em>{j \neq i} C</em>{ij} &amp; \text{if}\ i = j \
+  \end{cases}
+\end{equation}
+$$
+where $\eta = \frac{1}{S - 1}$ normalizes by the number of strategies.</p>
+<p>If we sub in our approximate fixation probabilities $\hat \rho<em>{ij}$, we get an approximate $\hat C</em>{ij}$ that is all $\eta$s and $0$s off the diagonal, and a variety of values on the diagonal. Since our $\hat \rho<em>{ij}$ are $\epsilon$-close to the original $\rho</em>{ij}$, it follows that 
+$$
+|C - \hat C|_\infty \le S\eta \epsilon
+$$</p>
+<h2>Ergodicity time</h2>
+<p>We've got ourselves a simple transition matrix $\hat C$ and a bound on how far away each element $\hat C<em>{ij}$ is from the <em>actual</em> elements $C</em>{ij}$. But what we <em>want</em> is a bound on how far away $\hat C$'s stationary distribution is from $C$'s.</p>
+<p>There are a <a href="https://core.ac.uk/download/pdf/82300580.pdf">lot of ways to do this</a>. In our situation, the kindest way is via the <em>ergodicity coefficient</em>, $\tau$. As per p6 in that paper, the ergodicity coefficient lets us turn errors in the matrix into errors in the stationary distribution:
+$$
+|\pi - \hat \pi|<em>1 \le \frac{1}{1 - \tau(\hat C)}|C - \hat C|</em>\infty
+$$
+This has a bound on $C$'s error on the RHS, and bound on $\pi$'s error on the LHS! Exactly what we want, hooray!</p>
+<p>To use this formula, all we need to do is show that $\tau(\hat C) &lt; 1$. And for that <a href="https://ipsen.math.ncsu.edu/ps/slides_coeff.pdf">we're going to use a element-wise definition of $\tau$</a>:
+$$
+\tau(P) = 1 - \min_{ij} \sum<em>k \min (P</em>{ik}, P<em>{jk})
+$$
+This is a bit tricky to get your head around, but we can sub that $\sum$ for a $\max$ to make it intuitively easier
+$$
+\tau(P) \le 1 - \min</em>{ij} \max<em>k \min (P</em>{ik}, P_{jk})
+$$
+You might wanna read this one a few times over. As with a lot of min-max-y formulas, I find it easiest to understand as a game:</p>
+<ul>
+<li>I want $\tau$ to be as low/good as possible, opponent wants it to be as high/bad as possible.</li>
+<li>Opponent picks a pair of rows.</li>
+<li>I get to pick a column.</li>
+<li>Opponent picks the smallest value out of the two intersections.</li>
+<li>And then $\tau$ is <code>1 - picked_value</code>.</li>
+</ul>
+<p>Let's play this game with $\hat C$!</p>
+<ul>
+<li>Opponent picks a pair of rows, ${\tau, \sigma}$</li>
+<li>If $f<em>\tau &gt; f</em>\sigma$, I pick column $\tau$.<ul>
+<li>This means the two values at the intersections are ${\eta, \hat C_{\tau\tau}}$</li>
+</ul>
+</li>
+<li>If $f<em>\tau &lt; f</em>\sigma$, I pick column $\sigma$.<ul>
+<li>This means the two values at the intersections are ${\hat C_{\sigma\sigma}, \eta}$</li>
+</ul>
+</li>
+<li>If $f<em>\tau = f</em>\sigma$, \$PANIC </li>
+<li>Opponent picks the smallest of those, which is at worst $\min { \eta, \text{diag}(C)}$. </li>
+</ul>
+<p>TODO: How'd I deal with $f<em>\tau = f</em>\sigma$? Might be fatal, cause I now realise there's a pathological case where all the $f$ are the same and in the large-$m$ limit all the off-diag transitions are zero. Hrm. Can't hope for much ergodicity then, can I?</p>
+<p>TODO: $\text{diag}(C)$ can be zero, rats. But the rows with a zero diag have  everything else as $\eta$, so should be able to save this with a tricksier strategy.</p>
+<p>Let's run on for now with what I <em>think</em> I can wrangle, which is that $\tau \le 1 - \eta$.</p>
+<h2>Putting it all together</h2>
+<p>Combining our bound on the ergodicity with our bound on the error in $\hat C$, all together we have
+$$
+|\pi - \hat \pi|_1 \le \frac{1}{1 - (1 - \eta)} S \eta \epsilon = S \epsilon
+$$</p>
+
+      </div>
+      <div class="column">
+        <small>2020/10/26</small>
+      </div>
+    </div>
+
+
+    <div>
+      <div id="footer" class="column">
+        <a href="https://fontawesome.com/license">icons by dave gandy</a>, theme by <a title="i have never been funny" href="https://color-hex.org/color/6d2e98">#6d2e98</a>
+      </div>
+    </div>
+  </body>
+
+</html>
