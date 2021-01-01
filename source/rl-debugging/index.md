@@ -5,6 +5,7 @@ date: 2021/01/01
 category: Technical
 publish: False
 ---
+# Debugging RL, without the Agonizing Pain
 **This is still a draft. If you come across it somehow, please do not share it until it's complete**
 
 Debugging reinforcement learning algorithms is extremely hard. You might think 'yes, but I'm very smart!'. Well, [here's the (now) head of Tesla's AI division taking six weeks to write a from-scratch policy gradients implementation, despite having all of OpenAI's expertise available to him](https://news.ycombinator.com/item?id=13519044). 
@@ -236,20 +237,24 @@ As well as the above, I also plot some other things out of habit
 # Why is debugging RL so hard?
 As with many 'failures', the overall pain [is a product of many small pains](https://en.wikipedia.org/wiki/Swiss_cheese_model). Many of these pains are shared by other kinds of systems, but reinforcement learning is rare in having them all in one place.
 
-### Failure is hidden
+## Failure is hidden
 **Everything has to work for anything to work**:
+
 **Performance is noisy**: 
 
-### Simplifying is hard
+## Simplifying is hard
 **There're no good interfaces**:
+
 **There are no good black boxes**:
 
-### You are bad at writing RL systems
+## You are bad at writing RL systems
 **Your intuition sucks**:
+
 **Your expectations suck**:
 
-### Everyone else is bad at writing RL systems
+## Everyone else is bad at writing RL systems
 **The community is young**:
+
 **The community has other priorities**:
 
 
@@ -258,5 +263,3 @@ As with many 'failures', the overall pain [is a product of many small pains](htt
 * Focus your efforts
 * Localise your errors
 * Maximise detection rate
-
-#notes-blogposts 
