@@ -41,18 +41,16 @@ When their RL implementation doesn't work, people are often keen to either (a) a
 
 Most often, it turns out they've got a bug.
 
-Why bugs are so much more common in RL code is [[RL Debugging Without the Agonizing Pain#Your Intuition Sucks|discussed below]], but there's another advantage to assuming you've got a bug: bugs are a damn sight faster to find and fix than validating that your new architecture is an improvement over the old one. 
+Why bugs are so much more common in RL code is discussed below, but there's another advantage to assuming you've got a bug: bugs are a damn sight faster to find and fix than validating that your new architecture is an improvement over the old one. 
 
-Now having said that you should assume you have a bug, it's worth mentioning that sometimes - rarely - you don't. What I'm advocating for here is not a blind faith in the buginess of your code, but for dramatically raising the threshold at which you start thinking 'OK, I think this is correct.'
+Now having said that you should assume you have a bug, it's worth mentioning that sometimes - rarely - you don't have a bug. What I'm advocating for here is not a blind faith in the buginess of your code, but for dramatically raising the threshold at which you start thinking 'OK, I think this is correct.'
 
 ## 3. Stop looking at your loss curves
 When someone's RL implementation isn't working, they *luuuuuurv* to copy-paste a screenshot of their loss curve to you. They do this because they know they want a pretty, exponentially-decaying loss curve, and they know what they have *isn't that*.
 
 The problem with using the loss curve as an indicator of correctness is somewhat that it's not reliable, but mostly because it doesn't localise errors. The shape of your loss curve says very little about where in your code you've messed up, and so says very little about what you need to change to get things working.
 
-As in the previous section, my sweeping proclamation comes with some qualifiers. Once you have a semi-functional implementation and you've exhausted other, better methods of error localisation (as documented in the rest of this post), there *is* valuable information in a loss curve. 
-
-If nothing else, being able to split a model's performance into 'how fast it learns' and 'where it plateaus' is a useful way to think about the next improvement you might want to make. But because it only offers *global* information about the performance of your implementation, it makes for a really shitty debugging tool. 
+As in the previous section, my sweeping proclamation comes with some qualifiers. Once you have a semi-functional implementation and you've exhausted other, better methods of error localisation (as documented in the rest of this post), there *is* valuable information in a loss curve. If nothing else, being able to split a model's performance into 'how fast it learns' and 'where it plateaus' is a useful way to think about the next improvement you might want to make. But because it only offers *global* information about the performance of your implementation, it makes for a really poor debugging tool. 
 
 ## 4. Test out the tricky bits
 Most of the bugs in a typical attempt at an RL implementation turn up in the same few places. Some of the usual suspects are
@@ -101,7 +99,7 @@ TODO: More of this.
 ## 7. Log *everything*
 The last three sections have involved controlled experiments of a sort, where you place your components in a known setup and see how they act. The complement to a controlled experiment is an observational study: watching your system in its natural habitat *very carefully* and seeing if you can spot anything anomalous.
 
-In reinforcement learning, watching your system carefully means logging. Lots of logging. Logs that I've found particularly useful are
+In reinforcement learning, watching your system carefully means logging. Lots of logging. Below are some of the logs I've found particularly useful.
 
 ### Relative policy entropy 
 The entropy of your policy network's outputs, relative to the maximum possible entropy. It'll usually start near 1, then rapidly fall for a while, then flatten out for the rest of training. 

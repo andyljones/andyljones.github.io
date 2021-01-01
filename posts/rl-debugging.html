@@ -276,13 +276,12 @@
 <h2>2. Assume you have a bug</h2>
 <p>When their RL implementation doesn't work, people are often keen to either (a) adjust their network architecture or (b) adjust their hyperparameters. On the other hand, they're reluctant to say they've got a bug.</p>
 <p>Most often, it turns out they've got a bug.</p>
-<p>Why bugs are so much more common in RL code is [[RL Debugging Without the Agonizing Pain#Your Intuition Sucks|discussed below]], but there's another advantage to assuming you've got a bug: bugs are a damn sight faster to find and fix than validating that your new architecture is an improvement over the old one.</p>
-<p>Now having said that you should assume you have a bug, it's worth mentioning that sometimes - rarely - you don't. What I'm advocating for here is not a blind faith in the buginess of your code, but for dramatically raising the threshold at which you start thinking 'OK, I think this is correct.'</p>
+<p>Why bugs are so much more common in RL code is discussed below, but there's another advantage to assuming you've got a bug: bugs are a damn sight faster to find and fix than validating that your new architecture is an improvement over the old one.</p>
+<p>Now having said that you should assume you have a bug, it's worth mentioning that sometimes - rarely - you don't have a bug. What I'm advocating for here is not a blind faith in the buginess of your code, but for dramatically raising the threshold at which you start thinking 'OK, I think this is correct.'</p>
 <h2>3. Stop looking at your loss curves</h2>
 <p>When someone's RL implementation isn't working, they <em>luuuuuurv</em> to copy-paste a screenshot of their loss curve to you. They do this because they know they want a pretty, exponentially-decaying loss curve, and they know what they have <em>isn't that</em>.</p>
 <p>The problem with using the loss curve as an indicator of correctness is somewhat that it's not reliable, but mostly because it doesn't localise errors. The shape of your loss curve says very little about where in your code you've messed up, and so says very little about what you need to change to get things working.</p>
-<p>As in the previous section, my sweeping proclamation comes with some qualifiers. Once you have a semi-functional implementation and you've exhausted other, better methods of error localisation (as documented in the rest of this post), there <em>is</em> valuable information in a loss curve.</p>
-<p>If nothing else, being able to split a model's performance into 'how fast it learns' and 'where it plateaus' is a useful way to think about the next improvement you might want to make. But because it only offers <em>global</em> information about the performance of your implementation, it makes for a really shitty debugging tool.</p>
+<p>As in the previous section, my sweeping proclamation comes with some qualifiers. Once you have a semi-functional implementation and you've exhausted other, better methods of error localisation (as documented in the rest of this post), there <em>is</em> valuable information in a loss curve. If nothing else, being able to split a model's performance into 'how fast it learns' and 'where it plateaus' is a useful way to think about the next improvement you might want to make. But because it only offers <em>global</em> information about the performance of your implementation, it makes for a really poor debugging tool.</p>
 <h2>4. Test out the tricky bits</h2>
 <p>Most of the bugs in a typical attempt at an RL implementation turn up in the same few places. Some of the usual suspects are</p>
 <ul>
@@ -322,7 +321,7 @@
 <p>TODO: More of this.</p>
 <h2>7. Log <em>everything</em></h2>
 <p>The last three sections have involved controlled experiments of a sort, where you place your components in a known setup and see how they act. The complement to a controlled experiment is an observational study: watching your system in its natural habitat <em>very carefully</em> and seeing if you can spot anything anomalous.</p>
-<p>In reinforcement learning, watching your system carefully means logging. Lots of logging. Logs that I've found particularly useful are</p>
+<p>In reinforcement learning, watching your system carefully means logging. Lots of logging. Below are some of the logs I've found particularly useful.</p>
 <h3>Relative policy entropy</h3>
 <p>The entropy of your policy network's outputs, relative to the maximum possible entropy. It'll usually start near 1, then rapidly fall for a while, then flatten out for the rest of training.</p>
 <p>If it stays very near 1, your agent is failing to learn any policy at all. You should check that your policy targets are being computed correctly, that the gradient's being backpropagated correctly, and - if you've defined a custom environment - then your environment is actually correct!</p>
