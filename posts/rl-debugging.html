@@ -249,7 +249,8 @@
 
     <div class="tinted">
       <div id="content" class="column">
-        <p><strong>This is still a draft. If you come across it somehow, please do not share it until it's complete</strong></p>
+        <h1>Debugging RL, without the Agonizing Pain</h1>
+<p><strong>This is still a draft. If you come across it somehow, please do not share it until it's complete</strong></p>
 <p>Debugging reinforcement learning algorithms is extremely hard. You might think 'yes, but I'm very smart!'. Well, <a href="https://news.ycombinator.com/item?id=13519044">here's the (now) head of Tesla's AI division taking six weeks to write a from-scratch policy gradients implementation, despite having all of OpenAI's expertise available to him</a>.</p>
 <p>I am not as good a machine learning researcher as Andrej Karpathy, and I say with  confidence you aren't either.</p>
 <p>You should expect to spend orders of magnitude longer debugging and validating your algorithm than you do writing it in the first place. If this is your first time, you might plausibly have a few hundred lines of code that you <em>think</em> are correct in an hour, and a system that's <em>actually</em> correct two months later.</p>
@@ -407,25 +408,24 @@
 </ul>
 <h1>Why is debugging RL so hard?</h1>
 <p>As with many 'failures', the overall pain <a href="https://en.wikipedia.org/wiki/Swiss_cheese_model">is a product of many small pains</a>. Many of these pains are shared by other kinds of systems, but reinforcement learning is rare in having them all in one place.</p>
-<h3>Failure is hidden</h3>
-<p><strong>Everything has to work for anything to work</strong>:
-<strong>Performance is noisy</strong>:</p>
-<h3>Simplifying is hard</h3>
-<p><strong>There're no good interfaces</strong>:
-<strong>There are no good black boxes</strong>:</p>
-<h3>You are bad at writing RL systems</h3>
-<p><strong>Your intuition sucks</strong>:
-<strong>Your expectations suck</strong>:</p>
-<h3>Everyone else is bad at writing RL systems</h3>
-<p><strong>The community is young</strong>:
-<strong>The community has other priorities</strong>:</p>
+<h2>Failure is hidden</h2>
+<p><strong>Everything has to work for anything to work</strong>:</p>
+<p><strong>Performance is noisy</strong>:</p>
+<h2>Simplifying is hard</h2>
+<p><strong>There're no good interfaces</strong>:</p>
+<p><strong>There are no good black boxes</strong>:</p>
+<h2>You are bad at writing RL systems</h2>
+<p><strong>Your intuition sucks</strong>:</p>
+<p><strong>Your expectations suck</strong>:</p>
+<h2>Everyone else is bad at writing RL systems</h2>
+<p><strong>The community is young</strong>:</p>
+<p><strong>The community has other priorities</strong>:</p>
 <h1>A Broad Framework</h1>
 <ul>
 <li>Focus your efforts</li>
 <li>Localise your errors</li>
 <li>Maximise detection rate</li>
 </ul>
-<h1>notes-blogposts</h1>
 
       </div>
       <div class="column">
