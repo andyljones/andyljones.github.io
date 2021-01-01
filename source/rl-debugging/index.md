@@ -99,7 +99,7 @@ In much the same way that you can simplify your environments to localise errors,
 TODO: More of this.
 
 ## 7. Log *everything*
-The last three sections have involved controlled experiments of a sort, where you place your components in a known setup and see how they act. The compliment to a controlled experiment is an observational study: watching your system in its natural habitat *very carefully* and seeing if you can spot anything anomalous.
+The last three sections have involved controlled experiments of a sort, where you place your components in a known setup and see how they act. The complement to a controlled experiment is an observational study: watching your system in its natural habitat *very carefully* and seeing if you can spot anything anomalous.
 
 In reinforcement learning, watching your system carefully means logging. Lots of logging. Logs that I've found particularly useful are
 
