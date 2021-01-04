@@ -9,7 +9,7 @@ I'm a London-based machine learning researcher. After stints in biotech and quan
 You can get in touch with me by [Twitter](https://twitter.com/andy_l_jones) or [email](mailto:andyjones.ed@gmail.com). 
 
 ## Posts
-* [Are we in an AI overhang?](https://www.lesswrong.com/posts/N6vZEnCn6A95Xn39p/are-we-in-an-ai-overhang): AIs will get much, much larger in 2021.
+* [Are we in an AI overhang?](https://www.lesswrong.com/posts/N6vZEnCn6A95Xn39p/are-we-in-an-ai-overhang): AIs might get much larger very quickly.
 {{posts}}
 
 ## Projects
