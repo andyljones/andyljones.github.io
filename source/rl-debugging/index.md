@@ -5,14 +5,15 @@ date: 2021/01/01
 category: Technical
 publish: False
 ---
-# Debugging RL, with less of the Agonizing Pain[^shewchuk]
-[^shewchuk]: <a href="https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf">After JR Shewchuk</a>
+# Debugging RL While Preserving Your Sanity
 
 <span style="color: red">This is still a draft. While you may find it useful, please do not share it until it's complete.</span>
 
-Debugging reinforcement learning implementations is extremely hard. Debugging RL implementations combines the fun of debugging distributed systems with the fun of debugging numerical optimization. If this is your first time, you might plausibly have a few hundred lines of code that you *think* are correct in an hour, and a system that's *actually* correct two months later. [Here's the head of Tesla AI having exactly that experience](https://news.ycombinator.com/item?id=13519044).
+Debugging reinforcement learning systems is incredibly painful. Debugging RL systems combines the fun of debugging distributed systems with the fun of debugging numerical optimizers. If this is your first time, you might plausibly have a few hundred lines of code that you *think* are correct in an hour, and a system that's *actually* correct two months later. [Here's the head of Tesla AI having exactly that experience](https://news.ycombinator.com/item?id=13519044).
 
 This article is a collection of debugging advice that has served me well over the past few years. It both expands on the best advice previously available (principally [Matthew Rahtz's](http://amid.fish/reproducing-deep-rl), [Joshua Achiam's](https://spinningup.openai.com/en/latest/spinningup/spinningup.html#learn-by-doing), and [John Schulman's](https://github.com/williamFalcon/DeepRLHacks)), and supplements it with my own knowledge.
+
+There are two sections: one on [theory](#theory), and one on [practice](#practice). Things flow a little better if you read the theory before the practice, but you can skip on ahead if you wish.
 
 # Theory
 
@@ -21,7 +22,7 @@ A combination of issues. These issues show up in debugging any kind of system, b
 
 ### Feedback is poor
 
-**Errors aren't local**: The vast majority of the bugs you're likely to make are of the 'doing the wrong calculation' sort. Because information in an RL system flows in a loop - actor to learner and then back to actor - the numerical error in one spot gets smeared throughout the system in a few seconds, poisoning everything. This means that most numerical errors manifest as *all* your metrics going weird at the same time; your loss exploding, your KL div collapsing, your rewards oscillating. From the outside, you can tell something is wrong but you've no idea *what* is wrong or where to start looking. 
+**Errors aren't local**: The vast majority of the bugs you're likely to make are of the 'doing the wrong calculation' sort. Because information in an RL system flows in a loop - actor to learner and then back to actor - a numerical error in one spot gets smeared throughout the system in a few seconds, poisoning everything. This means that most numerical errors manifest as *all* your metrics going weird at the same time; your loss exploding, your KL div collapsing, your rewards oscillating. From the outside, you can tell something is wrong but you've no idea *what* is wrong or where to start looking. 
 
 To my mind this is the single biggest issue with debugging RL systems, and much of the advice below is about how to better-localise errors. 
 
@@ -41,7 +42,7 @@ Consequently while you *can* isolate components in RL (and we'll talk about how 
 RL has surprisingly few of these black boxes. You're required to know how your environment works, how your network works, how your optimizer works, how backprop works, how multiprocessing works, how stat collection and logging work. How GPUs work! There are [lots](https://docs.ray.io/en/latest/rllib.html) of [attempts](https://github.com/thu-ml/tianshou) at [writing](https://github.com/deepmind/acme) black-box [RL](https://github.com/astooke/rlpyt) libraries, but as of Jan 2021 my experience has been that these libraries have yet to be both flexible *and* easy to use. This might be a symptom of my odd strand of research, but I've heard several other researchers echo my frustrations.
 
 ### We're bad at writing RL systems
-**Your expectations suck**: In any domain, problems evaporate as you get used to them. The first stack trace you see in your life is a nightmare; the millionth a triviality. All of the problems with RL listed above are only really problems because people new to the field expect something much more refined and reliable, as they've come to expect from other fields of programming and numerical research. If instead you arrive in RL expecting a garbage fire, you'll likely to be zen throughout.  
+**Your expectations suck**: In any domain, problems evaporate as you get used to them. The first stack trace you see in your life is a nightmare; the millionth a triviality. All of the problems with RL listed above are only really problems because people new to the field expect something much more refined and reliable, as they've come to expect from other fields of programming and numerical research. If instead you arrive in RL expecting a garbage fire, you might just stay zen throughout.  
 
 Obviously though, this begs the question of *why* RL development is a garbage fire.
 
