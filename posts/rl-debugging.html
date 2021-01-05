@@ -249,14 +249,29 @@
 
     <div class="tinted">
       <div id="content" class="column">
-        <h1>Debugging RL, without the Agonizing Pain</h1>
-<p><strong>This is still a draft. If you come across it somehow, please do not share it until it's complete</strong></p>
-<p>Debugging reinforcement learning algorithms is extremely hard. You might think 'yes, but I'm very smart!'. Well, <a href="https://news.ycombinator.com/item?id=13519044">here's the (now) head of Tesla's AI division taking six weeks to write a from-scratch policy gradients implementation, despite having all of OpenAI's expertise available to him</a>.</p>
-<p>I am not as good a machine learning researcher as Andrej Karpathy, and I say with  confidence you aren't either.</p>
-<p>You should expect to spend orders of magnitude longer debugging and validating your algorithm than you do writing it in the first place. If this is your first time, you might plausibly have a few hundred lines of code that you <em>think</em> are correct in an hour, and a system that's <em>actually</em> correct two months later.</p>
-<h1>Concrete Advice</h1>
-<p>With that in mind, let's discuss some ways to make the misery of debugging less miserable. I've put this advice in priority order.</p>
-<h2>1. Work from a reference implementation</h2>
+        <h1>Debugging RL, with less of the Agonizing Pain<sup class="footnote-ref" id="fnref-shewchuk"><a href="#fn-shewchuk">1</a></sup></h1>
+<p><span style="color: red">This is still a draft. While you may find it useful, please do not share it until it's complete.</span></p>
+<p>Debugging reinforcement learning implementations is extremely hard. Debugging RL implementations combines the fun of debugging distributed systems with the fun of debugging numerical optimization. If this is your first time, you might plausibly have a few hundred lines of code that you <em>think</em> are correct in an hour, and a system that's <em>actually</em> correct two months later. <a href="https://news.ycombinator.com/item?id=13519044">Here's the head of Tesla AI having exactly that experience</a>.</p>
+<p>This article is a collection of debugging advice that has served me well over the past few years. It both expands on the best advice previously available (principally <a href="http://amid.fish/reproducing-deep-rl">Matthew Rahtz's</a>, <a href="https://spinningup.openai.com/en/latest/spinningup/spinningup.html#learn-by-doing">Joshua Achiam's</a>, and <a href="https://github.com/williamFalcon/DeepRLHacks">John Schulman's</a>), and supplements it with my own knowledge.</p>
+<h1>Theory</h1>
+<h2>Why is debugging RL so hard?</h2>
+<p>A combination of issues. Many of these issues are shared by other disciplines, but very few of those disciplines suffer all of them. Or alternatively, you don't encounter them until you're writing fairly advanced systems. In RL, they're a pain from day one.</p>
+<h2>Feedback is poor</h2>
+<p><strong>Errors aren't local</strong>: The vast majority of the bugs you're likely to make are of the 'doing the wrong calculation' sort. Because information in an RL system flows in a loop - actor to learner and then back to actor - the numerical error in one spot gets smeared throughout the system in a few seconds, poisoning everything. This means that most numerical errors manifest as <em>all</em> your metrics going weird at the same time; your loss exploding, your KL div collapsing, your rewards oscillating. From the outside, you can tell something is wrong but you've no idea <em>what</em> is wrong or where to start looking.</p>
+<p>To my mind this is the single biggest issue with debugging RL systems, and much of the advice below is about how to better-localise errors.</p>
+<p><strong>Performance is noisy</strong>: The ultimate arbiter of an RL system - how good it is at collecting reward - is only weakly related to how good of an implementation you've written. You could write a bug-free implementation the first time and other factors (like hyperparameters, architecture or your environment) could saboutage performance. In the worst case, your evaluation run could just get an unlucky seed. Conversely, you could write a bug-laden implementation and it might seem to work! After all, bugs are just one more source of noise and your neural net is going to <a href="https://twitter.com/gwern/status/1014978860369182722">try its damnedest</a> to pull the signal out of that mess you're feeding it.</p>
+<p>The real kicker though is that because run-to-run variability is so high, it's very easy to fix - or introduce - a bug and then see no change in performance at all.</p>
+<h2>Simplifying is hard</h2>
+<p><strong>There're no narrow interfaces</strong>:</p>
+<p><strong>There are no black boxes</strong>:</p>
+<h2>You are bad at writing RL systems</h2>
+<p><strong>Your intuition sucks</strong>:</p>
+<p><strong>Your expectations suck</strong>:</p>
+<h2>Everyone else is bad at writing RL systems</h2>
+<p><strong>The community is young</strong>:</p>
+<p><strong>The community has other priorities</strong>:</p>
+<h1>Practice</h1>
+<h2>Work from a reference implementation</h2>
 <p><em>If you're new to reinforcement learning, writing things from scratch is the most catastrophically self-sabotaging thing you can do.</em></p>
 <p>There is an alluring masochism in writing things from scratch. There's concrete value in it too: by writing things from scratch, you're both forced to fully understand what you're doing and you're more likely to come up with a fresh perspective. In many other fields of software development these benefits would be worth the slow-down you suffer from having to work everything out yourself.</p>
 <p>In reinforcement learning, these benefits are not worth it. At all. As discussed below, the nature of RL work makes it extremely hard for you to self-correct.</p>
@@ -273,16 +288,16 @@
 <li><a href="https://github.com/vwxyzjn/cleanrl/tree/master/cleanrl">cleanrl</a> isolates every algorithm in its own file.</li>
 <li><a href="https://github.com/deepmind/open_spiel">OpenSpiel</a> is DeepMind's multi-agent reinforcement learning library. They provide both Python and C++ implementations of many algorithms - you'll probably want the Python ones.</li>
 </ul>
-<h2>2. Assume you have a bug</h2>
+<h2>Assume you have a bug</h2>
 <p>When their RL implementation doesn't work, people are often keen to either (a) adjust their network architecture or (b) adjust their hyperparameters. On the other hand, they're reluctant to say they've got a bug.</p>
 <p>Most often, it turns out they've got a bug.</p>
 <p>Why bugs are so much more common in RL code is discussed below, but there's another advantage to assuming you've got a bug: bugs are a damn sight faster to find and fix than validating that your new architecture is an improvement over the old one.</p>
 <p>Now having said that you should assume you have a bug, it's worth mentioning that sometimes - rarely - you don't have a bug. What I'm advocating for here is not a blind faith in the buginess of your code, but for dramatically raising the threshold at which you start thinking 'OK, I think this is correct.'</p>
-<h2>3. Stop looking at your loss curves</h2>
+<h2>Loss curves are a red herring</h2>
 <p>When someone's RL implementation isn't working, they <em>luuuuuurv</em> to copy-paste a screenshot of their loss curve to you. They do this because they know they want a pretty, exponentially-decaying loss curve, and they know what they have <em>isn't that</em>.</p>
 <p>The problem with using the loss curve as an indicator of correctness is somewhat that it's not reliable, but mostly because it doesn't localise errors. The shape of your loss curve says very little about where in your code you've messed up, and so says very little about what you need to change to get things working.</p>
 <p>As in the previous section, my sweeping proclamation comes with some qualifiers. Once you have a semi-functional implementation and you've exhausted other, better methods of error localisation (as documented in the rest of this post), there <em>is</em> valuable information in a loss curve. If nothing else, being able to split a model's performance into 'how fast it learns' and 'where it plateaus' is a useful way to think about the next improvement you might want to make. But because it only offers <em>global</em> information about the performance of your implementation, it makes for a really poor debugging tool.</p>
-<h2>4. Test out the tricky bits</h2>
+<h2>Unit test the tricky bits</h2>
 <p>Most of the bugs in a typical attempt at an RL implementation turn up in the same few places. Some of the usual suspects are</p>
 <ul>
 <li>reward discounting, especially around episode resets</li>
@@ -291,7 +306,7 @@
 </ul>
 <p>Fortunately, these components are all really easy to test! They've got none of the issues that validating RL algorithms as a whole has. These components are deterministic, they're easy to factor out, and they're fast. Checking you've got the termination right on your reward discounting is <a href="https://github.com/andyljones/megastep/blob/master/megastep/demo/learning.py#L134-L159">a few lines</a>.</p>
 <p>What's even better is that most of the time, <em>as you write these things</em> you know you're messing them up. If you're not certain whether you've just accumulated the reward on one side of the reset or the other, <em>put a test in</em>.</p>
-<h2>5. Use simpler environments. No, even simpler than that.</h2>
+<h2>Use probe environments.</h2>
 <p>The usual advice to people writing RL algorithms is to use a simple environment like the <a href="https://gym.openai.com/envs/#classic_control">classic control ones from the Gym</a>.</p>
 <p>Thing is, these envs have the same problem as looking at loss curves: at best they give you a noisy indicator, and if the noisy indicator looks poor you don't know <em>why</em> it looks poor. They don't localise errors.</p>
 <p>Instead, construct environments that <em>do</em> localise errors. In a recent project, I used</p>
@@ -311,7 +326,7 @@
 <li>an output that'll transform flat vectors from your network into the outputs the env expects.</li>
 </ul>
 <p>This is an idea that's been developed a few times independently, though I can't remember where else I've seen it just this second. You can find my own (undocumented) implementation <a href="https://github.com/andyljones/megastep/blob/23347dbc4698626408e4c5047c9f5b0a803c4e72/megastep/demo/heads.py#L69-L75">here</a>.</p>
-<h2>6. Use simple agents. No, even simpler than that.</h2>
+<h2>Use probe agents.</h2>
 <p>In much the same way that you can simplify your environments to localise errors, you can do the same with your agents too.</p>
 <ul>
 <li>Cheats</li>
@@ -319,7 +334,7 @@
 <li>Tabular</li>
 </ul>
 <p>TODO: More of this.</p>
-<h2>7. Log <em>everything</em></h2>
+<h2>Log excessively.</h2>
 <p>The last three sections have involved controlled experiments of a sort, where you place your components in a known setup and see how they act. The complement to a controlled experiment is an observational study: watching your system in its natural habitat <em>very carefully</em> and seeing if you can spot anything anomalous.</p>
 <p>In reinforcement learning, watching your system carefully means logging. Lots of logging. Below are some of the logs I've found particularly useful.</p>
 <h3>Relative policy entropy</h3>
@@ -405,26 +420,18 @@
 <li><p><strong>Policy and value losses</strong>: should fall dramatically at the start of training, then level out.</p>
 </li>
 </ul>
-<h1>Why is debugging RL so hard?</h1>
-<p>As with many 'failures', the overall pain <a href="https://en.wikipedia.org/wiki/Swiss_cheese_model">is a product of many small pains</a>. Many of these pains are shared by other kinds of systems, but reinforcement learning is rare in having them all in one place.</p>
-<h2>Failure is hidden</h2>
-<p><strong>Everything has to work for anything to work</strong>:</p>
-<p><strong>Performance is noisy</strong>:</p>
-<h2>Simplifying is hard</h2>
-<p><strong>There're no good interfaces</strong>:</p>
-<p><strong>There are no good black boxes</strong>:</p>
-<h2>You are bad at writing RL systems</h2>
-<p><strong>Your intuition sucks</strong>:</p>
-<p><strong>Your expectations suck</strong>:</p>
-<h2>Everyone else is bad at writing RL systems</h2>
-<p><strong>The community is young</strong>:</p>
-<p><strong>The community has other priorities</strong>:</p>
+<h1>Theory</h1>
 <h1>A Broad Framework</h1>
 <ul>
 <li>Focus your efforts</li>
 <li>Localise your errors</li>
 <li>Maximise detection rate</li>
 </ul>
+<div class="footnotes">
+<hr>
+<ol><li id="fn-shewchuk"><p><a href="https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf">After JR Shewchuk</a><a href="#fnref-shewchuk" class="footnote">&#8617;</a></p></li>
+</ol>
+</div>
 
       </div>
       <div class="column">
