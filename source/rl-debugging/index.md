@@ -17,9 +17,9 @@ This article is a collection of debugging advice that has served me well over th
 # Theory
 
 ## Why is debugging RL so hard?
-A combination of issues. Many of these issues are shared by other disciplines, but very few of those disciplines suffer all of them. Or alternatively, you don't encounter them until you're writing fairly advanced systems. In RL, they're a pain from day one.
+A combination of issues. These issues show up in debugging any kind of system, but in RL they're both more common and they'll show up starting with the first system you ever write.
 
-## Feedback is poor
+### Feedback is poor
 
 **Errors aren't local**: The vast majority of the bugs you're likely to make are of the 'doing the wrong calculation' sort. Because information in an RL system flows in a loop - actor to learner and then back to actor - the numerical error in one spot gets smeared throughout the system in a few seconds, poisoning everything. This means that most numerical errors manifest as *all* your metrics going weird at the same time; your loss exploding, your KL div collapsing, your rewards oscillating. From the outside, you can tell something is wrong but you've no idea *what* is wrong or where to start looking. 
 
@@ -29,21 +29,33 @@ To my mind this is the single biggest issue with debugging RL systems, and much 
 
 The real kicker though is that because run-to-run variability is so high, it's very easy to fix - or introduce - a bug and then see no change in performance at all. 
 
-## Simplifying is hard
-**There're no narrow interfaces**: 
+### Simplifying is hard
+**There're few narrow interfaces**: Smart software development involves splitting the system up into components so that each component only talks to the others through a narrow interface. This way you can easily pinch a component off from the the rest of the system, feed it some mock inputs and see if it gives the correct answers. 
 
-**There are no black boxes**:
+This is difficult in RL systems. In RL systems, each component typically consumes a large number of mega- of gigabyte arrays and returns the same. The components are also unavoidably stateful, with the principal two components - the actor and learner - hefting around the state of the environnment and the network weights respectively. State can be thought of an interface with the own component's past, and in RL this interface is *huge*. 
 
-## You are bad at writing RL systems
-**Your intuition sucks**:
+Consequently while you *can* isolate components in RL (and we'll talk about how to below), it's much more painful to do than it is in other kinds of software.
 
-**Your expectations suck**:
+**There are few black boxes**: A black box is a component that works in a complex way, but which you can reason about in a simple way. Another name for a black box would be 'a good abstraction'. The prototypical example is your computer: there's a hierarchy of concepts in there, from doped silicon through to operating systems, but as far as you the programmer are concerned it's all about for loops and function calls. 
 
-## Everyone else is bad at writing RL systems
-**The community is young**:
+RL has surprisingly few of these black boxes. You're required to know how your environment works, how your network works, how your optimizer works, how backprop works, how multiprocessing works, how stat collection and logging work. How GPUs work! There are [lots](https://docs.ray.io/en/latest/rllib.html) of [attempts](https://github.com/thu-ml/tianshou) at [writing](https://github.com/deepmind/acme) black-box [RL](https://github.com/astooke/rlpyt) libraries, but as of Jan 2021 my experience has been that these libraries have yet to be both flexible *and* easy to use. This might be a symptom of my odd strand of research, but I've heard several other researchers echo my frustrations.
 
-**The community has other priorities**:
+### We're bad at writing RL systems
+**Your expectations suck**: In any domain, problems evaporate as you get used to them. The first stack trace you see in your life is a nightmare; the millionth a triviality. All of the problems with RL listed above are only really problems because people new to the field expect something much more refined and reliable, as they've come to expect from other fields of programming and numerical research. If instead you arrive in RL expecting a garbage fire, you'll likely to be zen throughout.  
 
+Obviously though, this begs the question of *why* RL development is a garbage fire.
+
+**The community is young**: While reinforcement learning as a field stretches back decades, it has *exploded* in the past few years and continues apace today. Finding good abstractions requires in part that the userbase's requirements stabilize, and that just isn't the case yet. Some of that is because it's very much a community of researchers rather than a community of practitioners, and the terrible thing about researchers it that they're very keen on doing new and different things. Maybe it'll be different once someone figures out how to turn RL into an industry. 
+
+**The community has other priorities**: Again, the community is a community of researchers. The population sets the priorities, and the priority is publication. Reliable, reproducible research contributes to publishing high-impact papers, but it also costs time and effort that is arguably better spent working on something *new*. And, well, it's hard to argue with the results: the current standards of RL development have carried us [a](https://deepmind.com/blog/article/muzero-mastering-go-chess-shogi-and-atari-without-rules) [long](https://openai.com/blog/learning-dexterity/) [way](https://deepmind.com/blog/article/AlphaStar-Grandmaster-level-in-StarCraft-II-using-multi-agent-reinforcement-learning). 
+
+Don't take this as a clarion call for better practices, nor a stalwart defense of practices as they are. It's not a hill I wish to die on. I'm only giving an explanation for why things are the way they are, rather than a justification for it. My preferences are towards improved practices, but I can see the sense in the other side's position.
+
+## Debugging Strategies
+
+### Focus your efforts
+### Localise your errors
+### Maximise detection rate
 
 # Practice
 
@@ -267,6 +279,3 @@ As well as the above, I also plot some other things out of habit
 
 # A Broad Framework
 
-* Focus your efforts
-* Localise your errors
-* Maximise detection rate
