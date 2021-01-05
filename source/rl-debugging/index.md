@@ -5,7 +5,7 @@ date: 2021/01/01
 category: Technical
 publish: False
 ---
-# Debugging RL While Preserving Your Sanity
+# Debugging RL While Retaining Your Sanity
 
 <span style="color: red">This is still a draft. While you may find it useful, please do not share it until it's complete.</span>
 
@@ -39,7 +39,7 @@ Consequently while you *can* isolate components in RL (and we'll talk about how 
 
 **There are few black boxes**: A black box is a component that works in a complex way, but which you can reason about in a simple way. Another name for a black box would be 'a good abstraction'. The prototypical example is your computer: there's a hierarchy of concepts in there, from doped silicon through to operating systems, but as far as you the programmer are concerned it's all about for loops and function calls. 
 
-RL has surprisingly few of these black boxes. You're required to know how your environment works, how your network works, how your optimizer works, how backprop works, how multiprocessing works, how stat collection and logging work. How GPUs work! There are [lots](https://docs.ray.io/en/latest/rllib.html) of [attempts](https://github.com/thu-ml/tianshou) at [writing](https://github.com/deepmind/acme) black-box [RL](https://github.com/astooke/rlpyt) libraries, but as of Jan 2021 my experience has been that these libraries have yet to be both flexible *and* easy to use. This might be a symptom of my odd strand of research, but I've heard several other researchers echo my frustrations.
+RL has surprisingly few of these black boxes. You're required to know how your environment works, how your network works, how your optimizer works, how backprop works, how multiprocessing works, how stat collection and logging work. How GPUs work! There are [lots](https://docs.ray.io/en/latest/rllib.html) of [attempts](https://github.com/thu-ml/tianshou) at [writing](https://github.com/deepmind/acme) black-box [RL](https://github.com/astooke/rlpyt) libraries, but as of Jan 2021 my experience has been that these libraries have yet to be both flexible *and* easy-to-use. This might be a symptom of my odd strand of research, but I've heard several other researchers echo my frustrations.
 
 ### We're bad at writing RL systems
 **Your expectations suck**: In any domain, problems evaporate as you get used to them. The first stack trace you see in your life is a nightmare; the millionth a triviality. All of the problems with RL listed above are only really problems because people new to the field expect something much more refined and reliable, as they've come to expect from other fields of programming and numerical research. If instead you arrive in RL expecting a garbage fire, you might just stay zen throughout.  
@@ -65,10 +65,10 @@ Don't take this as a clarion call for better practices, nor a stalwart defense 
 
 There is an alluring masochism in writing things from scratch. There's concrete value in it too: by writing things from scratch, you're both forced to fully understand what you're doing and you're more likely to come up with a fresh perspective. In many other fields of software development these benefits would be worth the slow-down you suffer from having to work everything out yourself.
 
-In reinforcement learning, these benefits are not worth it. At all. As discussed below, the nature of RL work makes it extremely hard for you to self-correct.
+In reinforcement learning, these benefits are not worth it. At all. As discussed [above](#theory), the nature of RL work makes it extremely hard for you to self-correct.
 
 When I say 'use a reference implementation', there are several interpretations you can take depending on your risk tolerance. 
-* The safest thing to do is to use a reference implementation out-of-the-box. Check that it works on your task, then repeatedly make a small change and check that it still works. 
+* The safest thing to do is to use a reference implementation out-of-the-box. Check that it works on your task, then repeatedly make a small change and check that it works as it did before. 
 * Less safe is to just use the reference implementation as a source of reliable components. Work to the same API, and check that giving your version of a component and their version give the same outputs.
 * Least safe (but still dramatically better than going in blind) is to have one eye on the reference implementation while you write your own. Copy their hyperparameters, copy their discounting code, copy how they handle termination and invalid actions and a hundred other little things that you're likely to muck up otherwise. 
 
@@ -272,11 +272,3 @@ As well as the above, I also plot some other things out of habit
 * **Mean value**: is (if your value network is working well) a less-noisy proxy for the reward per trajectory. If your trajectories are particularly long compared to your reward discount factor however, this can be dramatically different from the reward per trajectory.
 
 * **Policy and value losses**: should fall dramatically at the start of training, then level out.
-
-# Theory
-
-
-
-
-# A Broad Framework
-

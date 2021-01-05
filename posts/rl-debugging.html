@@ -249,15 +249,16 @@
 
     <div class="tinted">
       <div id="content" class="column">
-        <h1>Debugging Reinforcement Learners, without the Agonizing Pain<sup class="footnote-ref" id="fnref-shewchuk"><a href="#fn-shewchuk">1</a></sup></h1>
+        <h1>Debugging RL While Retaining Your Sanity</h1>
 <p><span style="color: red">This is still a draft. While you may find it useful, please do not share it until it's complete.</span></p>
-<p>Debugging reinforcement learning implementations is extremely hard. Debugging RL implementations combines the fun of debugging distributed systems with the fun of debugging numerical optimization. If this is your first time, you might plausibly have a few hundred lines of code that you <em>think</em> are correct in an hour, and a system that's <em>actually</em> correct two months later. <a href="https://news.ycombinator.com/item?id=13519044">Here's the head of Tesla AI having exactly that experience</a>.</p>
+<p>Debugging reinforcement learning systems is incredibly painful. Debugging RL systems combines the fun of debugging distributed systems with the fun of debugging numerical optimizers. If this is your first time, you might plausibly have a few hundred lines of code that you <em>think</em> are correct in an hour, and a system that's <em>actually</em> correct two months later. <a href="https://news.ycombinator.com/item?id=13519044">Here's the head of Tesla AI having exactly that experience</a>.</p>
 <p>This article is a collection of debugging advice that has served me well over the past few years. It both expands on the best advice previously available (principally <a href="http://amid.fish/reproducing-deep-rl">Matthew Rahtz's</a>, <a href="https://spinningup.openai.com/en/latest/spinningup/spinningup.html#learn-by-doing">Joshua Achiam's</a>, and <a href="https://github.com/williamFalcon/DeepRLHacks">John Schulman's</a>), and supplements it with my own knowledge.</p>
+<p>There are two sections: one on <a href="#theory">theory</a>, and one on <a href="#practice">practice</a>. Things flow a little better if you read the theory before the practice, but you can skip on ahead if you wish.</p>
 <h1>Theory</h1>
 <h2>Why is debugging RL so hard?</h2>
 <p>A combination of issues. These issues show up in debugging any kind of system, but in RL they're both more common and they'll show up starting with the first system you ever write.</p>
 <h3>Feedback is poor</h3>
-<p><strong>Errors aren't local</strong>: The vast majority of the bugs you're likely to make are of the 'doing the wrong calculation' sort. Because information in an RL system flows in a loop - actor to learner and then back to actor - the numerical error in one spot gets smeared throughout the system in a few seconds, poisoning everything. This means that most numerical errors manifest as <em>all</em> your metrics going weird at the same time; your loss exploding, your KL div collapsing, your rewards oscillating. From the outside, you can tell something is wrong but you've no idea <em>what</em> is wrong or where to start looking.</p>
+<p><strong>Errors aren't local</strong>: The vast majority of the bugs you're likely to make are of the 'doing the wrong calculation' sort. Because information in an RL system flows in a loop - actor to learner and then back to actor - a numerical error in one spot gets smeared throughout the system in a few seconds, poisoning everything. This means that most numerical errors manifest as <em>all</em> your metrics going weird at the same time; your loss exploding, your KL div collapsing, your rewards oscillating. From the outside, you can tell something is wrong but you've no idea <em>what</em> is wrong or where to start looking.</p>
 <p>To my mind this is the single biggest issue with debugging RL systems, and much of the advice below is about how to better-localise errors.</p>
 <p><strong>Performance is noisy</strong>: The ultimate arbiter of an RL system - how good it is at collecting reward - is only weakly related to how good of an implementation you've written. You could write a bug-free implementation the first time and other factors (like hyperparameters, architecture or your environment) could saboutage performance. In the worst case, your evaluation run could just get an unlucky seed. Conversely, you could write a bug-laden implementation and it might seem to work! After all, bugs are just one more source of noise and your neural net is going to <a href="https://twitter.com/gwern/status/1014978860369182722">try its damnedest</a> to pull the signal out of that mess you're feeding it.</p>
 <p>The real kicker though is that because run-to-run variability is so high, it's very easy to fix - or introduce - a bug and then see no change in performance at all.</p>
@@ -266,7 +267,7 @@
 <p>This is difficult in RL systems. In RL systems, each component typically consumes a large number of mega- of gigabyte arrays and returns the same. The components are also unavoidably stateful, with the principal two components - the actor and learner - hefting around the state of the environnment and the network weights respectively. State can be thought of an interface with the own component's past, and in RL this interface is <em>huge</em>.</p>
 <p>Consequently while you <em>can</em> isolate components in RL (and we'll talk about how to below), it's much more painful to do than it is in other kinds of software.</p>
 <p><strong>There are few black boxes</strong>: A black box is a component that works in a complex way, but which you can reason about in a simple way. Another name for a black box would be 'a good abstraction'. The prototypical example is your computer: there's a hierarchy of concepts in there, from doped silicon through to operating systems, but as far as you the programmer are concerned it's all about for loops and function calls.</p>
-<p>RL has surprisingly few of these black boxes. You're required to know how your environment works, how your network works, how your optimizer works, how backprop works, how multiprocessing works, how stat collection and logging work. How GPUs work! There are <a href="https://docs.ray.io/en/latest/rllib.html">lots</a> of <a href="https://github.com/thu-ml/tianshou">attempts</a> at <a href="https://github.com/deepmind/acme">writing</a> black-box <a href="https://github.com/astooke/rlpyt">RL</a> libraries, but as of Jan 2021 my experience has been that these libraries have yet to be both flexible <em>and</em> easy to use. This might be a symptom of my odd strand of research, but I've heard several other researchers echo my frustrations.</p>
+<p>RL has surprisingly few of these black boxes. You're required to know how your environment works, how your network works, how your optimizer works, how backprop works, how multiprocessing works, how stat collection and logging work. How GPUs work! There are <a href="https://docs.ray.io/en/latest/rllib.html">lots</a> of <a href="https://github.com/thu-ml/tianshou">attempts</a> at <a href="https://github.com/deepmind/acme">writing</a> black-box <a href="https://github.com/astooke/rlpyt">RL</a> libraries, but as of Jan 2021 my experience has been that these libraries have yet to be both flexible <em>and</em> easy-to-use. This might be a symptom of my odd strand of research, but I've heard several other researchers echo my frustrations.</p>
 <h3>We're bad at writing RL systems</h3>
 <p><strong>Your expectations suck</strong>: In any domain, problems evaporate as you get used to them. The first stack trace you see in your life is a nightmare; the millionth a triviality. All of the problems with RL listed above are only really problems because people new to the field expect something much more refined and reliable, as they've come to expect from other fields of programming and numerical research. If instead you arrive in RL expecting a garbage fire, you might just stay zen throughout.</p>
 <p>Obviously though, this begs the question of <em>why</em> RL development is a garbage fire.</p>
@@ -281,10 +282,10 @@
 <h2>Work from a reference implementation</h2>
 <p><em>If you're new to reinforcement learning, writing things from scratch is the most catastrophically self-sabotaging thing you can do.</em></p>
 <p>There is an alluring masochism in writing things from scratch. There's concrete value in it too: by writing things from scratch, you're both forced to fully understand what you're doing and you're more likely to come up with a fresh perspective. In many other fields of software development these benefits would be worth the slow-down you suffer from having to work everything out yourself.</p>
-<p>In reinforcement learning, these benefits are not worth it. At all. As discussed below, the nature of RL work makes it extremely hard for you to self-correct.</p>
+<p>In reinforcement learning, these benefits are not worth it. At all. As discussed <a href="#theory">above</a>, the nature of RL work makes it extremely hard for you to self-correct.</p>
 <p>When I say 'use a reference implementation', there are several interpretations you can take depending on your risk tolerance.</p>
 <ul>
-<li>The safest thing to do is to use a reference implementation out-of-the-box. Check that it works on your task, then repeatedly make a small change and check that it still works. </li>
+<li>The safest thing to do is to use a reference implementation out-of-the-box. Check that it works on your task, then repeatedly make a small change and check that it works as it did before. </li>
 <li>Less safe is to just use the reference implementation as a source of reliable components. Work to the same API, and check that giving your version of a component and their version give the same outputs.</li>
 <li>Least safe (but still dramatically better than going in blind) is to have one eye on the reference implementation while you write your own. Copy their hyperparameters, copy their discounting code, copy how they handle termination and invalid actions and a hundred other little things that you're likely to muck up otherwise. </li>
 </ul>
@@ -427,13 +428,6 @@
 <li><p><strong>Policy and value losses</strong>: should fall dramatically at the start of training, then level out.</p>
 </li>
 </ul>
-<h1>Theory</h1>
-<h1>A Broad Framework</h1>
-<div class="footnotes">
-<hr>
-<ol><li id="fn-shewchuk"><p><a href="https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf">After JR Shewchuk</a><a href="#fnref-shewchuk" class="footnote">&#8617;</a></p></li>
-</ol>
-</div>
 
       </div>
       <div class="column">
