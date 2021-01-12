@@ -272,3 +272,5 @@ As well as the above, I also plot some other things out of habit
 * **Mean value**: is (if your value network is working well) a less-noisy proxy for the reward per trajectory. If your trajectories are particularly long compared to your reward discount factor however, this can be dramatically different from the reward per trajectory.
 
 * **Policy and value losses**: should fall dramatically at the start of training, then level out.
+
+### Pursue Anomalies
