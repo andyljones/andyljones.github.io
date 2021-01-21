@@ -13,7 +13,6 @@ You can get in touch with me by [Twitter](https://twitter.com/andy_l_jones) or [
 {{posts}}
 
 ## Projects
-Most of my recent major work is NDA'd. 
 
 **Major**
 * [boardlaw](https://andyljones.com/boardlaw/): An ongoing research project into scaling laws in multiagent systems.
