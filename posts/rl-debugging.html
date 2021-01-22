@@ -320,8 +320,8 @@
 <p>Instead, construct environments that <em>do</em> localise errors. In a recent project, I used</p>
 <ol>
 <li><strong>One action, zero observation, one timestep long, +1 reward every timestep</strong>: This isolates the value network. If my agent can't learn that the value of the only observation it ever sees it 1, there's a problem with the value loss calculation or the optimizer.</li>
-<li><strong>One action, zero observation, <em>two</em> timesteps long, +1 reward at the end</strong>: If my agent can learn the value in (1.) but not this one, it must be that my reward discounting is broken.</li>
 <li><strong>One action, random +1/-1 observation, one timestep long, obs-dependent +1/-1 reward every time</strong>: If my agent can learn the value in (1.) but not this one - meaning it can learn a constant reward but not a predictable one! - it must be that backpropagation through my network is broken.</li>
+<li><strong>One action, zero-then-one observation, <em>two</em> timesteps long, +1 reward at the end</strong>: If my agent can learn the value in (1.) but not this one, it must be that my reward discounting is broken.</li>
 <li><strong>Two actions, zero observation, one timestep long, action-dependent +1/-1 reward</strong>: The first env to exercise the policy! If my agent can't learn to pick the better action, there's something wrong with either my advantage calculations, my policy loss or my policy update. That's three things, but it's easy to work out by hand the expected values for each one and check that the values produced by your actual code line up with them.</li>
 <li><strong>Two actions, random +1/-1 observation, one timestep long, action-and-obs dependent +1/-1 reward</strong>: Now we've got a dependence on both obs and action. The policy and value networks interact here, so there's a couple of things to verify: that the policy network learns to pick the right action in each of the two states, and that the value network learns that the value of each state is +1. If everything's worked up until now, then if - for example - the value network fails to learn here, it likely means your batching process is feeding the value network stale experience.</li>
 <li>Etc.</li>
@@ -429,6 +429,7 @@
 </li>
 </ul>
 <h3>Pursue Anomalies</h3>
+<h3>Avoid 3D, Avoid Pixels</h3>
 
       </div>
       <div class="column">
