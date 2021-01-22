@@ -276,3 +276,5 @@ As well as the above, I also plot some other things out of habit
 ### Pursue Anomalies
 ### Avoid 3D, Avoid Pixels
 
+## Credit
+* **kfir.b.y**, for spotting an error in my description of the probe environments.
