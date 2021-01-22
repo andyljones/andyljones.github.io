@@ -86,7 +86,7 @@ Just a bunch of numbers. Hrm. Ok, in I type `extract()`, and quit the debugger. 
 
 *...shows that sometimes the random walk never becomes positive.* D'oh. Never becomes positive means an empty array of positive indices, meaning `[0]` is out of bounds.
 
-That's an artificial, facile, ridiculous example which - on purportedly less random data - happens to me three times a week. Once upon a time I'd have to commit actual thought to figuring out what scenario was leading to an out of bounds. With the help of `pdb` and `extract`, I can instead program thought-free!
+That's an artificial, facile, ridiculous example which - on purportedly less random data - happens to me three times a week. Once upon a time I'd have to commit actual thought to figuring out what scenario was leading to an out of bounds. With the help of `pdb` and `extract`, I can instead program thoughtlessly!
 
 ### Other tricks
 

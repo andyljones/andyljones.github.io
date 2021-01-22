@@ -311,7 +311,7 @@ array([ -0.44560791,  -1.79932944,  -2.56393172,  -3.10994348,
 <p>Just a bunch of numbers. Hrm. Ok, in I type <code>extract()</code>, and quit the debugger. Back in my Jupyter session, <code>xs</code> has - magically! - appeared in my workspace, and a quick <code>plt.plot(xs)</code></p>
 <p><img src="/source/post-mortem-plotting/negative-walk.png" alt="An entirely negative random walk"></p>
 <p><em>...shows that sometimes the random walk never becomes positive.</em> D'oh. Never becomes positive means an empty array of positive indices, meaning <code>[0]</code> is out of bounds.</p>
-<p>That's an artificial, facile, ridiculous example which - on purportedly less random data - happens to me three times a week. Once upon a time I'd have to commit actual thought to figuring out what scenario was leading to an out of bounds. With the help of <code>pdb</code> and <code>extract</code>, I can instead program thought-free!</p>
+<p>That's an artificial, facile, ridiculous example which - on purportedly less random data - happens to me three times a week. Once upon a time I'd have to commit actual thought to figuring out what scenario was leading to an out of bounds. With the help of <code>pdb</code> and <code>extract</code>, I can instead program thoughtlessly!</p>
 <h3>Other tricks</h3>
 <ul>
 <li><p>You can also invoke the post mortem debugger with <code>pdb.pm()</code> rather than going through the <code>%debug</code> magic.</p>
