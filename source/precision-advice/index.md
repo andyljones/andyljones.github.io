@@ -1,8 +1,8 @@
 ---
 title: Precision advice, collateral damage, bright lines and balancing tests
-description: Showerthoughts on giving and receiving advice
+description: Showerthoughts on giving and receiving advice.
 date: 2021/02/11
-publish: False
+publish: True
 ---
 There've been a few instances recently where some luminary has espoused the value of working long hours, and has been roundly criticised for it.[^luminary] I think this issue embodies two interesting tensions, and in those two tensions are two knots of recursive thought that I've had little luck untangling. 
 
