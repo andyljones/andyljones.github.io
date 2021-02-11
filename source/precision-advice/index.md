@@ -11,7 +11,7 @@ Reflecting on the advice that's most frequently given these days, I notice that 
 
 It's sometimes remarked that [progress in medicine is slowing down](https://slatestarcodex.com/2018/11/26/is-science-slowing-down-2/). One explanation is that if you have a drug that works well, it's easy to notice it works well, and so it gets discovered early! A hundred years into modern medicine, the only drugs left to discover are the ones that offer marginal benefits.
 
-One hoped-for fix for this is [precision medicine](https://en.wikipedia.org/wiki/Precision_medicine). Maybe, precision medicine says, maybe there are lots of drugs left to discover that work very well on some people, but have no effect - or even harm! - other people. Then if you've been testing your drugs by giving them to a random sample of the population, maybe you haven't noticed their efficacy on some subset because you were discouraged by some other subset falling over dead. 
+One hoped-for fix for this is [precision medicine](https://en.wikipedia.org/wiki/Precision_medicine). Maybe, precision medicine says, maybe there are lots of drugs left to discover that work very well on some people, but have no effect - or even harm! - other people. Then if you've been testing your drugs by giving them to a random sample of the population, maybe you haven't noticed their efficacy on some people because you were discouraged by some other people falling over dead. 
 
 I think advice is like medicine, and I think modern advice is akin to precision medicine.
 
