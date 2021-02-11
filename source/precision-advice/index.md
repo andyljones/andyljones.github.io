@@ -11,7 +11,7 @@ Reflecting on the advice that's most frequently given these days, I notice that 
 
 It's sometimes remarked that [progress in medicine is slowing down](https://slatestarcodex.com/2018/11/26/is-science-slowing-down-2/). One explanation is that if you have a drug that works well, it's easy to notice it works well, and so it gets discovered early! A hundred years into modern medicine, the only drugs left to discover are the ones that offer marginal benefits.
 
-One hoped-for escape from this is [precision medicine](https://en.wikipedia.org/wiki/Precision_medicine). Maybe, precision medicine says, maybe there are lots of drugs left to discover that work very well on some people, but have no effect - or even harm! - other people. Then if you've been testing your drugs by giving them to a random sample of the population, you wouldn't have noticed their efficacy on some subset because you were discouraged by some other subset falling over dead. 
+One hoped-for fix for this is [precision medicine](https://en.wikipedia.org/wiki/Precision_medicine). Maybe, precision medicine says, maybe there are lots of drugs left to discover that work very well on some people, but have no effect - or even harm! - other people. Then if you've been testing your drugs by giving them to a random sample of the population, maybe you haven't noticed their efficacy on some subset because you were discouraged by some other subset falling over dead. 
 
 I think advice is like medicine, and I think modern advice is akin to precision medicine.
 
@@ -42,4 +42,4 @@ Here we hit on the second bit of recursion however, because to say 'bright lines
 ## Are these discussions intractable?
 No. For all the talk of recursion, these questions don't consume their own tail; the advice is distinct from the advice *about* the advice, and it's reasonable to take one side on the first level and the other at the second. It's also reasonable to take different positions on different topics - we're not trying to resolve some mathematical dilemma here, we're trying to figure out what heuristic works 'best' in practice, both for the individual and for the society. But the solutions to the two levels of discussions *do* influence eachother in what feels like an important way, and figuring out how that influence impacts practice is what I'm stuck on.  
 
-[^luminary]: I'll not link to any examples, as to avoid getting involved.
+[^luminary]: I'll not link to specific examples.
