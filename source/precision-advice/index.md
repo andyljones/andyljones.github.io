@@ -4,7 +4,7 @@ description: Showerthoughts on advice
 date: 2021/02/11
 publish: False
 ---
-There've been a few instances recently where some luminary has espoused the value of working long hours, and has been roundly criticised for it[^luminary]. I think this issue embodies two interesting tensions, and in those two tensions are two knots of recursive thought that I've had little luck untangling. 
+There've been a few instances recently where some luminary has espoused the value of working long hours, and has been roundly criticised for it.[^luminary] I think this issue embodies two interesting tensions, and in those two tensions are two knots of recursive thought that I've had little luck untangling. 
 
 ## Precision advice and collateral damage
 Reflecting on the advice that's most frequently given these days, I notice that often the advice is typically good advice for some part of the audience, and bad advice for the other.
@@ -26,9 +26,9 @@ So what advice should you offer, when you know any advice you offer will likely 
 I will note that all these considerations are just as important when *receiving* advice as giving it. Much as it pains me to say: when receiving advice, you should reflect on these issues and take a considered approach. Maybe that advice is your medicine; maybe it's your poison. 
 
 ## Bright lines and balancing tests
-Can it ever make sense to deploy precision advice to the general population? These sorts of things are long discussed in law, in terms of [bright lines and balancing tests](https://en.wikipedia.org/wiki/Bright-line_rule). There, the prototypical examples are
+Can it ever make sense to deploy precision advice to the general population? These sorts of things are long discussed in law, in terms of [bright lines and balancing tests](https://en.wikipedia.org/wiki/Bright-line_rule). As coarse examples, 
 
-* Bright line test: if you steal, you *will* be go to jail.
+* Bright line test: if you steal, you *will* go to jail.
 * Balancing test: if you steal *and you don't have a good reason for it*, you will go to jail.
 
 Bright lines are easy to communicate, easy to apply, and in being intransigent they more heavily discourage the behaviour in question. Bright lines also run roughshod over nuance, and tend to carry [more unintended side-effects](https://en.wikipedia.org/wiki/Bloody_Code). 
