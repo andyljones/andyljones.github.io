@@ -7,7 +7,7 @@ publish: True
 There've been a few instances recently where some luminary has espoused the value of working long hours, and has been roundly criticised for it.[^luminary] I think this issue embodies two interesting tensions, and in those two tensions are two knots of recursive thought that I've had little luck untangling. 
 
 ## Precision advice and collateral damage
-Reflecting on the advice that's most frequently given these days, I notice that often the advice is typically good advice for some part of the audience, and bad advice for the other.
+Reflecting on the advice that's most frequently given these days, I notice that often the advice is typically good advice for some part of the audience, and bad advice for another.
 
 It's sometimes remarked that [progress in medicine is slowing down](https://slatestarcodex.com/2018/11/26/is-science-slowing-down-2/). One explanation is that if you have a drug that works well, it's easy to notice it works well, and so it gets discovered early! A hundred years into modern medicine, the only drugs left to discover are the ones that offer marginal benefits.
 
