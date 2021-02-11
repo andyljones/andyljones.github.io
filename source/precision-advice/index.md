@@ -1,6 +1,6 @@
 ---
-title: Precision advice, collateral damage, bright lines and balance
-description: Showerthoughts on advice
+title: Precision advice, collateral damage, bright lines and balancing tests
+description: Showerthoughts on giving and receiving advice
 date: 2021/02/11
 publish: False
 ---
@@ -17,16 +17,16 @@ I think advice is like medicine, and I think modern advice is akin to precision 
 
 In an age where information flows as easily as this one, all the advice that's useful to everyone - all the *general advice* - has been widely implemented. Most everyone looks both ways when crossing the street, most everyone has installed electricity in their home, and most everyone uses iodized salt and wraps up warm in winter.
 
-'Work long hours' however is *precision advice*. There is some part of the audience with whom it'll resonate, whom it'll drive to accomplish more and live a more fulfilling life for those accomplishments. And there is part of the audience who will come away injured, having been driven to ignore their families and friends.
+'Work long hours' however is *precision advice*. There is some part of the audience with whom it'll resonate, whom it'll drive to accomplish more and live a more fulfilling life for those accomplishments. And there is part of the audience who will come away injured, having been driven to ignore their families and friends for little gain.
 
 Symmetrically, 'don't work long hours' might be succor to part of your audience while simultaneously robbing another part of their potential.  
 
-So what advice should you offer, when you know any advice you offer will likely harm someone? I am paralyzed here by recursion: even the mildest 'you should reflect on these issues and take a considered approach' is presumably harmful to some person out there that has sole possession of the Last Piece of General Advice, and is discouraged by this argument into not sharing it. 
+So what advice should you offer, when you know any advice you offer will help one person but harm another? I am paralyzed here by recursion: even the mildest 'you should reflect on these issues and take a considered approach' is harmful to the person out there that has sole possession of the Last Piece of General Advice, and is discouraged by this argument into not sharing it. 
 
 I will note that all these considerations are just as important when *receiving* advice as giving it. Much as it pains me to say: when receiving advice, you should reflect on these issues and take a considered approach. Maybe that advice is your medicine; maybe it's your poison. 
 
 ## Bright lines and balancing tests
-Can it ever make sense to deploy precision advice to the general population? These sorts of things are long discussed in law, in terms of [bright lines and balancing tests](https://en.wikipedia.org/wiki/Bright-line_rule). As coarse examples, 
+Can it ever make sense to deploy precision advice to the general population? These sorts of things are long discussed in law, in terms of [bright lines and balancing tests](https://en.wikipedia.org/wiki/Bright-line_rule). There, coarse examples might be, 
 
 * Bright line test: if you steal, you *will* go to jail.
 * Balancing test: if you steal *and you don't have a good reason for it*, you will go to jail.
