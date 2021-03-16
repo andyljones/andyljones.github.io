@@ -70,7 +70,7 @@ def post_links():
             print(f'Leaving {name} out of index')
             continue 
         lines.append(f'* [{tags["title"]}](posts/{name}.html): {tags["description"]}')
-    return '\n'.join(lines)
+    return '\n'.join(lines[::-1])
 
 def rss():
     gen = FeedGenerator()
