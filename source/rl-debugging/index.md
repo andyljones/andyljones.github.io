@@ -3,11 +3,11 @@ title: Debugging Reinforcement Learning Systems
 description: How to debug your reinforcement learning implementations, without the agonizing pain 
 date: 2021/01/01
 category: Technical
-publish: False
+publish: True
 ---
 # Debugging RL While Retaining Your Sanity
 
-<span style="color: red">This is still a draft. While you may find it useful, please do not share it until it's complete.</span>
+<span style="color: red">This is still a draft. </span>
 
 Debugging reinforcement learning systems is incredibly painful. Debugging RL systems combines the fun of debugging distributed systems with the fun of debugging numerical optimizers. If this is your first time, you might plausibly have a few hundred lines of code that you *think* are correct in an hour, and a system that's *actually* correct two months later. [Here's the head of Tesla AI having exactly that experience](https://news.ycombinator.com/item?id=13519044).
 
@@ -53,6 +53,8 @@ Obviously though, this begs the question of *why* RL development is a garbage fi
 Don't take this as a clarion call for better practices, nor a stalwart defense of practices as they are. It's not a hill I wish to die on. I'm only giving an explanation for why things are the way they are, rather than a justification for it. My preferences are towards improved practices, but I can see the sense in the other side's position.
 
 ## Debugging Strategies
+
+TODO: Expand these
 
 ### Focus your efforts
 ### Localise your errors
