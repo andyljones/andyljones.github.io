@@ -1,6 +1,6 @@
 ---
 title: Debugging Reinforcement Learning Systems
-description: Debugging reinforcement learning implementations, without the agonizing pain 
+description: Debugging reinforcement learning implementations, without the agonizing pain.
 date: 2021/01/01
 category: Technical
 publish: True
