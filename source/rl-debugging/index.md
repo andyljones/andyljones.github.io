@@ -31,7 +31,7 @@ The real kicker though is that because run-to-run variability is so high, it's v
 ### Simplifying is hard
 **There're few narrow interfaces**: Smart software development involves splitting the system up into components so that each component only talks to the others through a narrow interface. This way you can easily pinch a component off from the the rest of the system, feed it some mock inputs and see if it gives the correct answers. 
 
-This is difficult in RL systems. In RL systems, each component typically consumes a large number of mega- of gigabyte arrays and returns the same. The components are also unavoidably stateful, with the principal two components - the actor and learner - hefting around the state of the environnment and the network weights respectively. State can be thought of an interface with the own component's past, and in RL this interface is *huge*. 
+This is difficult in RL systems. In RL systems, each component typically consumes a large number of mega- or gigabyte arrays and returns the same. The components are also unavoidably stateful, with the principal two components - the actor and learner - hefting around the state of the environnment and the network weights respectively. State can be thought of an interface with the own component's past, and in RL this interface is *huge*. 
 
 Consequently while you *can* isolate components in RL (and we'll talk about how to below), it's much more painful to do than it is in other kinds of software.
 
