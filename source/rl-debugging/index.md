@@ -5,13 +5,13 @@ date: 2021/01/01
 category: Technical
 publish: True
 ---
-# Debugging RL While Retaining Your Sanity
+# Debugging RL, Without the Agonizing Pain
 
-Debugging reinforcement learning systems is incredibly painful. Debugging RL systems combines the fun of debugging distributed systems with the fun of debugging numerical optimizers. If this is your first time, you might plausibly have a few hundred lines of code that you *think* are correct in an hour, and a system that's *actually* correct two months later. [Here's the head of Tesla AI having exactly that experience](https://news.ycombinator.com/item?id=13519044).
+Debugging RL systems combines the pain of debugging distributed systems with the pain of debugging numerical optimizers. Which is to say, it is agonizingly painful. If this is your first time, you might plausibly have a few hundred lines of code that you *think* are correct in an hour, and a system that's *actually* correct two months later. [Here's the head of Tesla AI having exactly that experience](https://news.ycombinator.com/item?id=13519044).
 
-This article is a collection of debugging advice that has served me well over the past few years. It's collated both from my personal experiences, and from several months of discussion in the [RL Discord](https://discord.com/invite/xhfNqQv). It is intended as compliment to the [other excellent advice that can be found elsewhere](https://github.com/andyljones/reinforcement-learning-discord-wiki/wiki#debugging-advice). 
+This is a collection of debugging advice that has served me well over the past few years. It was formed both from my personal experiences, and from several months of helping people out in the [RL Discord](https://discord.com/invite/xhfNqQv). It is intended as compliment to the [other excellent advice that can be found elsewhere](https://github.com/andyljones/reinforcement-learning-discord-wiki/wiki#debugging-advice). 
 
-There are three sections: one on [theory](#theory), one on [common fixes](#fixes), and one on [practical advice](#tactics). Things flow a little better if you read the theory before the practice, but you can skip on ahead if you wish.
+There are three sections: one on [theory](#theory), one on [common fixes](#fixes), and one on [practical advice](#tactics). Things flow a little better if you read them in order, but you can skip on ahead if you wish.
 
 
 # Theory <br id="theory">
