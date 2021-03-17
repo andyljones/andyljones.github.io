@@ -253,7 +253,7 @@
 <p>Debugging reinforcement learning systems is incredibly painful. Debugging RL systems combines the fun of debugging distributed systems with the fun of debugging numerical optimizers. If this is your first time, you might plausibly have a few hundred lines of code that you <em>think</em> are correct in an hour, and a system that's <em>actually</em> correct two months later. <a href="https://news.ycombinator.com/item?id=13519044">Here's the head of Tesla AI having exactly that experience</a>.</p>
 <p>This article is a collection of debugging advice that has served me well over the past few years. It's collated both from my personal experiences, and from several months of discussion in the <a href="https://discord.com/invite/xhfNqQv">RL Discord</a>. It is intended as compliment to the <a href="https://github.com/andyljones/reinforcement-learning-discord-wiki/wiki#debugging-advice">other excellent advice that can be found elsewhere</a>.</p>
 <p>There are two sections: one on <a href="#theory">theory</a>, and one on <a href="#practice">practice</a>. Things flow a little better if you read the theory before the practice, but you can skip on ahead if you wish.</p>
-<h1>Theory</h1>
+<h1>Theory <br id="theory"></h1>
 <h2>Why is debugging RL so hard?</h2>
 <p>A combination of issues. These issues show up in debugging any kind of system, but in RL they're both more common and they'll show up starting with the first system you ever write.</p>
 <h3>Feedback is poor</h3>
@@ -280,7 +280,7 @@
 <p>While the ideal is a test that is guaranteed to cleanly pass or fail, a good fallback is one that is simply <em>overwhelmingly likely</em> to pass or fail. Typically, this means substituting out environments or algorithms with simpler ones that behave more predictably, and which you can run through your implementation with some massive batch size that'll suppress a lot of the wackiness that you might otherwise suffer.</p>
 <h3>Design <em>fast</em> tests</h3>
 <p>Iteration speed is a huge determinant of debugging speed. Running a test should take at most as long as it takes you to make a potential fix, which is to say 'a few seconds'.</p>
-<p>This means: don't try to debug your implementation by just running it on your full task. That might take days! That way madness lies. Instead, design setups that can execute more quickly, but still exercise the code you're looking at. For specific tips, look at the 'probe environments' section below.</p>
+<p>This means: don't try to debug your implementation by just running it on your full task. That might take days! That way madness lies. Instead, design setups that can execute more quickly, but still exercise the code you're looking at. For specific tips, look at the <a href="#probe">probe environments</a> section below.</p>
 <h3>Localise errors</h3>
 <p>Write test code that'll tell you the most about where the error is. The classic example of this is binary search: if you're looking for an specific item in a sorted list, then taking a look at the middle item tells you a <em>lot</em> more about where your target item is than looking at the first item.</p>
 <p>Similarly, when debugging RL systems try to find tests that cut your system in half in some way, and tell you which half the problem is in. Incrementally testing every.single.chunk of code - well, sometimes that's what it comes down to! But it's something to try and avoid.</p>
@@ -331,7 +331,7 @@
 <h2>Assume you have a bug</h2>
 <p>When their RL implementation doesn't work, people are often keen to either (a) adjust their network architecture or (b) adjust their hyperparameters. On the other hand, they're reluctant to say they've got a bug.</p>
 <p>Most often, it turns out they've got a bug.</p>
-<p>Why bugs are so much more common in RL code is discussed below, but there's another advantage to assuming you've got a bug: bugs are a damn sight faster to find and fix than validating that your new architecture is an improvement over the old one.</p>
+<p>Why bugs are so much more common in RL code is discussed <a href="#theory">above</a>, but there's another advantage to assuming you've got a bug: bugs are a damn sight faster to find and fix than validating that your new architecture is an improvement over the old one.</p>
 <p>Now having said that you should assume you have a bug, it's worth mentioning that sometimes - rarely - you don't have a bug. What I'm advocating for here is not a blind faith in the buginess of your code, but for dramatically raising the threshold at which you start thinking 'OK, I think this is correct.'</p>
 <h2>Loss curves are a red herring</h2>
 <p>When someone's RL implementation isn't working, they <em>luuuuuurv</em> to copy-paste a screenshot of their loss curve to you. They do this because they know they want a pretty, exponentially-decaying loss curve, and they know what they have <em>isn't that</em>.</p>
@@ -346,7 +346,7 @@
 </ul>
 <p>Fortunately, these components are all really easy to test! They've got none of the issues that validating RL algorithms as a whole has. These components are deterministic, they're easy to factor out, and they're fast. Checking you've got the termination right on your reward discounting is <a href="https://github.com/andyljones/megastep/blob/master/megastep/demo/learning.py#L134-L159">a few lines</a>.</p>
 <p>What's even better is that most of the time, <em>as you write these things</em> you know you're messing them up. If you're not certain whether you've just accumulated the reward on one side of the reset or the other, <em>put a test in</em>.</p>
-<h2>Use probe environments.</h2>
+<h2>Use probe environments. <br id="probe"></h2>
 <p>The usual advice to people writing RL algorithms is to use a simple environment like the <a href="https://gym.openai.com/envs/#classic_control">classic control ones from the Gym</a>.</p>
 <p>Thing is, these envs have the same problem as looking at loss curves: at best they give you a noisy indicator, and if the noisy indicator looks poor you don't know <em>why</em> it looks poor. They don't localise errors.</p>
 <p>Instead, construct environments that <em>do</em> localise errors. In a recent project, I used</p>

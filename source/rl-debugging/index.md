@@ -13,7 +13,8 @@ This article is a collection of debugging advice that has served me well over th
 
 There are two sections: one on [theory](#theory), and one on [practice](#practice). Things flow a little better if you read the theory before the practice, but you can skip on ahead if you wish.
 
-# Theory
+
+# Theory <br id="theory">
 
 ## Why is debugging RL so hard?
 A combination of issues. These issues show up in debugging any kind of system, but in RL they're both more common and they'll show up starting with the first system you ever write.
@@ -62,7 +63,7 @@ While the ideal is a test that is guaranteed to cleanly pass or fail, a good fal
 ### Design *fast* tests
 Iteration speed is a huge determinant of debugging speed. Running a test should take at most as long as it takes you to make a potential fix, which is to say 'a few seconds'.    
 
-This means: don't try to debug your implementation by just running it on your full task. That might take days! That way madness lies. Instead, design setups that can execute more quickly, but still exercise the code you're looking at. For specific tips, look at the 'probe environments' section below. 
+This means: don't try to debug your implementation by just running it on your full task. That might take days! That way madness lies. Instead, design setups that can execute more quickly, but still exercise the code you're looking at. For specific tips, look at the [probe environments](#probe) section below. 
 
 ### Localise errors
 Write test code that'll tell you the most about where the error is. The classic example of this is binary search: if you're looking for an specific item in a sorted list, then taking a look at the middle item tells you a *lot* more about where your target item is than looking at the first item. 
@@ -133,7 +134,7 @@ When their RL implementation doesn't work, people are often keen to either (a) a
 
 Most often, it turns out they've got a bug.
 
-Why bugs are so much more common in RL code is discussed below, but there's another advantage to assuming you've got a bug: bugs are a damn sight faster to find and fix than validating that your new architecture is an improvement over the old one. 
+Why bugs are so much more common in RL code is discussed [above](#theory), but there's another advantage to assuming you've got a bug: bugs are a damn sight faster to find and fix than validating that your new architecture is an improvement over the old one. 
 
 Now having said that you should assume you have a bug, it's worth mentioning that sometimes - rarely - you don't have a bug. What I'm advocating for here is not a blind faith in the buginess of your code, but for dramatically raising the threshold at which you start thinking 'OK, I think this is correct.'
 
@@ -155,7 +156,8 @@ Fortunately, these components are all really easy to test! They've got none of t
 
 What's even better is that most of the time, *as you write these things* you know you're messing them up. If you're not certain whether you've just accumulated the reward on one side of the reset or the other, *put a test in*. 
 
-## Use probe environments.
+## Use probe environments. <br id="probe">
+
 The usual advice to people writing RL algorithms is to use a simple environment like the [classic control ones from the Gym](https://gym.openai.com/envs/#classic_control). 
 
 Thing is, these envs have the same problem as looking at loss curves: at best they give you a noisy indicator, and if the noisy indicator looks poor you don't know *why* it looks poor. They don't localise errors.
