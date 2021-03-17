@@ -7,7 +7,7 @@ publish: True
 ---
 # Debugging RL, Without the Agonizing Pain
 
-Debugging RL systems combines the pain of debugging distributed systems with the pain of debugging numerical optimizers. Which is to say, it *sucks*. If this is your first time, you might plausibly have a few hundred lines of code that you *think* are correct in an hour, and a system that's *actually* correct two months later. [Here's the head of Tesla AI having just that experience](https://news.ycombinator.com/item?id=13519044).
+Debugging reinforcement learning systems combines the pain of debugging distributed systems with the pain of debugging numerical optimizers. Which is to say, it *sucks*. If this is your first time, you might have a few hundred lines of code that you *think* are correct in an hour, and a system that's *actually* correct two months later. [Here's the head of Tesla AI having just that experience](https://news.ycombinator.com/item?id=13519044).
 
 This is a collection of debugging advice that has served me well over the past few years. It was formed both from my personal experiences, and from several months of helping people out in the [RL Discord](https://discord.com/invite/xhfNqQv). It is intended as compliment to the [other excellent advice that can be found elsewhere](https://github.com/andyljones/reinforcement-learning-discord-wiki/wiki#debugging-advice). I recommend you read them all; each one has their own unique set of bugbears to warn you away from.
 
