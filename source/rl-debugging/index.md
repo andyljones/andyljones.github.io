@@ -17,11 +17,11 @@ There are three sections: one on [theory](#theory), one on [common fixes](#fixes
 # Theory <br id="theory">
 
 ## Why is debugging RL so hard?
-A combination of issues. These issues show up in debugging any kind of system, but in RL they're both more common and they'll show up starting with the first system you ever write.
+A combination of issues. These issues show up in debugging any kind of system, but in RL they're more common, and they'll show up starting with the first system you ever write.
 
 ### Feedback is poor
 
-**Errors aren't local**: The vast majority of the bugs you're likely to make are of the 'doing the wrong calculation' sort. Because information in an RL system flows in a loop - actor to learner and then back to actor - a numerical error in one spot gets smeared throughout the system in a few seconds, poisoning everything. This means that most numerical errors manifest as *all* your metrics going weird at the same time; your loss exploding, your KL div collapsing, your rewards oscillating. From the outside, you can tell something is wrong but you've no idea *what* is wrong or where to start looking. 
+**Errors aren't local**: The vast majority of the bugs you'll make are the 'doing the wrong calculation' sort. Because information in an RL system flows in a loop - actor to learner and then back to actor - a numerical error in one spot gets smeared throughout the system in seconds, poisoning everything. This means that most numerical errors manifest as *all* your metrics going weird at the same time; your loss exploding, your KL div collapsing, your rewards oscillating. From the outside, you can tell something is wrong but you've no idea *what* is wrong or where to start looking. 
 
 To my mind this is the single biggest issue with debugging RL systems, and much of the advice below is about how to better-localise errors. 
 
