@@ -57,7 +57,12 @@ With all that in mind, here are some broad strategies to keep in mind when chasi
 ### Design reliable tests
 Write tests that either clearly pass or clearly fail. There's some amount of true randomness in RL, but most of that can be controlled with a seed. What's harder to deal with is psuedorandomness such that on one seed a test might pass and another seed the test might fail. This is *awful* to deal with, and you should go out of your way to avoid it. 
 
-While the ideal is a test that is guaranteed to cleanly pass or fail, a good fallback is one that simply *overwhelmingly likely* to pass or fail. Typically, this means substituting out environments or algorithms with simpler ones that behave more predictably, and which you can run through your implementation with some massive batch size that'll suppress a lot of the wackiness that you might otherwise suffer.
+While the ideal is a test that is guaranteed to cleanly pass or fail, a good fallback is one that is simply *overwhelmingly likely* to pass or fail. Typically, this means substituting out environments or algorithms with simpler ones that behave more predictably, and which you can run through your implementation with some massive batch size that'll suppress a lot of the wackiness that you might otherwise suffer.
+
+### Design *fast* tests
+Iteration speed is a huge determinant of debugging speed. Running a test should take at most as long as it takes you to make a potential fix, which is to say 'a few seconds'.    
+
+This means: don't try to debug your implementation by just running it on your full task. That might take days! That way madness lies. Instead, design setups that can execute more quickly, but still exercise the code you're looking at. For specific tips, look at the 'probe environments' section below. 
 
 ### Localise errors
 Write test code that'll tell you the most about where the error is. The classic example of this is binary search: if you're looking for an specific item in a sorted list, then taking a look at the middle item tells you a *lot* more about where your target item is than looking at the first item. 
