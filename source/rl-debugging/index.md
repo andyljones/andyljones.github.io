@@ -325,8 +325,5 @@ As well as the above, I also plot some other things out of habit
 
 * **Policy and value losses**: should fall dramatically at the start of training, then level out.
 	
-### Env-dependent metrics
-TODO
-
 ## Credit
 * **kfir.b.y**, for spotting an error in my description of the probe environments.
