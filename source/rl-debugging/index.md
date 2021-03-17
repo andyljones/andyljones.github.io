@@ -9,7 +9,7 @@ publish: True
 
 Debugging reinforcement learning systems is incredibly painful. Debugging RL systems combines the fun of debugging distributed systems with the fun of debugging numerical optimizers. If this is your first time, you might plausibly have a few hundred lines of code that you *think* are correct in an hour, and a system that's *actually* correct two months later. [Here's the head of Tesla AI having exactly that experience](https://news.ycombinator.com/item?id=13519044).
 
-This article is a collection of debugging advice that has served me well over the past few years. It is intended as compliment to the other excellent advice available (principally [Matthew Rahtz's](http://amid.fish/reproducing-deep-rl), [Joshua Achiam's](https://spinningup.openai.com/en/latest/spinningup/spinningup.html#learn-by-doing), and [John Schulman's](https://github.com/williamFalcon/DeepRLHacks)).
+This article is a collection of debugging advice that has served me well over the past few years. It's collated both from my personal experiences, and from several months of discussion in the [RL Discord](https://discord.com/invite/xhfNqQv). It is intended as compliment to the [other excellent advice that can be found elsewhere](https://github.com/andyljones/reinforcement-learning-discord-wiki/wiki#debugging-advice). 
 
 There are two sections: one on [theory](#theory), and one on [practice](#practice). Things flow a little better if you read the theory before the practice, but you can skip on ahead if you wish.
 
