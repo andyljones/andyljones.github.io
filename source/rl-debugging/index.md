@@ -184,13 +184,6 @@ You get the idea: (1.) is the simplest possible environment, and each new env ad
 
 Even better, these environments are extraordinarily fast. When you've a correct implementation, it should only take a second or two to learn them. And they're *decisive*: if your value network in (1.) ends up more than an epsilon away from the correct value, it means you've got a bug.
 
-As an aside, if you find yourself switching out envs a lot it makes sense to write your network with swappable 'heads': pass the `obs_space` and `action_space` of the env to your network's initializer, and let it nail on
-
-* an intake that'll  transform samples from the obs space to flat vectors for your network to digest,
-* an output that'll transform flat vectors from your network into the outputs the env expects.
-
-This is an idea that's been developed a few times independently, though I can't remember where else I've seen it just this second. You can find my own (undocumented) implementation [here](https://github.com/andyljones/megastep/blob/23347dbc4698626408e4c5047c9f5b0a803c4e72/megastep/demo/heads.py#L69-L75).
-
 ## Use probe agents. 
 In much the same way that you can simplify your environments to localise errors, you can do the same with your agents too. 
 

@@ -368,12 +368,6 @@
 </ol>
 <p>You get the idea: (1.) is the simplest possible environment, and each new env adds the smallest possible bit of functionality. If the old env works but the successor doesn't, that gives you a <em>lot</em> of information about where the problem is.</p>
 <p>Even better, these environments are extraordinarily fast. When you've a correct implementation, it should only take a second or two to learn them. And they're <em>decisive</em>: if your value network in (1.) ends up more than an epsilon away from the correct value, it means you've got a bug.</p>
-<p>As an aside, if you find yourself switching out envs a lot it makes sense to write your network with swappable 'heads': pass the <code>obs_space</code> and <code>action_space</code> of the env to your network's initializer, and let it nail on</p>
-<ul>
-<li>an intake that'll  transform samples from the obs space to flat vectors for your network to digest,</li>
-<li>an output that'll transform flat vectors from your network into the outputs the env expects.</li>
-</ul>
-<p>This is an idea that's been developed a few times independently, though I can't remember where else I've seen it just this second. You can find my own (undocumented) implementation <a href="https://github.com/andyljones/megastep/blob/23347dbc4698626408e4c5047c9f5b0a803c4e72/megastep/demo/heads.py#L69-L75">here</a>.</p>
 <h2>Use probe agents.</h2>
 <p>In much the same way that you can simplify your environments to localise errors, you can do the same with your agents too.</p>
 <p><em>Cheat</em> agents are ones that you leak extra information to. For example, if I'm writing an agent to navigate to a goal, then slipping the agent an extra vector saying which direction the goal is in should help a <em>lot</em>. My agent should be able to solve this problem <em>much</em> faster, and if it can't then how the heck can I expect it to solve the original problem?</p>
