@@ -98,7 +98,13 @@ The single most common issue for newbies writing custom RL implementations is th
 Having read that, you might be tempted to write some adaptive scheme to scale your rewards for you. Don't: it's an extra bit of nonstationarity that'll make life more difficult. Just hand-scale, hand-clip the rewards from your env so that the targets passed to your network are sensible. When everything else is working, you can come back and replace this with something less artificial.
 
 ## Use a really large batch size 
-One of the most reliable ways to make life easier in RL is to use a really large batch size. A *really* large batch size. There's an [excellent paper on picking batch sizes](https://arxiv.org/abs/1812.06162), but as an extremely rough rule of thumb: a thousand is acceptable, ten thousand is good, a hundred thousand is perfect. The idea behind this is that with small batches and complex envs, it's easy for your learner to end up with a batch that represents some idiosyncratic part of the environment. And then by stepping on this batch alone, it's dragged off in a weird direction that reduces its performance on the env in general. Big batches do a lot to suppress this problem.
+One of the most reliable ways to make life easier in RL is to use a really large batch size. A *really* large batch size. There's an [excellent paper on picking batch sizes](https://arxiv.org/abs/1812.06162), and to pull some examples from there:
+
+* Pong: ~1k batch size
+* Space Invaders: ~10k batch size
+* 1v1 Dota: ~100k batch size
+
+The idea behind this is that with small batches and complex envs, it's easy for your learner to end up with a batch that represents some weird idiosyncratic part of the problem. Big batches do a lot to suppress this.
 
 ## Use a really small network
 Hand in hand with really large batch sizes is really small networks. When you use really large batches, your binding constraint is likely to be the memory it takes to hold the forward pass activations on your GPU. By making the network smaller, you can fit bigger batches! And frankly, small networks can accomplish a *lot*. In my [boardlaw](https://andyljones.com/boardlaw/) project, I found that a fully connected network with 4 layers of 1024 neurons was enough to learn perfect play on a 9x9 board. Perfect play! That's really complex! 
@@ -204,7 +210,7 @@ One way to avoid this is to write a function that takes the observation space an
 You can see [one](https://github.com/andyljones/megastep/blob/master/megastep/demo/heads.py) [implementation](https://github.com/andyljones/megastep/blob/master/megastep/demo/__init__.py#L17-L26) of this in my [megastep](https://andyljones.com/megastep/) work, but it's an idea that's been independently developed a few times. I haven't yet seen a general library for it. 
 
 ## Log excessively.
-The last three sections have involved controlled experiments of a sort, where you place your components in a known setup and see how they act. The complement to a controlled experiment is an observational study: watching your system in its natural habitat *very carefully* and seeing if you can spot anything anomalous.
+The last few sections have involved controlled experiments of a sort, where you place your components in a known setup and see how they act. The complement to a controlled experiment is an observational study: watching your system in its natural habitat *very carefully* and seeing if you can spot anything anomalous.
 
 In reinforcement learning, watching your system carefully means logging. Lots of logging. Below are some of the logs I've found particularly useful.
 
@@ -301,11 +307,11 @@ This is from [McCandlish and Kaplan](https://arxiv.org/abs/1812.06162), and it's
 I've been thinking that it might be possible to get more stable estimates of the gradient noise from Adam's moment estimates, but that's decidedly on the to-do list. 
 
 ### Component throughput
-At the least, the actor throughput and learner in terms of samples per second and steps per second. 
+At the least, keep track of the actor throughput and learner throughput in terms of samples per second, and steps per second. 
 
 Typically the actor should be generating *at most* as many samples as the learner is consuming. If the actor is generating excess samples there are weak reasons that might be a good thing - it'll refresh the replay buffer more rapidly - but typically it's considered a waste of compute.
 
-More generally, you want to see these remain stable throughout training. If they gradually decay, you're accumulating some costly state somewhere in your system. 
+More generally, you want to see these remain stable throughout training. If your throughputs gradually decay, you're accumulating some costly state somewhere in your system. 
 
 (For me, problems with gradually-slowing-down systems have always turned out to be with stats and logging, but I suspect that's because I've rolled my own stats and logging systems)
 

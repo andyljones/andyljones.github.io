@@ -303,7 +303,13 @@
 <p>The single most common issue for newbies writing custom RL implementations is that the targets arriving at their neural net aren't [-1, +1]. Actually, anything [-.1, +.1]ish to [-10, +10]ish is good. The point is to have rewards that generate 'sensible' targets for your network. The hyperparameters you've pulled from the literature are adapted to work with these nicely-scaled targets, but lots of envs don't natively provide rewards of the right size so as to generate these nicely-scaled targets.</p>
 <p>Having read that, you might be tempted to write some adaptive scheme to scale your rewards for you. Don't: it's an extra bit of nonstationarity that'll make life more difficult. Just hand-scale, hand-clip the rewards from your env so that the targets passed to your network are sensible. When everything else is working, you can come back and replace this with something less artificial.</p>
 <h2>Use a really large batch size</h2>
-<p>One of the most reliable ways to make life easier in RL is to use a really large batch size. A <em>really</em> large batch size. There's an <a href="https://arxiv.org/abs/1812.06162">excellent paper on picking batch sizes</a>, but as an extremely rough rule of thumb: a thousand is acceptable, ten thousand is good, a hundred thousand is perfect. The idea behind this is that with small batches and complex envs, it's easy for your learner to end up with a batch that represents some idiosyncratic part of the environment. And then by stepping on this batch alone, it's dragged off in a weird direction that reduces its performance on the env in general. Big batches do a lot to suppress this problem.</p>
+<p>One of the most reliable ways to make life easier in RL is to use a really large batch size. A <em>really</em> large batch size. There's an <a href="https://arxiv.org/abs/1812.06162">excellent paper on picking batch sizes</a>, and to pull some examples from there:</p>
+<ul>
+<li>Pong: ~1k batch size</li>
+<li>Space Invaders: ~10k batch size</li>
+<li>1v1 Dota: ~100k batch size</li>
+</ul>
+<p>The idea behind this is that with small batches and complex envs, it's easy for your learner to end up with a batch that represents some weird idiosyncratic part of the problem. Big batches do a lot to suppress this.</p>
 <h2>Use a really small network</h2>
 <p>Hand in hand with really large batch sizes is really small networks. When you use really large batches, your binding constraint is likely to be the memory it takes to hold the forward pass activations on your GPU. By making the network smaller, you can fit bigger batches! And frankly, small networks can accomplish a <em>lot</em>. In my <a href="https://andyljones.com/boardlaw/">boardlaw</a> project, I found that a fully connected network with 4 layers of 1024 neurons was enough to learn perfect play on a 9x9 board. Perfect play! That's really complex!</p>
 <h2>Avoid pixels</h2>
@@ -379,7 +385,7 @@
 <p>One way to avoid this is to write a function that takes the observation space and action space of the environment, and generates 'heads' for the network that convert the observation into a fixed-width vector, and which convert a fixed-width vector to the action. Then you can hand-implement <em>just</em> the body of the net that converts the intake vector to the output vector, and the rest will be slotted in by your function based on the env it has to work with.</p>
 <p>You can see <a href="https://github.com/andyljones/megastep/blob/master/megastep/demo/heads.py">one</a> <a href="https://github.com/andyljones/megastep/blob/master/megastep/demo/__init__.py#L17-L26">implementation</a> of this in my <a href="https://andyljones.com/megastep/">megastep</a> work, but it's an idea that's been independently developed a few times. I haven't yet seen a general library for it.</p>
 <h2>Log excessively.</h2>
-<p>The last three sections have involved controlled experiments of a sort, where you place your components in a known setup and see how they act. The complement to a controlled experiment is an observational study: watching your system in its natural habitat <em>very carefully</em> and seeing if you can spot anything anomalous.</p>
+<p>The last few sections have involved controlled experiments of a sort, where you place your components in a known setup and see how they act. The complement to a controlled experiment is an observational study: watching your system in its natural habitat <em>very carefully</em> and seeing if you can spot anything anomalous.</p>
 <p>In reinforcement learning, watching your system carefully means logging. Lots of logging. Below are some of the logs I've found particularly useful.</p>
 <h3>Relative policy entropy</h3>
 <p>The entropy of your policy network's outputs, relative to the maximum possible entropy. It'll usually start near 1, then rapidly fall for a while, then flatten out for the rest of training.</p>
@@ -435,9 +441,9 @@
 <p>This is from <a href="https://arxiv.org/abs/1812.06162">McCandlish and Kaplan</a>, and it's intended to help you choose your batch size. Unfortunately it's <em>spectacularly</em> noisy, to the point where you likely want to average over all steps in your run.</p>
 <p>I've been thinking that it might be possible to get more stable estimates of the gradient noise from Adam's moment estimates, but that's decidedly on the to-do list.</p>
 <h3>Component throughput</h3>
-<p>At the least, the actor throughput and learner in terms of samples per second and steps per second.</p>
+<p>At the least, keep track of the actor throughput and learner throughput in terms of samples per second, and steps per second.</p>
 <p>Typically the actor should be generating <em>at most</em> as many samples as the learner is consuming. If the actor is generating excess samples there are weak reasons that might be a good thing - it'll refresh the replay buffer more rapidly - but typically it's considered a waste of compute.</p>
-<p>More generally, you want to see these remain stable throughout training. If they gradually decay, you're accumulating some costly state somewhere in your system.</p>
+<p>More generally, you want to see these remain stable throughout training. If your throughputs gradually decay, you're accumulating some costly state somewhere in your system.</p>
 <p>(For me, problems with gradually-slowing-down systems have always turned out to be with stats and logging, but I suspect that's because I've rolled my own stats and logging systems)</p>
 <h3>Value trace</h3>
 <p>The trace of the value over a random episode from recent history, plotted together with the rewards. This can be useful if you suspect your value function or rewards of 'being weird' in some way; the value trace should typically be a collection of exponentially-increasing curves leading up to rewards, followed by vertical drops as the agent collects those rewards.</p>
