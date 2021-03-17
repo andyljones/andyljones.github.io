@@ -65,7 +65,7 @@ Write test code that'll tell you the most about where the error is. The classic 
 Similarly, when debugging RL systems try to find tests that cut your system in half in some way, and tell you which half the problem is in. Incrementally testing every.single.chunk of code - well, sometimes that's what it comes down to! But it's something to try and avoid.
 
 ### Be Bayesian
-But sometimes you can't avoid it! Binary search wouldn't have been much help in [finding the wreck of the USS Scorpion](https://en.wikipedia.org/wiki/USS_Scorpion_(SSN-589)). There they had to do a location-by-location search, and the key turned out to be prioritising the areas where 
+But sometimes you can't avoid it! Binary search wouldn't have been much help in [finding the wreck of the USS Scorpion](https://en.wikipedia.org/wiki/USS_Scorpion_%28SSN-589%29). There they had to do a location-by-location search, and the key turned out to be prioritising the areas where 
 
 * the Scorpion was likely to be and 
 * where it was likely to be *spotted*. 
