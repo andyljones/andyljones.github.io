@@ -275,11 +275,40 @@
 <p><strong>The community has other priorities</strong>: Again, the community is a community of researchers. The population sets the priorities, and the priority is publication. Reliable, reproducible research contributes to publishing high-impact papers, but it also costs time and effort that is arguably better spent working on something <em>new</em>. And, well, it's hard to argue with the results: the current standards of RL development have carried us <a href="https://deepmind.com/blog/article/muzero-mastering-go-chess-shogi-and-atari-without-rules">a</a> <a href="https://openai.com/blog/learning-dexterity/">long</a> <a href="https://deepmind.com/blog/article/AlphaStar-Grandmaster-level-in-StarCraft-II-using-multi-agent-reinforcement-learning">way</a>.</p>
 <p>Don't take this as a clarion call for better practices, nor a stalwart defense of practices as they are. It's not a hill I wish to die on. I'm only giving an explanation for why things are the way they are, rather than a justification for it. My preferences are towards improved practices, but I can see the sense in the other side's position.</p>
 <h2>Debugging Strategies</h2>
-<p>TODO: Expand these</p>
-<h3>Focus your efforts</h3>
-<h3>Localise your errors</h3>
-<h3>Maximise detection rate</h3>
+<p>With all that in mind, here are some broad strategies to keep in mind when chasing a bug.</p>
+<h3>Design reliable tests</h3>
+<p>Write tests that either clearly pass or clearly fail. There's some amount of true randomness in RL, but most of that can be controlled with a seed. What's harder to deal with is psuedorandomness such that on one seed a test might pass and another seed the test might fail. This is <em>awful</em> to deal with, and you should go out of your way to avoid it.</p>
+<p>While the ideal is a test that is guaranteed to cleanly pass or fail, a good fallback is one that simply <em>overwhelmingly likely</em> to pass or fail. Typically, this means substituting out environments or algorithms with simpler ones that behave more predictably, and which you can run through your implementation with some massive batch size that'll suppress a lot of the wackiness that you might otherwise suffer.</p>
+<h3>Localise errors</h3>
+<p>Write test code that'll tell you the most about where the error is. The classic example of this is binary search: if you're looking for an specific item in a sorted list, then taking a look at the middle item tells you a <em>lot</em> more about where your target item is than looking at the first item.</p>
+<p>Similarly, when debugging RL systems try to find tests that cut your system in half in some way, and tell you which half the problem is in. Incrementally testing every.single.chunk of code - well, sometimes that's what it comes down to! But it's something to try and avoid.</p>
+<h3>Be Bayesian</h3>
+<p>But sometimes you can't avoid it! Binary search wouldn't have been much help in <a href="https://en.wikipedia.org/wiki/USS_Scorpion_(SSN-589">finding the wreck of the USS Scorpion</a>). There they had to do a location-by-location search, and the key turned out to be prioritising the areas where</p>
+<ul>
+<li>the Scorpion was likely to be and </li>
+<li>where it was likely to be <em>spotted</em>. </li>
+</ul>
+<p>This kind of thinking isn't so critical in traditional software development because isolating components is much easier, so you can do the sort of binary search I mentioned previouly. But in RL, well, sometimes you just can't untangle something. Then you should reflect on which bits of your code are most likely to <em>contain</em> bugs, and which bits of your code you're going to be able to <em>easily spot</em> those bugs. Prioritise looking in those places!</p>
+<p>As an aside, the <a href="https://en.wikipedia.org/wiki/Streetlight_effect">parable of the drunk and his keys</a> has always confused me: I don't know if it's saying the wise thing to do is to look under the streetlight, or to look in the dark.</p>
+<h3>Pursue Anomalies</h3>
+<p>If you ever see a plot or a behaviour that just <em>seems weird</em>, chase right after it! Do not - do <em>not</em> - just 'hope it goes away'. Chasing anomalies is one of the most powerful ways to debug your system, because if you've noticed a problem without having had to go look for it it means it's a <em>really big problem</em>.</p>
+<p>This takes quite a bit of a mindset change though. It's really tempting to think that the cool extra functionality you were planning to write today - a tournament, adaptive reward scaling, a transformer - might just magically fix this anomalous behaviour.</p>
+<p>It won't.</p>
+<p>Give up on your plan for the day and chase the anomaly instead.</p>
 <h1>Practice</h1>
+<p>There are two parts here. First is a list of some of the most common mistakes that I've seen, and second is a set of more general techniques for debugging issues outside of the common mistakes list.</p>
+<h2>Common Mistakes</h2>
+<h3>Hand-tune your reward scale</h3>
+<p>The single most common issue for newbies writing custom RL implementations is that the targets arriving at their neural net aren't [-1, +1]. Actually, anything [-.1, +.1]ish to [-10, +10]ish is good. The point is to have rewards that generate 'sensible' targets for your network. The hyperparameters you've pulled from the literature are adapted to work with these nicely-scaled targets, but lots of envs don't natively provide rewards of the right size so as to generate these nicely-scaled targets.</p>
+<p>Having read that, you might be tempted to write some adaptive scheme to scale your rewards for you. Don't: it's an extra bit of nonstationarity that'll make life more difficult. Just hand-scale, hand-clip the rewards from your env so that the targets passed to your network are sensible. When everything else is working, you can come back and replace this with something less artificial.</p>
+<h3>Use a really large batch size</h3>
+<p>One of the most reliabe ways to make life easier in RL is to use a really large batch size. A <em>really</em> large batch size. There's an <a href="https://arxiv.org/abs/1812.06162">excellent paper on picking batch sizes</a>, but as an extremely rough rule of thumb: a thousand is acceptable, ten thousand is good, a hundred thousand is perfect. The idea behind this is that with small batches and complex envs, it's easy for your learner to end up with a batch that represents some idiosyncratic part of the environment. And then by stepping on this batch alone, it's dragged off in a weird direction that reduces its performance on the env in general. Big batches do a lot to suppress this problem.</p>
+<h3>Use a really small network</h3>
+<p>Hand in hand with really large batch sizes is really small networks. When you use really large batches, your binding constraint is likely to be the memory it takes to hold the forward pass activations on your GPU. By making the network smaller, you can fit bigger batches! And frankly, small networks can accomplish a <em>lot</em>. In my <a href="https://andyljones.com/boardlaw/">boardlaw</a> project, I found that a fully connected network with 4 layers of 1024 neurons was enough to learn perfect play on a 9x9 board. Perfect play! That's really complex!</p>
+<h3>Avoid pixels</h3>
+<p>And hand-in-hand with 'use a small network' is: <em>avoid pixels</em>. Especially if you're an independent researcher with hardware constraints, just... don't work on environments with hefty, hard-to-ingest environments like Atari. Pixel-based observations mean that before it does anything interesting, your agent has to learn to <em>see</em>. From sparse rewards! That's hard, and it's compute-intensive, and it's <em>boring</em>. If you've got any choice in the matter, pick the simplest env that will be able to generate the behaviour you're after. <a href="https://github.com/Bam4d/Griddly">Gridworlds</a> are <a href="https://github.com/maximecb/gym-minigrid">an</a> excellent <a href="https://github.com/santiontanon/microrts">place</a> to start.</p>
+<h3>Mix your vectorized envs</h3>
+<p>If you've got a long-lived env and you're simulating a lot of them in parallel, you might find that your system behaves a bit strangely at the start of training. One common issue is that if all your envs start from the same state, then your learner gets passed very highly-correlated samples, and so it tries to optimise for, say, steps 0-10 of the env in the first batch, then 10-20 in the second batch, etc. You can avoid this by '<a href="https://en.wikipedia.org/wiki/Markov_chain_mixing_time">mixing</a>' your envs: taking enough random steps in the env that they become uncorrelated with one another. A good way to check that things are well-mixed is to look at the number of resets at each timestep: if they look pretty uniform, things are well-mixed. If they all cluster on a specific timestep, you need to take some more random actions.</p>
 <h2>Work from a reference implementation</h2>
 <p><em>If you're new to reinforcement learning, writing things from scratch is the most catastrophically self-sabotaging thing you can do.</em></p>
 <p>There is an alluring masochism in writing things from scratch. There's concrete value in it too: by writing things from scratch, you're both forced to fully understand what you're doing and you're more likely to come up with a fresh perspective. In many other fields of software development these benefits would be worth the slow-down you suffer from having to work everything out yourself.</p>
@@ -337,12 +366,14 @@
 <p>This is an idea that's been developed a few times independently, though I can't remember where else I've seen it just this second. You can find my own (undocumented) implementation <a href="https://github.com/andyljones/megastep/blob/23347dbc4698626408e4c5047c9f5b0a803c4e72/megastep/demo/heads.py#L69-L75">here</a>.</p>
 <h2>Use probe agents.</h2>
 <p>In much the same way that you can simplify your environments to localise errors, you can do the same with your agents too.</p>
-<ul>
-<li>Cheats</li>
-<li>Automatons</li>
-<li>Tabular</li>
-</ul>
-<p>TODO: More of this.</p>
+<p><em>Cheat</em> agents are ones that you leak extra information to. For example, if I'm writing an agent to navigate to a goal, then slipping the agent an extra vector saying which direction the goal is in should help a <em>lot</em>. My agent should be able to solve this problem <em>much</em> faster, and if it can't then how the heck can I expect it to solve the original problem?</p>
+<p><em>Automatons</em> are agents that don't use a neural network at all. Instead, they're hand-written algorithms. The point of writing something like this is to check that your environment is actually solvable. On an navigation environment I wrote once, I set up a room with a red post behind the agent. Then I wrote an automaton which would just turn left until a block of red was in the middle of it's view. Shocker: my automaton couldn't solve this task, because it turned out I'd mucked up the observation generation on odd-numbered environments.</p>
+<p>It's worth keeping in mind that automatons can be handed cheat information too! Combining automatons and progressively more cheat information is a powerful way to debug an environment.</p>
+<p><em>Tabular</em> agents a good match for probe environments. If you've set up a real simple environment and <em>still</em> nothing works, then replacing your NN with a far-easier-to-interpret lookup table of state values is a great way to figure out what you're missing. Be aware that it might take some time with a pen and paper to check that the values that you're seeing in the table are the ones you expect, but it's a hard setup to fool.</p>
+<h2>Use adaptive network definitions</h2>
+<p>One of the issues with probe environments and probe agents is that every time you swap out your environment or agent, you'll find yourself having to rewrite the interface of the network with the rest of the world. By 'interface' I mean 'the bit that eats the observation and the bit that spits out the action'.</p>
+<p>One way to avoid this is to write a function that takes the observation space and action space of the environment, and generates 'heads' for the network that convert the observation into a fixed-width vector, and which convert a fixed-width vector to the action. Then you can hand-implement <em>just</em> the body of the net that converts the intake vector to the output vector, and the rest will be slotted in by your function based on the env it has to work with.</p>
+<p>You can see <a href="https://github.com/andyljones/megastep/blob/master/megastep/demo/heads.py">one</a> <a href="https://github.com/andyljones/megastep/blob/master/megastep/demo/__init__.py#L17-L26">implementation</a> of this in my <a href="https://andyljones.com/megastep/">megastep</a> work, but it's an idea that's been independently developed a few times. I haven't yet seen a general library for it.</p>
 <h2>Log excessively.</h2>
 <p>The last three sections have involved controlled experiments of a sort, where you place your components in a known setup and see how they act. The complement to a controlled experiment is an observational study: watching your system in its natural habitat <em>very carefully</em> and seeing if you can spot anything anomalous.</p>
 <p>In reinforcement learning, watching your system carefully means logging. Lots of logging. Below are some of the logs I've found particularly useful.</p>
@@ -417,8 +448,6 @@
 <p>If you're running out of memory and you can't immediately figure out why, <a href="https://github.com/Stonesjtu/pytorch_memlab#memory-profiler">memlab</a> can help a lot. Disclosure: I wrote the frontend.</p>
 <p>As well as the memory stats, it's also useful to track the utilization, fan speed and temperature reported by <code>nvidia-smi</code>. You can get these values in <a href="https://github.com/andyljones/megastep/blob/master/rebar/stats/gpu.py#L17-L29">machine-readable form</a>.</p>
 <p>In particular, if the utilization is persistently low then you should profile your code. Make sure to set <code>CUDA_LAUNCH_BLOCKING=1</code> before importing your tensor library, and then use <a href="https://jiffyclub.github.io/snakeviz/">snakeviz</a> or <a href="https://github.com/nschloe/tuna">tuna</a> to profile things in a broad way. If that's not enough detail, you can dig into things further with <a href="https://developer.nvidia.com/nsight-systems">nsight</a>.</p>
-<h3>Env-dependent metrics</h3>
-<p>TODO</p>
 <h3>Traditional metrics</h3>
 <p>As well as the above, I also plot some other things out of habit</p>
 <ul>
@@ -429,8 +458,8 @@
 <li><p><strong>Policy and value losses</strong>: should fall dramatically at the start of training, then level out.</p>
 </li>
 </ul>
-<h3>Pursue Anomalies</h3>
-<h3>Avoid 3D, Avoid Pixels</h3>
+<h3>Env-dependent metrics</h3>
+<p>TODO</p>
 <h2>Credit</h2>
 <ul>
 <li><strong>kfir.b.y</strong>, for spotting an error in my description of the probe environments.</li>

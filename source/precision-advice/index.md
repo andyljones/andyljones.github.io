@@ -4,6 +4,8 @@ description: Showerthoughts on giving and receiving advice.
 date: 2021/02/11
 publish: False
 ---
+**Edit: I've realised over the past year that my various posts which aren't explicitly about technical topics don't age as well as the ones that are. This one's a prime example: I still *agree* with it, but I don't think it's up to the quality of other content on my site.**
+
 There've been a few instances recently where some luminary has espoused the value of working long hours, and has been roundly criticised for it.[^luminary] I think this issue embodies two interesting tensions, and in those two tensions are two knots of recursive thought that I've had little luck untangling. 
 
 ## Precision advice and collateral damage

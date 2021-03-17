@@ -54,13 +54,58 @@ Don't take this as a clarion call for better practices, nor a stalwart defense 
 
 ## Debugging Strategies
 
-TODO: Expand these
+With all that in mind, here are some broad strategies to keep in mind when chasing a bug.
 
-### Focus your efforts
-### Localise your errors
-### Maximise detection rate
+### Design reliable tests
+Write tests that either clearly pass or clearly fail. There's some amount of true randomness in RL, but most of that can be controlled with a seed. What's harder to deal with is psuedorandomness such that on one seed a test might pass and another seed the test might fail. This is *awful* to deal with, and you should go out of your way to avoid it. 
+
+While the ideal is a test that is guaranteed to cleanly pass or fail, a good fallback is one that simply *overwhelmingly likely* to pass or fail. Typically, this means substituting out environments or algorithms with simpler ones that behave more predictably, and which you can run through your implementation with some massive batch size that'll suppress a lot of the wackiness that you might otherwise suffer.
+
+### Localise errors
+Write test code that'll tell you the most about where the error is. The classic example of this is binary search: if you're looking for an specific item in a sorted list, then taking a look at the middle item tells you a *lot* more about where your target item is than looking at the first item. 
+
+Similarly, when debugging RL systems try to find tests that cut your system in half in some way, and tell you which half the problem is in. Incrementally testing every.single.chunk of code - well, sometimes that's what it comes down to! But it's something to try and avoid.
+
+### Be Bayesian
+But sometimes you can't avoid it! Binary search wouldn't have been much help in [finding the wreck of the USS Scorpion](https://en.wikipedia.org/wiki/USS_Scorpion_(SSN-589)). There they had to do a location-by-location search, and the key turned out to be prioritising the areas where 
+
+* the Scorpion was likely to be and 
+* where it was likely to be *spotted*. 
+
+This kind of thinking isn't so critical in traditional software development because isolating components is much easier, so you can do the sort of binary search I mentioned previouly. But in RL, well, sometimes you just can't untangle something. Then you should reflect on which bits of your code are most likely to *contain* bugs, and which bits of your code you're going to be able to *easily spot* those bugs. Prioritise looking in those places! 
+
+As an aside, the [parable of the drunk and his keys](https://en.wikipedia.org/wiki/Streetlight_effect) has always confused me: I don't know if it's saying the wise thing to do is to look under the streetlight, or to look in the dark.
+
+### Pursue Anomalies
+If you ever see a plot or a behaviour that just *seems weird*, chase right after it! Do not - do *not* - just 'hope it goes away'. Chasing anomalies is one of the most powerful ways to debug your system, because if you've noticed a problem without having had to go look for it it means it's a *really big problem*. 
+
+This takes quite a bit of a mindset change though. It's really tempting to think that the cool extra functionality you were planning to write today - a tournament, adaptive reward scaling, a transformer - might just magically fix this anomalous behaviour. 
+
+It won't.
+
+Give up on your plan for the day and chase the anomaly instead. 
 
 # Practice
+There are two parts here. First is a list of some of the most common mistakes that I've seen, and second is a set of more general techniques for debugging issues outside of the common mistakes list.
+
+## Common Mistakes
+
+### Hand-tune your reward scale
+The single most common issue for newbies writing custom RL implementations is that the targets arriving at their neural net aren't [-1, +1]. Actually, anything [-.1, +.1]ish to [-10, +10]ish is good. The point is to have rewards that generate 'sensible' targets for your network. The hyperparameters you've pulled from the literature are adapted to work with these nicely-scaled targets, but lots of envs don't natively provide rewards of the right size so as to generate these nicely-scaled targets.
+
+Having read that, you might be tempted to write some adaptive scheme to scale your rewards for you. Don't: it's an extra bit of nonstationarity that'll make life more difficult. Just hand-scale, hand-clip the rewards from your env so that the targets passed to your network are sensible. When everything else is working, you can come back and replace this with something less artificial.
+
+### Use a really large batch size 
+One of the most reliabe ways to make life easier in RL is to use a really large batch size. A *really* large batch size. There's an [excellent paper on picking batch sizes](https://arxiv.org/abs/1812.06162), but as an extremely rough rule of thumb: a thousand is acceptable, ten thousand is good, a hundred thousand is perfect. The idea behind this is that with small batches and complex envs, it's easy for your learner to end up with a batch that represents some idiosyncratic part of the environment. And then by stepping on this batch alone, it's dragged off in a weird direction that reduces its performance on the env in general. Big batches do a lot to suppress this problem.
+
+### Use a really small network
+Hand in hand with really large batch sizes is really small networks. When you use really large batches, your binding constraint is likely to be the memory it takes to hold the forward pass activations on your GPU. By making the network smaller, you can fit bigger batches! And frankly, small networks can accomplish a *lot*. In my [boardlaw](https://andyljones.com/boardlaw/) project, I found that a fully connected network with 4 layers of 1024 neurons was enough to learn perfect play on a 9x9 board. Perfect play! That's really complex! 
+
+### Avoid pixels
+And hand-in-hand with 'use a small network' is: *avoid pixels*. Especially if you're an independent researcher with hardware constraints, just... don't work on environments with hefty, hard-to-ingest environments like Atari. Pixel-based observations mean that before it does anything interesting, your agent has to learn to *see*. From sparse rewards! That's hard, and it's compute-intensive, and it's *boring*. If you've got any choice in the matter, pick the simplest env that will be able to generate the behaviour you're after. [Gridworlds](https://github.com/Bam4d/Griddly) are [an](https://github.com/maximecb/gym-minigrid) excellent [place](https://github.com/santiontanon/microrts) to start.
+
+### Mix your vectorized envs
+If you've got a long-lived env and you're simulating a lot of them in parallel, you might find that your system behaves a bit strangely at the start of training. One common issue is that if all your envs start from the same state, then your learner gets passed very highly-correlated samples, and so it tries to optimise for, say, steps 0-10 of the env in the first batch, then 10-20 in the second batch, etc. You can avoid this by '[mixing](https://en.wikipedia.org/wiki/Markov_chain_mixing_time)' your envs: taking enough random steps in the env that they become uncorrelated with one another. A good way to check that things are well-mixed is to look at the number of resets at each timestep: if they look pretty uniform, things are well-mixed. If they all cluster on a specific timestep, you need to take some more random actions.
 
 ## Work from a reference implementation
 *If you're new to reinforcement learning, writing things from scratch is the most catastrophically self-sabotaging thing you can do.*
@@ -134,11 +179,21 @@ This is an idea that's been developed a few times independently, though I can't 
 
 ## Use probe agents. 
 In much the same way that you can simplify your environments to localise errors, you can do the same with your agents too. 
-* Cheats
-* Automatons
-* Tabular
 
-TODO: More of this.
+*Cheat* agents are ones that you leak extra information to. For example, if I'm writing an agent to navigate to a goal, then slipping the agent an extra vector saying which direction the goal is in should help a *lot*. My agent should be able to solve this problem *much* faster, and if it can't then how the heck can I expect it to solve the original problem?
+
+*Automatons* are agents that don't use a neural network at all. Instead, they're hand-written algorithms. The point of writing something like this is to check that your environment is actually solvable. On an navigation environment I wrote once, I set up a room with a red post behind the agent. Then I wrote an automaton which would just turn left until a block of red was in the middle of it's view. Shocker: my automaton couldn't solve this task, because it turned out I'd mucked up the observation generation on odd-numbered environments. 
+
+It's worth keeping in mind that automatons can be handed cheat information too! Combining automatons and progressively more cheat information is a powerful way to debug an environment. 
+
+*Tabular* agents a good match for probe environments. If you've set up a real simple environment and *still* nothing works, then replacing your NN with a far-easier-to-interpret lookup table of state values is a great way to figure out what you're missing. Be aware that it might take some time with a pen and paper to check that the values that you're seeing in the table are the ones you expect, but it's a hard setup to fool. 
+
+## Use adaptive network definitions
+One of the issues with probe environments and probe agents is that every time you swap out your environment or agent, you'll find yourself having to rewrite the interface of the network with the rest of the world. By 'interface' I mean 'the bit that eats the observation and the bit that spits out the action'.
+
+One way to avoid this is to write a function that takes the observation space and action space of the environment, and generates 'heads' for the network that convert the observation into a fixed-width vector, and which convert a fixed-width vector to the action. Then you can hand-implement *just* the body of the net that converts the intake vector to the output vector, and the rest will be slotted in by your function based on the env it has to work with.
+
+You can see [one](https://github.com/andyljones/megastep/blob/master/megastep/demo/heads.py) [implementation](https://github.com/andyljones/megastep/blob/master/megastep/demo/__init__.py#L17-L26) of this in my [megastep](https://andyljones.com/megastep/) work, but it's an idea that's been independently developed a few times. I haven't yet seen a general library for it. 
 
 ## Log excessively.
 The last three sections have involved controlled experiments of a sort, where you place your components in a known setup and see how they act. The complement to a controlled experiment is an observational study: watching your system in its natural habitat *very carefully* and seeing if you can spot anything anomalous.
@@ -262,9 +317,6 @@ If you're running out of memory and you can't immediately figure out why, [memla
 As well as the memory stats, it's also useful to track the utilization, fan speed and temperature reported by `nvidia-smi`. You can get these values in [machine-readable form](https://github.com/andyljones/megastep/blob/master/rebar/stats/gpu.py#L17-L29).
 
 In particular, if the utilization is persistently low then you should profile your code. Make sure to set `CUDA_LAUNCH_BLOCKING=1` before importing your tensor library, and then use [snakeviz](https://jiffyclub.github.io/snakeviz/) or [tuna](https://github.com/nschloe/tuna) to profile things in a broad way. If that's not enough detail, you can dig into things further with [nsight](https://developer.nvidia.com/nsight-systems). 
-	
-### Env-dependent metrics
-TODO
 
 ### Traditional metrics
 As well as the above, I also plot some other things out of habit
@@ -274,9 +326,9 @@ As well as the above, I also plot some other things out of habit
 * **Mean value**: is (if your value network is working well) a less-noisy proxy for the reward per trajectory. If your trajectories are particularly long compared to your reward discount factor however, this can be dramatically different from the reward per trajectory.
 
 * **Policy and value losses**: should fall dramatically at the start of training, then level out.
-
-### Pursue Anomalies
-### Avoid 3D, Avoid Pixels
+	
+### Env-dependent metrics
+TODO
 
 ## Credit
 * **kfir.b.y**, for spotting an error in my description of the probe environments.
