@@ -76,7 +76,7 @@ But sometimes you can't avoid it! Binary search wouldn't have been much help in 
 * the Scorpion was likely to be and 
 * where it was likely to be *spotted*. 
 
-This kind of thinking isn't so critical in traditional software development because isolating components is much easier, so you can do the sort of binary search I mentioned previouly. But in RL, well, sometimes you just can't untangle something. Then you should reflect on which bits of your code are most likely to *contain* bugs, and which bits of your code you're going to be able to *easily spot* those bugs. Prioritise looking in those places! 
+This kind of thinking isn't so critical in traditional software development because isolating components is much easier, so you can do the sort of binary search I mentioned previously. But in RL, well, sometimes you just can't untangle something. Then you should reflect on which bits of your code are most likely to *contain* bugs, and which bits of your code you're going to be able to *easily spot* those bugs. Prioritise looking in those places! 
 
 As an aside, the [parable of the drunk and his keys](https://en.wikipedia.org/wiki/Streetlight_effect) has always confused me: I don't know if it's saying the wise thing to do is to look under the streetlight, or to look in the dark.
 
