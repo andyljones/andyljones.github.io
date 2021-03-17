@@ -11,7 +11,7 @@ Debugging reinforcement learning systems is incredibly painful. Debugging RL sys
 
 This article is a collection of debugging advice that has served me well over the past few years. It's collated both from my personal experiences, and from several months of discussion in the [RL Discord](https://discord.com/invite/xhfNqQv). It is intended as compliment to the [other excellent advice that can be found elsewhere](https://github.com/andyljones/reinforcement-learning-discord-wiki/wiki#debugging-advice). 
 
-There are two sections: one on [theory](#theory), and one on [practice](#practice). Things flow a little better if you read the theory before the practice, but you can skip on ahead if you wish.
+There are three sections: one on [theory](#theory), one on [common fixes](#fixes), and one on [practical advice](#tactics). Things flow a little better if you read the theory before the practice, but you can skip on ahead if you wish.
 
 
 # Theory <br id="theory">
@@ -76,12 +76,12 @@ But sometimes you can't avoid it! Binary search wouldn't have been much help in 
 * the Scorpion was likely to be and 
 * where it was likely to be *spotted*. 
 
-This kind of thinking isn't so critical in traditional software development because isolating components is much easier, so you can do the sort of binary search I mentioned previously. But in RL, well, sometimes you just can't untangle something. Then you should reflect on which bits of your code are most likely to *contain* bugs, and which bits of your code you're going to be able to *easily spot* those bugs. Prioritise looking in those places! 
+This kind of thinking isn't so critical in traditional software development because isolating components is much easier, so you can do the sort of binary search I mentioned previously. But in RL, well, sometimes you just can't untangle something. Then you should reflect on which bits of your code are most likely to *contain* bugs, and which bits of your code you're going to be able to *easily spot* those bugs in. Prioritise looking in those places! 
 
 As an aside, the [parable of the drunk and his keys](https://en.wikipedia.org/wiki/Streetlight_effect) has always confused me: I don't know if it's saying the wise thing to do is to look under the streetlight, or to look in the dark.
 
 ### Pursue Anomalies
-If you ever see a plot or a behaviour that just *seems weird*, chase right after it! Do not - do *not* - just 'hope it goes away'. Chasing anomalies is one of the most powerful ways to debug your system, because if you've noticed a problem without having had to go look for it it means it's a *really big problem*. 
+If you ever see a plot or a behaviour that just *seems weird*, chase right after it! Do not - do *not* - just 'hope it goes away'. Chasing anomalies is one of the most powerful ways to debug your system, because if you've noticed a problem without having had to go look for it, that means it's a *really big problem*. 
 
 This takes quite a bit of a mindset change though. It's really tempting to think that the cool extra functionality you were planning to write today - a tournament, adaptive reward scaling, a transformer - might just magically fix this anomalous behaviour. 
 
@@ -89,27 +89,30 @@ It won't.
 
 Give up on your plan for the day and chase the anomaly instead. 
 
-# Practice
-There are two parts here. First is a list of some of the most common mistakes that I've seen, and second is a set of more general techniques for debugging issues outside of the common mistakes list.
+# Common Fixes <br id="fixes">
+These are specific things that frequently trip people up.
 
-## Common Mistakes
-
-### Hand-tune your reward scale
+## Hand-tune your reward scale
 The single most common issue for newbies writing custom RL implementations is that the targets arriving at their neural net aren't [-1, +1]. Actually, anything [-.1, +.1]ish to [-10, +10]ish is good. The point is to have rewards that generate 'sensible' targets for your network. The hyperparameters you've pulled from the literature are adapted to work with these nicely-scaled targets, but lots of envs don't natively provide rewards of the right size so as to generate these nicely-scaled targets.
 
 Having read that, you might be tempted to write some adaptive scheme to scale your rewards for you. Don't: it's an extra bit of nonstationarity that'll make life more difficult. Just hand-scale, hand-clip the rewards from your env so that the targets passed to your network are sensible. When everything else is working, you can come back and replace this with something less artificial.
 
-### Use a really large batch size 
+## Use a really large batch size 
 One of the most reliabe ways to make life easier in RL is to use a really large batch size. A *really* large batch size. There's an [excellent paper on picking batch sizes](https://arxiv.org/abs/1812.06162), but as an extremely rough rule of thumb: a thousand is acceptable, ten thousand is good, a hundred thousand is perfect. The idea behind this is that with small batches and complex envs, it's easy for your learner to end up with a batch that represents some idiosyncratic part of the environment. And then by stepping on this batch alone, it's dragged off in a weird direction that reduces its performance on the env in general. Big batches do a lot to suppress this problem.
 
-### Use a really small network
+## Use a really small network
 Hand in hand with really large batch sizes is really small networks. When you use really large batches, your binding constraint is likely to be the memory it takes to hold the forward pass activations on your GPU. By making the network smaller, you can fit bigger batches! And frankly, small networks can accomplish a *lot*. In my [boardlaw](https://andyljones.com/boardlaw/) project, I found that a fully connected network with 4 layers of 1024 neurons was enough to learn perfect play on a 9x9 board. Perfect play! That's really complex! 
 
-### Avoid pixels
+## Avoid pixels
 And hand-in-hand with 'use a small network' is: *avoid pixels*. Especially if you're an independent researcher with hardware constraints, just... don't work on environments with hefty, expensive-to-ingest observations like Atari. Pixel-based observations mean that before it does anything interesting, your agent has to learn to *see*. From sparse rewards! That's hard, and it's compute-intensive, and it's *boring*. If you've got any choice in the matter, pick the simplest env that will be able to generate the behaviour you're after. [Gridworlds](https://github.com/Bam4d/Griddly) are [an](https://github.com/maximecb/gym-minigrid) excellent [place](https://github.com/santiontanon/microrts) to start.
 
-### Mix your vectorized envs
+In all, fast environments with small networks and big batches are massively easy to debug than slow environments with big networks and small batches. Make sure you can walk before you try running. 
+
+## Mix your vectorized envs
 If you've got a long-lived env and you're simulating a lot of them in parallel, you might find that your system behaves a bit strangely at the start of training. One common issue is that if all your envs start from the same state, then your learner gets passed very highly-correlated samples, and so it tries to optimise for, say, steps 0-10 of the env in the first batch, then 10-20 in the second batch, etc. You can avoid this by '[mixing](https://en.wikipedia.org/wiki/Markov_chain_mixing_time)' your envs: taking enough random steps in the env that they become uncorrelated with one another. A good way to check that things are well-mixed is to look at the number of resets at each timestep: if they look pretty uniform, things are well-mixed. If they all cluster on a specific timestep, you need to take some more random actions.
+
+# Practical Advice <br id="tactics">
+This advice sits somewhere between the 'common mistakes' and the more general 'theory' we discussed earlier.
 
 ## Work from a reference implementation
 *If you're new to reinforcement learning, writing things from scratch is the most catastrophically self-sabotaging thing you can do.*

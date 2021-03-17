@@ -252,7 +252,7 @@
         <h1>Debugging RL While Retaining Your Sanity</h1>
 <p>Debugging reinforcement learning systems is incredibly painful. Debugging RL systems combines the fun of debugging distributed systems with the fun of debugging numerical optimizers. If this is your first time, you might plausibly have a few hundred lines of code that you <em>think</em> are correct in an hour, and a system that's <em>actually</em> correct two months later. <a href="https://news.ycombinator.com/item?id=13519044">Here's the head of Tesla AI having exactly that experience</a>.</p>
 <p>This article is a collection of debugging advice that has served me well over the past few years. It's collated both from my personal experiences, and from several months of discussion in the <a href="https://discord.com/invite/xhfNqQv">RL Discord</a>. It is intended as compliment to the <a href="https://github.com/andyljones/reinforcement-learning-discord-wiki/wiki#debugging-advice">other excellent advice that can be found elsewhere</a>.</p>
-<p>There are two sections: one on <a href="#theory">theory</a>, and one on <a href="#practice">practice</a>. Things flow a little better if you read the theory before the practice, but you can skip on ahead if you wish.</p>
+<p>There are three sections: one on <a href="#theory">theory</a>, one on <a href="#fixes">common fixes</a>, and one on <a href="#tactics">practical advice</a>. Things flow a little better if you read the theory before the practice, but you can skip on ahead if you wish.</p>
 <h1>Theory <br id="theory"></h1>
 <h2>Why is debugging RL so hard?</h2>
 <p>A combination of issues. These issues show up in debugging any kind of system, but in RL they're both more common and they'll show up starting with the first system you ever write.</p>
@@ -290,27 +290,29 @@
 <li>the Scorpion was likely to be and </li>
 <li>where it was likely to be <em>spotted</em>. </li>
 </ul>
-<p>This kind of thinking isn't so critical in traditional software development because isolating components is much easier, so you can do the sort of binary search I mentioned previously. But in RL, well, sometimes you just can't untangle something. Then you should reflect on which bits of your code are most likely to <em>contain</em> bugs, and which bits of your code you're going to be able to <em>easily spot</em> those bugs. Prioritise looking in those places!</p>
+<p>This kind of thinking isn't so critical in traditional software development because isolating components is much easier, so you can do the sort of binary search I mentioned previously. But in RL, well, sometimes you just can't untangle something. Then you should reflect on which bits of your code are most likely to <em>contain</em> bugs, and which bits of your code you're going to be able to <em>easily spot</em> those bugs in. Prioritise looking in those places!</p>
 <p>As an aside, the <a href="https://en.wikipedia.org/wiki/Streetlight_effect">parable of the drunk and his keys</a> has always confused me: I don't know if it's saying the wise thing to do is to look under the streetlight, or to look in the dark.</p>
 <h3>Pursue Anomalies</h3>
-<p>If you ever see a plot or a behaviour that just <em>seems weird</em>, chase right after it! Do not - do <em>not</em> - just 'hope it goes away'. Chasing anomalies is one of the most powerful ways to debug your system, because if you've noticed a problem without having had to go look for it it means it's a <em>really big problem</em>.</p>
+<p>If you ever see a plot or a behaviour that just <em>seems weird</em>, chase right after it! Do not - do <em>not</em> - just 'hope it goes away'. Chasing anomalies is one of the most powerful ways to debug your system, because if you've noticed a problem without having had to go look for it, that means it's a <em>really big problem</em>.</p>
 <p>This takes quite a bit of a mindset change though. It's really tempting to think that the cool extra functionality you were planning to write today - a tournament, adaptive reward scaling, a transformer - might just magically fix this anomalous behaviour.</p>
 <p>It won't.</p>
 <p>Give up on your plan for the day and chase the anomaly instead.</p>
-<h1>Practice</h1>
-<p>There are two parts here. First is a list of some of the most common mistakes that I've seen, and second is a set of more general techniques for debugging issues outside of the common mistakes list.</p>
-<h2>Common Mistakes</h2>
-<h3>Hand-tune your reward scale</h3>
+<h1>Common Fixes <br id="fixes"></h1>
+<p>These are specific things that frequently trip people up.</p>
+<h2>Hand-tune your reward scale</h2>
 <p>The single most common issue for newbies writing custom RL implementations is that the targets arriving at their neural net aren't [-1, +1]. Actually, anything [-.1, +.1]ish to [-10, +10]ish is good. The point is to have rewards that generate 'sensible' targets for your network. The hyperparameters you've pulled from the literature are adapted to work with these nicely-scaled targets, but lots of envs don't natively provide rewards of the right size so as to generate these nicely-scaled targets.</p>
 <p>Having read that, you might be tempted to write some adaptive scheme to scale your rewards for you. Don't: it's an extra bit of nonstationarity that'll make life more difficult. Just hand-scale, hand-clip the rewards from your env so that the targets passed to your network are sensible. When everything else is working, you can come back and replace this with something less artificial.</p>
-<h3>Use a really large batch size</h3>
+<h2>Use a really large batch size</h2>
 <p>One of the most reliabe ways to make life easier in RL is to use a really large batch size. A <em>really</em> large batch size. There's an <a href="https://arxiv.org/abs/1812.06162">excellent paper on picking batch sizes</a>, but as an extremely rough rule of thumb: a thousand is acceptable, ten thousand is good, a hundred thousand is perfect. The idea behind this is that with small batches and complex envs, it's easy for your learner to end up with a batch that represents some idiosyncratic part of the environment. And then by stepping on this batch alone, it's dragged off in a weird direction that reduces its performance on the env in general. Big batches do a lot to suppress this problem.</p>
-<h3>Use a really small network</h3>
+<h2>Use a really small network</h2>
 <p>Hand in hand with really large batch sizes is really small networks. When you use really large batches, your binding constraint is likely to be the memory it takes to hold the forward pass activations on your GPU. By making the network smaller, you can fit bigger batches! And frankly, small networks can accomplish a <em>lot</em>. In my <a href="https://andyljones.com/boardlaw/">boardlaw</a> project, I found that a fully connected network with 4 layers of 1024 neurons was enough to learn perfect play on a 9x9 board. Perfect play! That's really complex!</p>
-<h3>Avoid pixels</h3>
+<h2>Avoid pixels</h2>
 <p>And hand-in-hand with 'use a small network' is: <em>avoid pixels</em>. Especially if you're an independent researcher with hardware constraints, just... don't work on environments with hefty, expensive-to-ingest observations like Atari. Pixel-based observations mean that before it does anything interesting, your agent has to learn to <em>see</em>. From sparse rewards! That's hard, and it's compute-intensive, and it's <em>boring</em>. If you've got any choice in the matter, pick the simplest env that will be able to generate the behaviour you're after. <a href="https://github.com/Bam4d/Griddly">Gridworlds</a> are <a href="https://github.com/maximecb/gym-minigrid">an</a> excellent <a href="https://github.com/santiontanon/microrts">place</a> to start.</p>
-<h3>Mix your vectorized envs</h3>
+<p>In all, fast environments with small networks and big batches are massively easy to debug than slow environments with big networks and small batches. Make sure you can walk before you try running.</p>
+<h2>Mix your vectorized envs</h2>
 <p>If you've got a long-lived env and you're simulating a lot of them in parallel, you might find that your system behaves a bit strangely at the start of training. One common issue is that if all your envs start from the same state, then your learner gets passed very highly-correlated samples, and so it tries to optimise for, say, steps 0-10 of the env in the first batch, then 10-20 in the second batch, etc. You can avoid this by '<a href="https://en.wikipedia.org/wiki/Markov_chain_mixing_time">mixing</a>' your envs: taking enough random steps in the env that they become uncorrelated with one another. A good way to check that things are well-mixed is to look at the number of resets at each timestep: if they look pretty uniform, things are well-mixed. If they all cluster on a specific timestep, you need to take some more random actions.</p>
+<h1>Practical Advice <br id="tactics"></h1>
+<p>This advice sits somewhere between the 'common mistakes' and the more general 'theory' we discussed earlier.</p>
 <h2>Work from a reference implementation</h2>
 <p><em>If you're new to reinforcement learning, writing things from scratch is the most catastrophically self-sabotaging thing you can do.</em></p>
 <p>There is an alluring masochism in writing things from scratch. There's concrete value in it too: by writing things from scratch, you're both forced to fully understand what you're doing and you're more likely to come up with a fresh perspective. In many other fields of software development these benefits would be worth the slow-down you suffer from having to work everything out yourself.</p>
