@@ -15,7 +15,7 @@ You can get in touch with me by [Twitter](https://twitter.com/andy_l_jones) or [
 ## Projects
 
 **Major**
-* [boardlaw](https://andyljones.com/boardlaw/): An ongoing research project into scaling laws in multiagent systems.
+* [Scaling Scaling Laws with Board Games](https://andyljones.com/boardlaw/): my paper on, well, scaling scaling laws!
 * [megastep](https://andyljones.com/megastep/): A 1m FPS RL environment.
 * [pybbfmm](https://andyljones.com/pybbfmm/): A GPU-accelerated black-box fast multipole method.
 * [RL discord](https://discord.com/invite/xhfNqQv): One reinforcement learning Discord to rule them all.
