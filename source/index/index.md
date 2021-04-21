@@ -21,6 +21,7 @@ You can get in touch with me by [Twitter](https://twitter.com/andy_l_jones) or [
 * [RL discord](https://discord.com/invite/xhfNqQv): One reinforcement learning Discord to rule them all.
 
 **Minor**
+* [fayin](https://andyljones.com/fayin): An attempt at using WebSpeech to help learn Mandarin pronunciation.
 * [coolgpus](https://github.com/andyljones/coolgpus): Custom GPU fan control for headless Linux.
 * [kvbtests](https://github.com/andyljones/kvbtests): Heteroskedasticity-and-autocorrelation-robust statistical tests.
 * [modulepickle](https://github.com/andyljones/modulepickle): Makes distributed dev feel local by auto-shipping your working dir to workers.
