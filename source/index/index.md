@@ -19,6 +19,8 @@ You can get in touch with me by [Twitter](https://twitter.com/andy_l_jones) or [
 * [megastep](https://andyljones.com/megastep/): A 1m FPS RL environment.
 * [pybbfmm](https://andyljones.com/pybbfmm/): A GPU-accelerated black-box fast multipole method.
 * [RL discord](https://discord.com/invite/xhfNqQv): One reinforcement learning Discord to rule them all.
+
+**Minor**
 * [fayin](https://andyljones.com/fayin): An attempt at using WebSpeech to help learn Mandarin pronunciation.
 * [coolgpus](https://github.com/andyljones/coolgpus): Custom GPU fan control for headless Linux.
 * [kvbtests](https://github.com/andyljones/kvbtests): Heteroskedasticity-and-autocorrelation-robust statistical tests.
