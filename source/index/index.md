@@ -4,7 +4,7 @@ description: andy jones personal site
 ---
 
 ## Me
-I'm a London-based machine learning researcher working on AI safety at [Anthropic](www.anthropic.com). I've previously worked on independent research, as a quant trader, and in biotech.
+I'm a London-based machine learning researcher working on AI safety at [Anthropic](https://www.anthropic.com). I've previously worked on independent research, as a quant trader, and in biotech.
 
 You can get in touch with me by [Twitter](https://twitter.com/andy_l_jones) or [email](mailto:andyjones.ed@gmail.com). 
 
