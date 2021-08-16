@@ -3,10 +3,10 @@ title: andy jones
 description: andy jones personal site
 ---
 
-## Me
-I'm a London-based machine learning researcher working on AI safety at [Anthropic](https://www.anthropic.com). I've previously worked on independent research, as a quant trader, and in biotech.
+## what
+I work on the intersection of reinforcement learning, language models and AI safety at [Anthropic](https://www.anthropic.com). I'm motivated by [effective altruism](https://en.wikipedia.org/wiki/Effective_altruism), [longtermism](https://80000hours.org/articles/future-generations/) and [AI risk](https://en.wikipedia.org/wiki/Existential_risk_from_artificial_general_intelligence). 
 
-You can get in touch with me by [Twitter](https://twitter.com/andy_l_jones) or [email](mailto:andyjones.ed@gmail.com). 
+Right now I'm based in London, but I'll be in San Francisco in the near future. You can get in touch with me by [Twitter](https://twitter.com/andy_l_jones) or [email](mailto:me@andyljones.com)!
 
 ## Posts
 {{posts}}
