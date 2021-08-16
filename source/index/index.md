@@ -3,24 +3,24 @@ title: andy jones
 description: andy jones personal site
 ---
 
-## what
+## me
 I work on the intersection of reinforcement learning, language models and AI safety at [Anthropic](https://www.anthropic.com). I'm motivated by [effective altruism](https://en.wikipedia.org/wiki/Effective_altruism), [longtermism](https://80000hours.org/articles/future-generations/) and [AI risk](https://en.wikipedia.org/wiki/Existential_risk_from_artificial_general_intelligence). 
 
 Right now I'm based in London, but I'll be in San Francisco in the near future. You can get in touch with me by [Twitter](https://twitter.com/andy_l_jones) or [email](mailto:me@andyljones.com)!
 
-## Posts
+## posts
 {{posts}}
 * [Are we in an AI overhang?](https://www.lesswrong.com/posts/N6vZEnCn6A95Xn39p/are-we-in-an-ai-overhang): AIs might get much larger very quickly.
 
-## Projects
+## projects
 
-**Major**
+**major**
 * [Scaling Scaling Laws with Board Games](https://andyljones.com/boardlaw/): my paper on, well, scaling scaling laws!
 * [megastep](https://andyljones.com/megastep/): A 1m FPS RL environment.
 * [pybbfmm](https://andyljones.com/pybbfmm/): A GPU-accelerated black-box fast multipole method.
 * [RL discord](https://discord.com/invite/xhfNqQv): One reinforcement learning Discord to rule them all.
 
-**Minor**
+**minor**
 * [fayin](https://andyljones.com/fayin): An attempt at using WebSpeech to help learn Mandarin pronunciation.
 * [coolgpus](https://github.com/andyljones/coolgpus): Custom GPU fan control for headless Linux.
 * [kvbtests](https://github.com/andyljones/kvbtests): Heteroskedasticity-and-autocorrelation-robust statistical tests.
@@ -31,13 +31,13 @@ Right now I'm based in London, but I'll be in San Francisco in the near future. 
 * [noterminal](https://github.com/andyljones/noterminal): Adds disposable notebooks to Jupyter.
 * [stripcommon](https://github.com/andyljones/stripcommon): Strips the common whitespace when copying into Jupyter.
 
-**Old**
+**old**
 
 These are my portfolio pieces from my first year learning to program, c. 2013.
 * [Commutes & Rent](http://andyljones.com/commutes-and-rent-frontend): An interactive visualization of commutes and rent in London. 
 * [A Global Shallow Fluid Model](http://andyljones.com/shallow-fluid-model): An interactive model of the atmosphere on a rotating planet.
 * [Segmenting Microarrays with Deep Neural Networks](https://github.com/andyljones/NeuralNetworkMicroarraySegmentation): Automation of a labour intensive part of DNA microarrays.
 
-**Website**
+**website**
 
 This website is rendered [from Markdown](https://github.com/andyljones/andyljones.github.io/blob/master/source/post-mortem-plotting/index.md) into [a minimal template](https://github.com/andyljones/andyljones.github.io/blob/master/template.j2) by [a short Python script](https://github.com/andyljones/andyljones.github.io/blob/master/generate.py). It uses a self-hosted [Matomo instance](https://matomo.org/) for analytics, stripped down to [only the details I'd see in the server logs](https://github.com/andyljones/andyljones.github.io/blob/master/template.j2#L36-L37).
