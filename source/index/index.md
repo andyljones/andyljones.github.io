@@ -4,9 +4,9 @@ description: andy jones personal site
 ---
 
 ## me
-I work on the intersection of reinforcement learning, language models and AI safety at [Anthropic](https://www.anthropic.com). I'm motivated by [effective altruism](https://en.wikipedia.org/wiki/Effective_altruism), [longtermism](https://80000hours.org/articles/future-generations/) and [AI risk](https://en.wikipedia.org/wiki/Existential_risk_from_artificial_general_intelligence). 
+I work on reinforcement learning, language models and AI safety at [Anthropic](https://www.anthropic.com). I'm motivated by [effective altruism](https://en.wikipedia.org/wiki/Effective_altruism), [longtermism](https://80000hours.org/articles/future-generations/) and [AI risk](https://en.wikipedia.org/wiki/Existential_risk_from_artificial_general_intelligence). 
 
-Right now I'm based in London, but I'll be in San Francisco in the near future. You can get in touch with me by [Twitter](https://twitter.com/andy_l_jones) or [email](mailto:me@andyljones.com)!
+The best way to get in touch with me is via [email](mailto:me@andyljones.com)!
 
 ## posts
 {{posts}}
@@ -15,7 +15,7 @@ Right now I'm based in London, but I'll be in San Francisco in the near future. 
 ## projects
 
 **major**
-* [Scaling Scaling Laws with Board Games](https://andyljones.com/boardlaw/): my paper on, well, scaling scaling laws!
+* [Scaling Scaling Laws with Board Games](https://andyljones.com/boardlaw/): Studying big AIs on big problems using small AIs on small problems.
 * [megastep](https://andyljones.com/megastep/): A 1m FPS RL environment.
 * [pybbfmm](https://andyljones.com/pybbfmm/): A GPU-accelerated black-box fast multipole method.
 * [RL discord](https://discord.com/invite/xhfNqQv): One reinforcement learning Discord to rule them all.
@@ -40,4 +40,4 @@ These are my portfolio pieces from my first year learning to program, c. 2013.
 
 **website**
 
-This website is rendered [from Markdown](https://github.com/andyljones/andyljones.github.io/blob/master/source/post-mortem-plotting/index.md) into [a minimal template](https://github.com/andyljones/andyljones.github.io/blob/master/template.j2) by [a short Python script](https://github.com/andyljones/andyljones.github.io/blob/master/generate.py). It uses a self-hosted [Matomo instance](https://matomo.org/) for analytics, stripped down to [only the details I'd see in the server logs](https://github.com/andyljones/andyljones.github.io/blob/master/template.j2#L36-L37).
+This website is rendered [from Markdown](https://github.com/andyljones/andyljones.github.io/blob/master/source/post-mortem-plotting/index.md) into [a minimal template](https://github.com/andyljones/andyljones.github.io/blob/master/template.j2) by [a short Python script](https://github.com/andyljones/andyljones.github.io/blob/master/generate.py). It uses a self-hosted [Matomo instance](https://matomo.org/) for analytics, stripped down to [only the details I'd see in the server logs](https://github.com/andyljones/andyljones.github.io/blob/master/template.j2).
