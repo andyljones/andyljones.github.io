@@ -9,6 +9,7 @@ I work on reinforcement learning, language models and AI safety at [Anthropic](h
 That said, I'm pretty chatty and keen to talk to most anyone about anything. The best way to get in touch with me is via [email](mailto:me@andyljones.com)!
 
 ## posts
+* [AI Safety Needs Great Engineers](https://forum.effectivealtruism.org/posts/DDDyTvuZxoKStm92M/ai-safety-needs-great-engineers): AI safety labs are bottlenecked on great engineering.
 {{posts}}
 * [Are we in an AI overhang?](https://www.lesswrong.com/posts/N6vZEnCn6A95Xn39p/are-we-in-an-ai-overhang): AIs might get much larger very quickly.
 
