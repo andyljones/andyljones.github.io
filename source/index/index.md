@@ -4,7 +4,7 @@ description: andy jones personal site
 ---
 
 ## me
-I work on reinforcement learning, language models and AI safety at [Anthropic](https://www.anthropic.com). My particular interests are [donating to the Against Malaria Foundation](https://www.againstmalaria.com/) and trying to reduce the downsides of AI, be they social, political or existential.
+I work on reinforcement learning, language models and AI safety at [Anthropic](https://www.anthropic.com). My particular interests are [donating to the Against Malaria Foundation](https://www.againstmalaria.com/) and trying to reduce the downsides of AI - social, political or existential.
 
 That said, I'm pretty chatty and keen to talk to most anyone about anything. The best way to get in touch with me is via [email](mailto:me@andyljones.com)!
 
