@@ -4,19 +4,27 @@ description: andy jones personal site
 ---
 
 ## me
-I work on reinforcement learning, language models and AI safety at [Anthropic](https://www.anthropic.com). My particular interests are [donating to the Against Malaria Foundation](https://www.againstmalaria.com/) and trying to reduce the downsides of AI - social, political or existential.
+I work on reinforcement learning, language models and AI safety at [Anthropic](https://www.anthropic.com), where I tend towards RL- and engineering-flavoured projects. I'm also keen on [donating to the Against Malaria Foundation](https://www.againstmalaria.com/).
 
-That said, I'm pretty chatty and keen to talk to most anyone about anything. The best way to get in touch with me is via [email](mailto:me@andyljones.com)!
+That said, I'm pretty chatty and happy to talk to most anyone about anything. The best way to get in touch with me is via [email](mailto:me@andyljones.com)!
 
-## posts
+## writing
+
+**anthropic**
+* [A Language Assistant as a Laboratory for Alignment](https://arxiv.org/abs/2112.00861): The two worst ways - prompting and fine-tuning - to align an AI.
+* [Training a Helpful and Harmless Assistant](https://arxiv.org/abs/2204.05862): The _third_ worst way to align an AI, RL on human feedback.
+* [Predictability and Surprise in Large Generative Models](https://arxiv.org/abs/2202.07785): Connects scaling laws (and lack thereof) with near-term impacts.
+
+**indie**
+* [Scaling Scaling Laws with Board Games](https://andyljones.com/boardlaw/): Studying big AIs on big problems using small AIs on small problems.
 * [AI Safety Needs Great Engineers](https://forum.effectivealtruism.org/posts/DDDyTvuZxoKStm92M/ai-safety-needs-great-engineers): AI safety labs are bottlenecked on great engineering.
 {{posts}}
 * [Are we in an AI overhang?](https://www.lesswrong.com/posts/N6vZEnCn6A95Xn39p/are-we-in-an-ai-overhang): AIs might get much larger very quickly.
+* [Segmenting Microarrays with Deep Neural Networks](https://github.com/andyljones/NeuralNetworkMicroarraySegmentation): c. 2014, automation of a labour intensive part of DNA microarrays.
 
 ## projects
 
 **major**
-* [Scaling Scaling Laws with Board Games](https://andyljones.com/boardlaw/): Studying big AIs on big problems using small AIs on small problems.
 * [megastep](https://andyljones.com/megastep/): A 1m FPS RL environment.
 * [pybbfmm](https://andyljones.com/pybbfmm/): A GPU-accelerated black-box fast multipole method.
 * [RL discord](https://discord.com/invite/xhfNqQv): One reinforcement learning Discord to rule them all.
@@ -37,7 +45,6 @@ That said, I'm pretty chatty and keen to talk to most anyone about anything. The
 These are my portfolio pieces from my first year learning to program, c. 2013.
 * [Commutes & Rent](http://andyljones.com/commutes-and-rent-frontend): An interactive visualization of commutes and rent in London. 
 * [A Global Shallow Fluid Model](http://andyljones.com/shallow-fluid-model): An interactive model of the atmosphere on a rotating planet.
-* [Segmenting Microarrays with Deep Neural Networks](https://github.com/andyljones/NeuralNetworkMicroarraySegmentation): Automation of a labour intensive part of DNA microarrays.
 
 **website**
 
