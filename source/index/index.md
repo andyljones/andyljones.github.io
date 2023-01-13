@@ -4,7 +4,7 @@ description: andy jones personal site
 ---
 
 ## me
-I work on reinforcement learning, language models and AI safety at [Anthropic](https://www.anthropic.com), where I tend towards RL- and engineering-flavoured projects. I'm also keen on [effective donation](https://www.givewell.org/charities/top-charities).
+I work on reinforcement learning, language models and AI safety at [Anthropic](https://www.anthropic.com), where I tend towards RL- and engineering-flavoured projects. I'm also keen on [cost-effective donation](https://www.givewell.org/charities/top-charities).
 
 That said, I'm chatty and happy to talk to most anyone about anything. The best way to get in touch with me is via [email](mailto:me@andyljones.com)!
 
@@ -14,6 +14,7 @@ That said, I'm chatty and happy to talk to most anyone about anything. The best 
 * [A Language Assistant as a Laboratory for Alignment](https://arxiv.org/abs/2112.00861): The two worst ways - prompting and fine-tuning - to align an AI.
 * [Training a Helpful and Harmless Assistant](https://arxiv.org/abs/2204.05862): The _third_ worst way to align an AI, RL on human feedback.
 * [Predictability and Surprise in Large Generative Models](https://arxiv.org/abs/2202.07785): Connects scaling laws (and lack thereof) with near-term impacts.
+* [Constitutional AI: Harmlessness from AI Feedback](https://arxiv.org/abs/2212.08073): Replacing the 'human' in 'human-feedback'.
 
 **indie**
 * [Scaling Scaling Laws with Board Games](https://andyljones.com/boardlaw/): Studying big AIs on big problems using small AIs on small problems.
