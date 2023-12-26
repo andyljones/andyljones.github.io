@@ -4,7 +4,7 @@ description: andy jones personal site
 ---
 
 ## me
-I'm an engineer-researcher at [Anthropic](https://www.anthropic.com), where I've moved between projects as demand dictates. So far that's meant building much of our early RL infrastructure, our sandboxing infrastructure, leading the multimodal effort and working on pretraining.
+I'm an engineer-researcher at [Anthropic](https://www.anthropic.com), where I've moved between projects as demand dictates. So far that's meant building much of our early RL infrastructure, our sandboxing infrastructure, leading the multimodal effort and working on big-model training.
 
 Outside of my day-to-day, I'm particularly interested in test-time compute, science-of-AI, interpretability, and the social impacts of AI - especially with regards to future-of-work, concentration-of-power, and the dynamics that might emerge when many people start deferring their decisions to their AI assistants. 
 
