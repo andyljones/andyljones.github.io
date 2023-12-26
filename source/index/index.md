@@ -45,11 +45,12 @@ I'm based in DC but regularly travel to SF and (as a Brit) semi-regularly to Lon
 
 **old**
 
-These are my portfolio pieces from my first year learning to program, c. 2013.
+These are from my first few years out of college.
+
 * [Commutes & Rent](http://andyljones.com/commutes-and-rent-frontend): An interactive visualization of commutes and rent in London. 
 * [A Global Shallow Fluid Model](http://andyljones.com/shallow-fluid-model): An interactive model of the atmosphere on a rotating planet.
 * [Segmenting Microarrays with Deep Neural Networks](https://github.com/andyljones/NeuralNetworkMicroarraySegmentation): c. 2014, automation of a labour intensive part of DNA microarrays.
 
 **website**
 
-This website is rendered [from Markdown](https://github.com/andyljones/andyljones.github.io/blob/master/source/post-mortem-plotting/index.md) into [a minimal template](https://github.com/andyljones/andyljones.github.io/blob/master/template.j2) by [a short Python script](https://github.com/andyljones/andyljones.github.io/blob/master/generate.py). It uses a self-hosted [Matomo instance](https://matomo.org/) for analytics, stripped down to [only the details I'd see in the server logs](https://github.com/andyljones/andyljones.github.io/blob/master/template.j2).
+This website is rendered [from Markdown](https://github.com/andyljones/andyljones.github.io/blob/master/source/post-mortem-plotting/index.md) into [a minimal template](https://github.com/andyljones/andyljones.github.io/blob/master/template.j2) by [a short Python script](https://github.com/andyljones/andyljones.github.io/blob/master/generate.py).
