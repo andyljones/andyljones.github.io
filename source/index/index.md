@@ -22,6 +22,7 @@ I'm based in DC but regularly travel to SF and (as a Brit) semi-regularly to Lon
 
 **indie**
 * [Scaling Scaling Laws with Board Games](https://andyljones.com/boardlaw/): Studying big AIs on big problems using small AIs on small problems.
+{{posts}}
 * [AI Safety Needs Great Engineers](https://www.lesswrong.com/posts/YDF7XhMThhNfHfim9/ai-safety-needs-great-engineers): AI safety labs are bottlenecked on great engineering.
 * [Are we in an AI overhang?](https://www.lesswrong.com/posts/N6vZEnCn6A95Xn39p/are-we-in-an-ai-overhang): AIs might get much larger very quickly.
 
