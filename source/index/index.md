@@ -14,10 +14,11 @@ I'm based in DC but regularly travel to SF and (as a Brit) semi-regularly to Lon
 ## writing
 
 **anthropic**
+* [Red-teaming Language Models to Reduce Harms](https://arxiv.org/abs/2209.07858): Some of the earliest results on automated red-teaming.
 * [Predictability and Surprise in Large Generative Models](https://arxiv.org/abs/2202.07785): Connects scaling laws (and lack thereof) with near-term impacts.
-* [A Language Assistant as a Laboratory for Alignment](https://arxiv.org/abs/2112.00861): The two worst ways - prompting and fine-tuning - to align an AI.
-* [Training a Helpful and Harmless Assistant](https://arxiv.org/abs/2204.05862): The _third_ worst way to align an AI, RL on human feedback.
 * [Constitutional AI: Harmlessness from AI Feedback](https://arxiv.org/abs/2212.08073): Replacing the 'human' in 'human-feedback'.
+* [Training a Helpful and Harmless Assistant](https://arxiv.org/abs/2204.05862): The _third_ worst way to align an AI, RL on human feedback.
+* [A Language Assistant as a Laboratory for Alignment](https://arxiv.org/abs/2112.00861): The two worst ways - prompting and fine-tuning - to align an AI.
 
 **indie**
 * [Scaling Scaling Laws with Board Games](https://andyljones.com/boardlaw/): Studying big AIs on big problems using small AIs on small problems.
