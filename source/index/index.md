@@ -8,8 +8,9 @@ I'm an engineer-researcher at [Anthropic](https://www.anthropic.com), where I've
 
 Outside of my day-to-day, I'm particularly interested in test-time compute, science-of-AI, interpretability, and the social impacts of AI - especially with regards to future-of-work, concentration-of-power, and the dynamics that might emerge when many people start deferring their decisions to their AI assistants. 
 
-All that said, I'm gregarious as researchers go and happy to talk to most anyone about anything. 
-I'm based in DC but regularly travel to SF and (as a Brit) semi-regularly to London. The best way to get in touch with me is via [email](mailto:me@andyljones.com)!
+I'm based in DC but regularly travel to SF and (as a Brit) semi-regularly to London. 
+
+The best way to get in touch with me is via [email](mailto:me@andyljones.com)!
 
 ## writing
 
