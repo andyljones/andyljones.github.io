@@ -1,10 +1,10 @@
 #!/bin/sh
 cd "$(dirname "$0")"
 
-conda activate ./.env 
-python generate.py 
+python generate.py
 
-sleep 2 && open "http://localhost:9001/posts/$1.html" &
+echo "Serving at http://localhost:9001"
+if [ -n "$1" ]; then
+    echo "View post at http://localhost:9001/posts/$1.html"
+fi
 python -m http.server 9001
-
-echo "Done"

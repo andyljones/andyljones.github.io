@@ -12,22 +12,23 @@ from email.utils import format_datetime
 
 formatter = html.HtmlFormatter()
 
-class HighlightRenderer(mistune.Renderer):
+class HighlightRenderer(mistune.HTMLRenderer):
 
-    def __init__(self, filename, **kwargs):
+    def __init__(self, filename='', **kwargs):
         self.filename = filename
         super().__init__(**kwargs)
 
-    def block_code(self, code, lang):
-        if not lang:
+    def block_code(self, code, info=None):
+        if not info:
             return '\n<pre><code>%s</code></pre>\n' % \
                 mistune.escape(code)
-        lexer = get_lexer_by_name(lang, stripall=True)
+        lexer = get_lexer_by_name(info, stripall=True)
         hl = highlight(code, lexer, formatter)
         return hl
 
-    def image(self, src, title, text):
-        return super().image(f'/source/{self.filename}/{src}', title, text)
+    def image(self, text, url, title=None):
+        new_url = f'/source/{self.filename}/{url}' if self.filename else url
+        return super().image(text, new_url, title)
 
 def template():
     return jinja2.Template(Path('template.j2').read_text())
