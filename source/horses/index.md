@@ -1,7 +1,7 @@
 ---
 title: Horses
 description: AI progress is steady. Human equivalence is sudden.
-date: 2024/12/08
+date: 2025/12/08
 publish: True
 ---
 # Horses

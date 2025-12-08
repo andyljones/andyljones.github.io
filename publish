@@ -1,8 +1,7 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-. activate ./.env 
-python generate.py 
+python generate.py
 
 git add * 
 git commit -am "Auto-generate" 
