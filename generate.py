@@ -16,7 +16,7 @@ class HighlightRenderer(mistune.HTMLRenderer):
 
     def __init__(self, filename='', **kwargs):
         self.filename = filename
-        super().__init__(**kwargs)
+        super().__init__(escape=False, **kwargs)
 
     def block_code(self, code, info=None):
         if not info:
