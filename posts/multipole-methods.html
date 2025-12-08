@@ -128,23 +128,28 @@
           text-align: center;
       }
 
-    .hll { background-color: #ffffcc }
-.c { color: #408080; font-style: italic } /* Comment */
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.hll { background-color: #ffffcc }
+.c { color: #3D7B7B; font-style: italic } /* Comment */
 .err { border: 1px solid #FF0000 } /* Error */
 .k { color: #008000; font-weight: bold } /* Keyword */
 .o { color: #666666 } /* Operator */
-.ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.cp { color: #BC7A00 } /* Comment.Preproc */
-.cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.c1 { color: #408080; font-style: italic } /* Comment.Single */
-.cs { color: #408080; font-style: italic } /* Comment.Special */
+.ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.cp { color: #9C6500 } /* Comment.Preproc */
+.cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
 .gd { color: #A00000 } /* Generic.Deleted */
 .ge { font-style: italic } /* Generic.Emph */
-.gr { color: #FF0000 } /* Generic.Error */
+.gr { color: #E40000 } /* Generic.Error */
 .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.gi { color: #00A000 } /* Generic.Inserted */
-.go { color: #888888 } /* Generic.Output */
+.gi { color: #008400 } /* Generic.Inserted */
+.go { color: #717171 } /* Generic.Output */
 .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .gs { font-weight: bold } /* Generic.Strong */
 .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
@@ -157,15 +162,15 @@
 .kt { color: #B00040 } /* Keyword.Type */
 .m { color: #666666 } /* Literal.Number */
 .s { color: #BA2121 } /* Literal.String */
-.na { color: #7D9029 } /* Name.Attribute */
+.na { color: #687822 } /* Name.Attribute */
 .nb { color: #008000 } /* Name.Builtin */
 .nc { color: #0000FF; font-weight: bold } /* Name.Class */
 .no { color: #880000 } /* Name.Constant */
 .nd { color: #AA22FF } /* Name.Decorator */
-.ni { color: #999999; font-weight: bold } /* Name.Entity */
-.ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.ni { color: #717171; font-weight: bold } /* Name.Entity */
+.ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
 .nf { color: #0000FF } /* Name.Function */
-.nl { color: #A0A000 } /* Name.Label */
+.nl { color: #767600 } /* Name.Label */
 .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
 .nt { color: #008000; font-weight: bold } /* Name.Tag */
 .nv { color: #19177C } /* Name.Variable */
@@ -182,11 +187,11 @@
 .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .s2 { color: #BA2121 } /* Literal.String.Double */
-.se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
 .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
 .sx { color: #008000 } /* Literal.String.Other */
-.sr { color: #BB6688 } /* Literal.String.Regex */
+.sr { color: #A45A77 } /* Literal.String.Regex */
 .s1 { color: #BA2121 } /* Literal.String.Single */
 .ss { color: #19177C } /* Literal.String.Symbol */
 .bp { color: #008000 } /* Name.Builtin.Pseudo */
@@ -242,26 +247,40 @@ new Runtime().module(notebook, name => {
         return new Inspector(selection);
     }
 });
-</script><video autoplay loop muted playsinline
+</script>
+
+<p><video autoplay loop muted playsinline
     poster="/source/multipole-methods/demo.jpg"
     style="display:block; margin:auto; max-height:640px; width:100%">
-      <source src="/source/multipole-methods/demo.mp4" type="video/mp4"/>
-</video><p><strong>This is not an epidemiological model</strong>. It's a <a href="https://andyljones.com/pybbfmm/">tech demo for part of an epidemiological model</a>. What you're looking at is ten million simulated people in the United Kingdom. Each person has a small chance of infecting each other person in the country, and that chance drops with distance.</p>
+<source src="/source/multipole-methods/demo.mp4" type="video/mp4"/>
+</video></p>
+<p><strong>This is not an epidemiological model</strong>. It's a <a href="https://andyljones.com/pybbfmm/">tech demo for part of an epidemiological model</a>. What you're looking at is ten million simulated people in the United Kingdom. Each person has a small chance of infecting each other person in the country, and that chance drops with distance.</p>
 <p>With ten million people, you'd think that each frame of the above animation would involve calculating a hundred trillion (ten million squared) interactions. Even for modern silicon, that's a lot! But there is a lesser-known algorithm from physics that can do it in a few seconds per frame.</p>
 <p>That algorithm is the <em>fast multipole method</em>, but the 'multipole' bit scares lots of people off from an elegant, widely applicable idea. For that idea's sake I'm going to refer to it as the <em>recursive approximation algorithm</em>, and I'm going to explain it without using any algebra at all.</p>
-<blockquote><p><strong>Technical Summary</strong>
+<blockquote>
+<p><strong>Technical Summary</strong>
 Fast multipole methods turn quadratic-time interaction problems into linear-time problems, and a recent version called the black-box multipole method can do it for any interaction you choose. The key idea is <em>a hierarchy of approximations</em>, and that's what most of this post is aimed towards explaining.</p>
 </blockquote>
 <h2>Setup</h2>
 <p>Here's a <em>source</em> and its <em>field</em>:</p>
-<div id='source_field' class='animation'></div><p>Maybe the source is a planet and the field is its gravity. Maybe the source is a particle and the field is the electric field. Maybe the source is an infected person and the field is the transmission risk.</p>
+<div id='source_field' class='animation'></div>
+
+<p>Maybe the source is a planet and the field is its gravity. Maybe the source is a particle and the field is the electric field. Maybe the source is an infected person and the field is the transmission risk.</p>
 <p>What the field represents isn't so important for our purposes, because whatever it represents the way to calculate it is the same. To calculate the field, we look at each of a 100 equally-spaced points in turn and calculate the strength of the source's field at each one:</p>
-<div id='source_points' class='animation'></div><p>There are 100 points, so that took 100 calculations.</p>
+<div id='source_points' class='animation'></div>
+
+<p>There are 100 points, so that took 100 calculations.</p>
 <p>If there's more than one source, then their fields add together. To calculate the combined field at a point, the field emitted by each source needs to be taken into account. With 100 sources and 100 points, there are 100 × 100 = 10,000 calculations to do:</p>
-<div id='sources_points' class='animation'></div><h2>Groups</h2>
+<div id='sources_points' class='animation'></div>
+
+<h2>Groups</h2>
 <p>That's pretty wasteful though. If we've got a bunch of sources close to eachother like we do below, then they all make about the same contribution to the point. We could save a lot of work by using an approximation: move all the sources to the same spot, do <em>one</em> calculation from that spot, and then multiply the calculated field strength by the number of sources in the group:</p>
-<div id='source_group_far' class='animation'></div><p>If we look closely, we can see that the point doesn't <em>quite</em> lie on the field line. This is because we can only get away with this kind of approximation when the point is far from the sources. When the point is far from the sources, the sources can be shifted left or right a bit without it mattering much. If the point is close to the sources though, then the exact location of each source is important, and the approximation doesn't work so well:</p>
-<div id='source_group_near' class='animation'></div><p>This time the approximation misses by a lot!</p>
+<div id='source_group_far' class='animation'></div>
+
+<p>If we look closely, we can see that the point doesn't <em>quite</em> lie on the field line. This is because we can only get away with this kind of approximation when the point is far from the sources. When the point is far from the sources, the sources can be shifted left or right a bit without it mattering much. If the point is close to the sources though, then the exact location of each source is important, and the approximation doesn't work so well:</p>
+<div id='source_group_near' class='animation'></div>
+
+<p>This time the approximation misses by a lot!</p>
 <p>Fortunately though most points are far way from most sources, so <em>most</em> of the time the approximation works fine.</p>
 <p>So here's a plan:</p>
 <ul>
@@ -271,7 +290,9 @@ Fast multipole methods turn quadratic-time interaction problems into linear-time
 </ul>
 <p>What's 'near' and 'far' mean here? Well, the worst case scenario is if the approximation is used on a point that's <em>right next to the sources being approximated</em>. As a simple way to avoid this worst-case, we'll say a point is 'far' from a group if it doesn't sit under that group or the group's neighbours. That guarantees the point won't be right next door to the approximation.</p>
 <p>This plan is pretty simple, but it's already much faster:</p>
-<div id='source_small_groups' class='animation'></div><p>Rather than the original 10,000 calculations we're now doing</p>
+<div id='source_small_groups' class='animation'></div>
+
+<p>Rather than the original 10,000 calculations we're now doing</p>
 <ul>
 <li>1,000 calculations with nearby sources, and</li>
 <li>2,500 calculations with far groups</li>
@@ -279,7 +300,9 @@ Fast multipole methods turn quadratic-time interaction problems into linear-time
 <p>for 3,500 calculations total - a 65% improvement! That's no small thing - but can we do better?</p>
 <h2>Groups of Groups</h2>
 <p>Well, the group sizes above were totally arbitrary. There's no reason they can't be twice as big:</p>
-<div id='source_big_groups' class='animation'></div><p>Now we're doing</p>
+<div id='source_big_groups' class='animation'></div>
+
+<p>Now we're doing</p>
 <ul>
 <li>2,000 calculations with nearby sources, and</li>
 <li>1,200 calculations with far groups</li>
@@ -294,17 +317,27 @@ Fast multipole methods turn quadratic-time interaction problems into linear-time
 </ul>
 <p>We're basically changing the idea of 'near' and 'far' depending on whether we're looking at big groups or small groups. The logic is that the approximate calculation with the big group might move the sources a long way, and so the approximation is only going to be accurate at a big distance. Smaller groups move the sources less, and so the approximation is going to be accurate at a smaller distance.</p>
 <p>Trying it out:</p>
-<div id='source_group_both' class='animation'></div><p>does get us down to 2,500 calculations, but there's no reason we can't repeat this bigger-groups trick a few more times:</p>
-<div id='source_group_hierarchy' class='animation'></div><p>Now it's only 2,000 calculations!</p>
+<div id='source_group_both' class='animation'></div>
+
+<p>does get us down to 2,500 calculations, but there's no reason we can't repeat this bigger-groups trick a few more times:</p>
+<div id='source_group_hierarchy' class='animation'></div>
+
+<p>Now it's only 2,000 calculations!</p>
 <p><strong>This is the key idea in the recursive approximation algorithm</strong>: rather than using one approximation that can only be used at one scale, we should build a <em>hierarchy</em> of approximations. Small approximations can be used to replace the short-range calculations that require high accuracy, while big approximations can be used to replace the more numerous low-accuracy long-range calculations.</p>
 <p>For example: at the top level of the previous animation, the approximation might involve moving a source fully one-eighth of the way across the screen! We get away with it because that approximation is only ever used with points more than quarter a screen away from the source. The lowest level of approximations meanwhile only ever get used to replace a small number of calculations, but they're accurate from 1/16th of a screen on out.</p>
 <p>80% fewer calculations is great, but can we do better?</p>
 <h2>Even More Groups</h2>
 <p>So the grouping idea relies on the fact that the greater the distance between a source and point, the less accurate we have to be about exactly where the <em>source</em> is. But we can rephrase that and also say: the greater the distance between a source and point, the less accurate we have to be about exactly where the <em>point</em> is!</p>
 <p>That is, we can group the points just like we did the sources!</p>
-<div id='source_point_group' class='animation'></div><p>We can see where this is going. Returning to one layer of groups, grouping both sources and points looks like this:</p>
-<div id='groups' class='animation'></div><p>And just like before, we can stack groups of different sizes to make things even faster:</p>
-<div id='hierarchy' class='animation'></div><p>This is the <em>recursive approximation algorithm</em> at its core: recursively approximate the sources, recursively approximate the points, and get 10,000 calculations down to 1,000.</p>
+<div id='source_point_group' class='animation'></div>
+
+<p>We can see where this is going. Returning to one layer of groups, grouping both sources and points looks like this:</p>
+<div id='groups' class='animation'></div>
+
+<p>And just like before, we can stack groups of different sizes to make things even faster:</p>
+<div id='hierarchy' class='animation'></div>
+
+<p>This is the <em>recursive approximation algorithm</em> at its core: recursively approximate the sources, recursively approximate the points, and get 10,000 calculations down to 1,000.</p>
 <p>That's the end of the expository part of this post. What follows is decidedly more technical, and discusses the details of the method in the real world.</p>
 <h2>Real-world problems</h2>
 <p>The problem explained above is simplified a <em>lot</em> from the kind you'd see in the wild.</p>
@@ -342,7 +375,7 @@ Fast multipole methods turn quadratic-time interaction problems into linear-time
 <li><p>This key idea of 'recursive approximation' turns up in a few places. I've previously run into it</p>
 <ul>
 <li>with <a href="https://en.wikipedia.org/wiki/Pyramid_%28image_processing%29">pyramids</a> while doing medical image analysis</li>
-<li>with <a href="https://en.wikipedia.org/wiki/Multigrid_method">multigrid methods</a> when writing a simple weather model </li>
+<li>with <a href="https://en.wikipedia.org/wiki/Multigrid_method">multigrid methods</a> when writing a simple weather model</li>
 <li>with <a href="https://en.wikipedia.org/wiki/Wavelet_transform">wavelets</a> in signals analysis</li>
 </ul>
 </li>
@@ -355,7 +388,7 @@ Fast multipole methods turn quadratic-time interaction problems into linear-time
 </li>
 <li><p>While all the attention is on the classical version, the black-box fast multipole method is a great deal more flexible and conceptually simpler to boot.</p>
 <ul>
-<li><a href="https://mc.stanford.edu/cgi-bin/images/f/fa/Darve_bbfmm_2009.pdf">William &amp; Fong's original paper</a> is the best place to start. </li>
+<li><a href="https://mc.stanford.edu/cgi-bin/images/f/fa/Darve_bbfmm_2009.pdf">William &amp; Fong's original paper</a> is the best place to start.</li>
 <li>They also have <a href="https://github.com/sivaramambikasaran/BBFMM2D">reference MATLAB code</a> and <a href="https://github.com/DrFahdSiddiqui/bbFMM2D-Python">a port of it to Python</a>.</li>
 </ul>
 </li>

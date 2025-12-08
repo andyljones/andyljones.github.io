@@ -48,7 +48,7 @@ Right now we're - globally - spending the equivalent of 2% of US GDP on AI datac
 
 That number seems to have steadily been doubling over the past few years.
 
-And that seems - according to the deals signed - likely to carry on doubling for the next few years.
+And it seems - according to the deals signed - likely to carry on doubling for the next few years.
 
 <hr>
 
@@ -60,7 +60,7 @@ I was one of the first researchers hired at Anthropic.
 
 This pink line, back in 2024, was a large part of my job. Answer technical questions for new hires.
 
-Me and other old-timers were answering about 4,000 new-hire questions a month.
+Back then, me and other old-timers were answering about 4,000 new-hire questions a month.
 
 Then in December, Claude finally got good enough to answer some of those questions for us.
 
@@ -78,7 +78,7 @@ But while it took horses decades to be overcome, and chess masters years, it too
 
 Surpassed by a system that costs one thousand times less than I do.
 
-A system that costs less, per word thought or written, as it'd cost to hire the cheapest human labor on the face of the planet.
+A system that costs less, per word thought or written, than it'd cost to hire the cheapest human labor on the face of the planet.
 
 <hr>
 

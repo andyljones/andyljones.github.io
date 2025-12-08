@@ -128,23 +128,28 @@
           text-align: center;
       }
 
-    .hll { background-color: #ffffcc }
-.c { color: #408080; font-style: italic } /* Comment */
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.hll { background-color: #ffffcc }
+.c { color: #3D7B7B; font-style: italic } /* Comment */
 .err { border: 1px solid #FF0000 } /* Error */
 .k { color: #008000; font-weight: bold } /* Keyword */
 .o { color: #666666 } /* Operator */
-.ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.cp { color: #BC7A00 } /* Comment.Preproc */
-.cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.c1 { color: #408080; font-style: italic } /* Comment.Single */
-.cs { color: #408080; font-style: italic } /* Comment.Special */
+.ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.cp { color: #9C6500 } /* Comment.Preproc */
+.cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
 .gd { color: #A00000 } /* Generic.Deleted */
 .ge { font-style: italic } /* Generic.Emph */
-.gr { color: #FF0000 } /* Generic.Error */
+.gr { color: #E40000 } /* Generic.Error */
 .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.gi { color: #00A000 } /* Generic.Inserted */
-.go { color: #888888 } /* Generic.Output */
+.gi { color: #008400 } /* Generic.Inserted */
+.go { color: #717171 } /* Generic.Output */
 .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .gs { font-weight: bold } /* Generic.Strong */
 .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
@@ -157,15 +162,15 @@
 .kt { color: #B00040 } /* Keyword.Type */
 .m { color: #666666 } /* Literal.Number */
 .s { color: #BA2121 } /* Literal.String */
-.na { color: #7D9029 } /* Name.Attribute */
+.na { color: #687822 } /* Name.Attribute */
 .nb { color: #008000 } /* Name.Builtin */
 .nc { color: #0000FF; font-weight: bold } /* Name.Class */
 .no { color: #880000 } /* Name.Constant */
 .nd { color: #AA22FF } /* Name.Decorator */
-.ni { color: #999999; font-weight: bold } /* Name.Entity */
-.ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.ni { color: #717171; font-weight: bold } /* Name.Entity */
+.ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
 .nf { color: #0000FF } /* Name.Function */
-.nl { color: #A0A000 } /* Name.Label */
+.nl { color: #767600 } /* Name.Label */
 .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
 .nt { color: #008000; font-weight: bold } /* Name.Tag */
 .nv { color: #19177C } /* Name.Variable */
@@ -182,11 +187,11 @@
 .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .s2 { color: #BA2121 } /* Literal.String.Double */
-.se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
 .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
 .sx { color: #008000 } /* Literal.String.Other */
-.sr { color: #BB6688 } /* Literal.String.Regex */
+.sr { color: #A45A77 } /* Literal.String.Regex */
 .s1 { color: #BA2121 } /* Literal.String.Single */
 .ss { color: #19177C } /* Literal.String.Symbol */
 .bp { color: #008000 } /* Name.Builtin.Pseudo */
@@ -268,8 +273,8 @@
 <h3>Be Bayesian</h3>
 <p>But sometimes you can't avoid it! Binary search wouldn't have been much help in <a href="https://en.wikipedia.org/wiki/USS_Scorpion_%28SSN-589%29">finding the wreck of the USS Scorpion</a>. There they had to do a location-by-location search, and the key turned out to be prioritising the areas where</p>
 <ul>
-<li>the Scorpion was likely to be and </li>
-<li>where it was likely to be <em>spotted</em>. </li>
+<li>the Scorpion was likely to be and</li>
+<li>where it was likely to be <em>spotted</em>.</li>
 </ul>
 <p>This kind of thinking isn't so critical in traditional software development because isolating components is much easier, so you can do the sort of binary search I mentioned previously. But in RL, well, sometimes you just can't untangle something. Then you should reflect on which bits of your code are most likely to <em>contain</em> bugs, and which bits of your code you're going to be able to <em>easily spot</em> those bugs in. Prioritise looking in those places!</p>
 <p>As an aside, the <a href="https://en.wikipedia.org/wiki/Streetlight_effect">parable of the drunk and his keys</a> has always confused me: I don't know if it's saying the wise thing to do is to look under the streetlight, or to look in the dark. Best moral I've heard for it is 'it depends'.</p>
@@ -311,9 +316,9 @@
 <p>In reinforcement learning, these benefits are not worth it. At all. As discussed <a href="#theory">above</a>, the nature of RL work makes it extremely hard for you to self-correct.</p>
 <p>When I say 'use a reference implementation', there are several interpretations you can take depending on your risk tolerance.</p>
 <ul>
-<li>The safest thing to do is to use a reference implementation out-of-the-box. Check that it works on your task, then repeatedly make a small change and check that it works as it did before. </li>
+<li>The safest thing to do is to use a reference implementation out-of-the-box. Check that it works on your task, then repeatedly make a small change and check that it works as it did before.</li>
 <li>Less safe is to just use the reference implementation as a source of reliable components. Work to the same API, and check that giving your version of a component and their version give the same outputs.</li>
-<li>Least safe (but still dramatically better than going in blind) is to have one eye on the reference implementation while you write your own. Copy their hyperparameters, copy their discounting code, copy how they handle termination and invalid actions and a hundred other little things that you're likely to muck up otherwise. </li>
+<li>Least safe (but still dramatically better than going in blind) is to have one eye on the reference implementation while you write your own. Copy their hyperparameters, copy their discounting code, copy how they handle termination and invalid actions and a hundred other little things that you're likely to muck up otherwise.</li>
 </ul>
 <p>Here are some excellent reference implementations to choose from:</p>
 <ul>

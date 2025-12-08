@@ -6,13 +6,15 @@ description: andy jones personal site
 ## me
 I'm an engineer-researcher at [Anthropic](https://www.anthropic.com), where I've moved between projects as demand dictates. So far that's meant building much of our early RL infrastructure, our sandboxing infrastructure, leading the multimodal effort and working on big-model training.
 
-Outside of my day-to-day, I'm particularly interested in test-time compute, science-of-AI, interpretability, and the social impacts of AI - especially with regards to future-of-work, concentration-of-power, and the dynamics that might emerge when many people start deferring their decisions to their AI assistants. 
-
-I'm based in DC but regularly travel to SF and (as a Brit) semi-regularly to London. 
-
-The best way to get in touch with me is via [email](mailto:me@andyljones.com)!
+The best way to get in touch with me is via [email](mailto:me@andyljones.com)!  
 
 ## writing
+
+**indie**
+{{posts}}
+* [AI Safety Needs Great Engineers](https://www.lesswrong.com/posts/YDF7XhMThhNfHfim9/ai-safety-needs-great-engineers): AI safety labs are bottlenecked on great engineering.
+* [Are we in an AI overhang?](https://www.lesswrong.com/posts/N6vZEnCn6A95Xn39p/are-we-in-an-ai-overhang): AIs might get much larger very quickly.
+* [Scaling Scaling Laws with Board Games](https://andyljones.com/boardlaw/): Studying big AIs on big problems using small AIs on small problems.
 
 **anthropic**
 * [Red-teaming Language Models to Reduce Harms](https://arxiv.org/abs/2209.07858): Some of the earliest results on automated red-teaming.
@@ -20,12 +22,6 @@ The best way to get in touch with me is via [email](mailto:me@andyljones.com)!
 * [Constitutional AI: Harmlessness from AI Feedback](https://arxiv.org/abs/2212.08073): Replacing the 'human' in 'human-feedback'.
 * [Training a Helpful and Harmless Assistant](https://arxiv.org/abs/2204.05862): The _third_ worst way to align an AI, RL on human feedback.
 * [A Language Assistant as a Laboratory for Alignment](https://arxiv.org/abs/2112.00861): The two worst ways - prompting and fine-tuning - to align an AI.
-
-**indie**
-* [Scaling Scaling Laws with Board Games](https://andyljones.com/boardlaw/): Studying big AIs on big problems using small AIs on small problems.
-{{posts}}
-* [AI Safety Needs Great Engineers](https://www.lesswrong.com/posts/YDF7XhMThhNfHfim9/ai-safety-needs-great-engineers): AI safety labs are bottlenecked on great engineering.
-* [Are we in an AI overhang?](https://www.lesswrong.com/posts/N6vZEnCn6A95Xn39p/are-we-in-an-ai-overhang): AIs might get much larger very quickly.
 
 ## projects
 
