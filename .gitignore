@@ -3,3 +3,5 @@ Untitled.ipynb
 .ipynb_checkpoints
 .env
 __pycache__
+nohup.out
+logs.txt

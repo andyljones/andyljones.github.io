@@ -1,0 +1,5 @@
+mistune>=3.0
+pyyaml
+jinja2
+pygments
+feedgen
